@@ -1,0 +1,141 @@
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8vh 6vw;
+}
+
+/* Marken-Label oben links — bleibt beim Scrollen sichtbar (in der Demo
+   Teil des globalen HUD). Der Ton-Toggle daneben ist bewusst nicht
+   Teil dieses Durchgangs, siehe Sound-Design-Folge-Task. */
+.brand {
+  position: fixed;
+  z-index: 5;
+  top: 26px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal);
+  animation: pulseDot 2.4s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.65);
+  }
+}
+
+.copy {
+  position: relative;
+  width: min(90vw, 720px);
+}
+
+/* v4.1-Learning aus der Demo: kein warmer Halo direkt hinter der
+   Headline (verwäscht mit dem Scrim zu einem hellen Fleck) — nur eine
+   ruhige, dunkle Fläche, damit der Text lesbar bleibt. */
+.copy::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 820px;
+  height: 560px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse,
+    rgba(8, 12, 22, 0.62) 0%,
+    rgba(8, 12, 22, 0.4) 45%,
+    rgba(8, 12, 22, 0) 78%
+  );
+  z-index: -1;
+}
+
+.kicker {
+  margin: 0 0 14px;
+  font-size: 11.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(2.3rem, 6.4vw, 3.9rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-shadow: 0 0 42px rgba(63, 224, 207, 0.22);
+}
+
+.tag {
+  margin: 18px auto 0;
+  max-width: 520px;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.tag em {
+  color: var(--amber);
+  font-size: 1.06em;
+}
+
+.hint {
+  margin-top: 56px;
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.chevron {
+  margin-top: 7px;
+  font-size: 13px;
+  animation: bob 1.7s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (max-width: 760px) {
+  .brand {
+    top: 20px;
+    left: 20px;
+  }
+  .hero {
+    padding-top: 12vh;
+  }
+}

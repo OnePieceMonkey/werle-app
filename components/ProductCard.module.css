@@ -1,0 +1,500 @@
+.productCard {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  width: min(90vw, 620px);
+  padding: 22px;
+  border-radius: 22px;
+  background: linear-gradient(
+    160deg,
+    rgba(24, 31, 52, 0.86),
+    rgba(18, 24, 42, 0.82)
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+a.productCard:hover {
+  transform: translateY(-3px);
+}
+
+.cardMedia {
+  position: relative;
+  flex: 0 0 auto;
+  width: 150px;
+}
+
+.cardMedia img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 368 / 800;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 18px;
+  display: block;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.cardBody {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.tagTeal {
+  background: var(--teal);
+  color: #08211d;
+}
+.tagIndigo {
+  background: var(--indigo);
+  color: #0d1626;
+}
+.tagCoral {
+  background: var(--coral);
+  color: #2a1710;
+}
+
+.cardBody h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.hook {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #b7c1d1;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 2px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ctaMuted {
+  color: var(--muted);
+  border-color: transparent;
+  font-weight: 500;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+a.productCard:hover .cta {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+a.cardAlibi:hover .cta {
+  color: var(--indigo);
+  border-color: var(--indigo);
+}
+a.productCard:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ---------------- Pulse Gate — Gameplay-Inset mit Pulsring ---------------- */
+.pulseInset {
+  position: absolute;
+  right: -14px;
+  bottom: -14px;
+  width: 80px;
+  height: 80px;
+}
+
+.pulseInset img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+  border: 3px solid var(--bg-soft);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.pulseRing {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cyan);
+  opacity: 0;
+  animation: pulseRing 2.6s ease-out infinite;
+}
+
+.r2 {
+  animation-delay: 0.87s;
+}
+.r3 {
+  animation-delay: 1.74s;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.62);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(2.15);
+    opacity: 0;
+  }
+}
+
+/* ---------------- coParents — Icon-Badge + zweiter Screenshot ----------------
+   Selektoren bewusst mit .cardMedia-Präfix (statt allein per Klasse), damit
+   die Spezifität über der generischen ".cardMedia img"-Regel oben liegt —
+   sonst gewinnt die generische Regel (Klasse+Tag schlägt Klasse allein) und
+   Icon/Sekundärbild rendern in voller Kartenbreite statt als kleines Badge. */
+.cardMedia .insetIcon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 42px;
+  height: 42px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  border: 3px solid var(--bg-soft);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+  object-position: center;
+  z-index: 2;
+}
+
+.cardMedia .insetSecondary {
+  position: absolute;
+  left: -12px;
+  bottom: -12px;
+  width: 52px;
+  height: auto;
+  aspect-ratio: 368 / 800;
+  border-radius: 9px;
+  border: 2.5px solid var(--bg-soft);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+  object-position: center top;
+}
+
+.cardCoparents {
+  cursor: default;
+}
+
+/* ---------------- ALIBI — angepinnte Case-Board-Komposition ---------------- */
+.cardWrap {
+  display: block;
+  width: min(90vw, 620px);
+}
+
+.cardAlibi {
+  align-items: center;
+}
+
+.boardMedia {
+  position: relative;
+  flex: 0 0 auto;
+  width: 172px;
+  height: 172px;
+}
+
+.pinMain {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 132px;
+  padding: 6px 6px 16px;
+  background: var(--cream);
+  border-radius: 3px;
+  transform: rotate(-3deg);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
+}
+
+.pinMain img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 896 / 1200;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+.pinPortrait {
+  position: absolute;
+  right: -6px;
+  bottom: -4px;
+  width: 74px;
+  padding: 4px 4px 10px;
+  background: var(--cream);
+  border-radius: 3px;
+  transform: rotate(5deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.pinPortrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 860 / 1080;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+.pinDot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #cdd6e6, var(--indigo) 70%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.pd1 {
+  left: 60px;
+  top: 2px;
+}
+.pd2 {
+  right: 24px;
+  bottom: 64px;
+}
+
+/* ---------------- E-Mail-Vormerkung (ALIBI + coParents) ---------------- */
+.notifyForm {
+  margin: 0;
+}
+
+.notifyStatus {
+  display: block;
+}
+
+/* ALIBI — gepinnte Notiz im Cork-Board-Stil, passend zu .pinMain/.pinPortrait. */
+.notifyAlibi {
+  position: relative;
+  margin: 16px 0 0;
+  padding: 12px 14px 14px;
+  max-width: 270px;
+  border-radius: 3px;
+  background: var(--cream);
+  transform: rotate(-1.4deg);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.notifyAlibi::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #cdd6e6, var(--indigo) 70%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.notifyAlibi .notifyLabel {
+  display: block;
+  font-family: var(--font-mono), "SF Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: #5c5548;
+  margin: 0 0 8px;
+}
+
+.notifyAlibi .notifyRow {
+  display: flex;
+  gap: 6px;
+}
+
+.notifyAlibi input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 7px 9px;
+  border-radius: 4px;
+  border: 1px solid rgba(35, 31, 25, 0.22);
+  background: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-sans), sans-serif;
+  font-size: 12.5px;
+  color: #231f19;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.notifyAlibi input::placeholder {
+  color: #8d8877;
+}
+.notifyAlibi input:focus {
+  border-color: var(--indigo);
+}
+
+.notifyAlibi button {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background: var(--indigo);
+  color: #0d1626;
+  font-weight: 600;
+  font-size: 12px;
+  font-family: var(--font-sans), sans-serif;
+  transition: transform 0.18s ease;
+}
+
+.notifyAlibi button:hover {
+  transform: translateY(-1px);
+}
+
+.notifyAlibi .notifyStatus {
+  margin-top: 7px;
+  font-size: 11px;
+  color: #3a5f4f;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notifyAlibi .notifyStatus.show {
+  opacity: 1;
+}
+
+/* coParents — dezente Zeile unter dem Store-Hinweis, gleiche dunkle
+   Glas-Optik wie die Karte selbst, Akzent in Coral. */
+.notifyCoparents {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notifyCoparents .notifyLabel {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.notifyCoparents .notifyRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.notifyCoparents input {
+  flex: 1 1 140px;
+  min-width: 0;
+  padding: 8px 11px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: var(--font-sans), sans-serif;
+  font-size: 12.5px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.notifyCoparents input::placeholder {
+  color: #5c6478;
+}
+.notifyCoparents input:focus {
+  border-color: var(--coral);
+}
+
+.notifyCoparents button {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: var(--coral);
+  color: #2a1710;
+  font-weight: 600;
+  font-size: 12px;
+  font-family: var(--font-sans), sans-serif;
+  transition: transform 0.18s ease;
+}
+
+.notifyCoparents button:hover {
+  transform: translateY(-1px);
+}
+
+.notifyCoparents .notifyStatus {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--teal);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notifyCoparents .notifyStatus.show {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .productCard,
+  .cardWrap {
+    width: min(92vw, 380px);
+  }
+  .productCard {
+    flex-direction: column;
+    padding: 18px;
+  }
+  .cardMedia {
+    width: 128px;
+    margin: 0 auto;
+  }
+  .boardMedia {
+    width: 100%;
+    height: 150px;
+    margin: 0 auto 4px;
+  }
+  .pinMain {
+    left: 50%;
+    transform: translateX(-56%) rotate(-3deg);
+    top: 0;
+  }
+  .pinPortrait {
+    right: 6%;
+    bottom: -8px;
+  }
+  .cardBody {
+    text-align: left;
+  }
+  .notifyAlibi {
+    max-width: none;
+  }
+}

@@ -1,0 +1,286 @@
+.stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  padding: 8vh 6vw;
+  flex-wrap: wrap;
+}
+
+.consolePanel {
+  width: min(92vw, 440px);
+  padding: 32px 34px;
+  border-radius: 18px;
+  position: relative;
+  background: linear-gradient(
+    165deg,
+    rgba(36, 27, 20, 0.9),
+    rgba(18, 14, 11, 0.94)
+  );
+  border: 1px solid rgba(232, 177, 106, 0.28);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    inset 0 0 60px rgba(232, 177, 106, 0.05);
+}
+
+.consolePanel::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  border: 1px solid rgba(232, 177, 106, 0.14);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.kicker {
+  position: relative;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 0 0 10px;
+}
+
+.consolePanel h2 {
+  position: relative;
+  margin: 0 0 10px;
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  color: var(--ink);
+}
+
+.sub {
+  position: relative;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #c7b9a4;
+  margin: 0 0 24px;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a2917a;
+}
+
+.field input,
+.field textarea {
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(232, 177, 106, 0.24);
+  border-radius: 8px;
+  padding: 11px 13px;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  resize: vertical;
+}
+
+.field textarea {
+  min-height: 82px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #5c5548;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(232, 177, 106, 0.14);
+}
+
+.submitRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--amber);
+  color: #2a1a08;
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+  font-family: var(--font-sans), sans-serif;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(232, 177, 106, 0.35);
+}
+
+.formStatus {
+  font-size: 13px;
+  color: var(--teal);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.formStatus.show {
+  opacity: 1;
+}
+
+.plaque {
+  width: min(88vw, 290px);
+  padding: 26px 26px;
+  border-radius: 14px;
+  position: relative;
+  background: linear-gradient(
+    160deg,
+    rgba(20, 26, 42, 0.86),
+    rgba(12, 17, 29, 0.92)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rivet {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.tl {
+  top: 10px;
+  left: 10px;
+}
+.tr {
+  top: 10px;
+  right: 10px;
+}
+.bl {
+  bottom: 10px;
+  left: 10px;
+}
+.br {
+  bottom: 10px;
+  right: 10px;
+}
+
+.plaqueLabel {
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7c88a3;
+  margin: 0 0 12px;
+}
+
+.plaqueBio {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #c3cbdc;
+  margin: 0 0 18px;
+}
+
+.plaqueMeta {
+  font-size: 12px;
+  color: #7c88a3;
+  margin: 0 0 18px;
+  line-height: 1.6;
+}
+
+.plaqueLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plaqueLinks a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  padding-bottom: 2px;
+  width: fit-content;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.plaqueLinks a:hover {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+.back {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.back a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back a:hover {
+  color: var(--teal);
+  border-color: rgba(63, 224, 207, 0.45);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 760px) {
+  .stage {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 22px;
+    padding: 8vh 5vw;
+  }
+  .consolePanel,
+  .plaque {
+    width: 100%;
+    max-width: 420px;
+  }
+}

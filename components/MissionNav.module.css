@@ -1,0 +1,74 @@
+.nav {
+  position: fixed;
+  z-index: 5;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 230px;
+}
+
+.line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateX(-50%);
+}
+
+.dotButton {
+  position: absolute;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%);
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dotVisual {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.42);
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.dotButton:hover .dotVisual,
+.dotButton:focus-visible .dotVisual {
+  border-color: var(--teal);
+}
+
+.active .dotVisual {
+  width: 9px;
+  height: 9px;
+  background: var(--teal);
+  border-color: var(--teal);
+  box-shadow: 0 0 8px var(--teal);
+}
+
+@media (max-width: 760px) {
+  .nav {
+    right: 10px;
+    height: 190px;
+    width: 30px;
+  }
+  .dotVisual {
+    width: 5px;
+    height: 5px;
+  }
+  .active .dotVisual {
+    width: 7px;
+    height: 7px;
+  }
+}
