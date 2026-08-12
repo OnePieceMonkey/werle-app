@@ -40,6 +40,12 @@
 }
 
 .warpSpacer {
-  min-height: 130vh;
+  /* 220vh statt zunächst 130vh: reines Vergrößern des Puffers allein hatte
+     das Timing-Problem nicht behoben (siehe Kommentar zu warpEndT in
+     SpaceScene.tsx computeLayout) — der Puffer muss zusätzlich zur
+     verschobenen Warp-Zeitachse groß genug sein, dass auch nach Abzug
+     einer vollen Viewport-Höhe (Kontakt-Inhalt wird ab da sichtbar) noch
+     komfortabel Abstand zum Warp-Ende bleibt. */
+  min-height: 220vh;
   pointer-events: none;
 }

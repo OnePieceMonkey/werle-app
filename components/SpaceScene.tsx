@@ -145,13 +145,28 @@ interface Layout {
    Ringplanet/Satellit/StationViewport hatten in der Demo keine eigene
    DOM-Sektion — sie werden bewusst in das Fenster zwischen "buch" und
    "kontakt" gestaffelt (vor dem Warp), in der gleichen relativen
-   Reihenfolge/dem gleichen Abstand wie im Original. */
+   Reihenfolge/dem gleichen Abstand wie im Original.
+
+   Wichtig — warpEndT darf NICHT gleich kontaktT sein: der DOM-Inhalt der
+   Kontakt-Sektion wird sichtbar, sobald ihr oberer Rand in den Viewport
+   hineinragt, und das passiert (in Scroll-Fraktionen) immer eine ganze
+   Viewport-Höhe VOR kontaktT — unabhängig davon, wie groß der Abstand
+   zwischen "buch" und "kontakt" gewählt wird (reines Verschieben des
+   Puffers ändert an diesem Verhältnis nichts, siehe Bugfix-Historie).
+   Der komplette Warp (Start→Peak→Ende) muss darum deutlich VOR kontaktT
+   abklingen, mit genug Fraktions-Abstand, dass auch eine große
+   Viewport-Höhe (hoher Desktop-Monitor) noch vor kontaktT liegt — daher
+   endet der Warp hier schon bei 45 % der Buch-Kontakt-Distanz, nicht bei
+   100 %. Der Rest der Distanz (siehe auch der 220vh-Spacer in
+   app/page.module.css) ist bewusst leerer "Ankunfts"-Puffer. */
 function computeLayout(f: StationFractions): Layout {
   const z = (t: number) => START_Z + (END_Z - START_Z) * t;
-  const warpStartT = f.buch + (f.kontakt - f.buch) * 0.55;
-  const warpPeakT = f.buch + (f.kontakt - f.buch) * 0.8;
-  const warpEndT = f.kontakt;
-  const planetSystemT = f.buch + (f.kontakt - f.buch) * 0.4;
+  const gap = f.kontakt - f.buch;
+  const planetSystemT = f.buch + gap * 0.15;
+  const warpStartT = f.buch + gap * 0.25;
+  const warpPeakT = f.buch + gap * 0.35;
+  const warpEndT = f.buch + gap * 0.45;
+  const stationViewportT = f.buch + gap * 0.7;
   const missionT = [f.hero, f.pulsegate, f.alibi, f.coparents, f.labrechner, f.buch, f.kontakt];
   const planetZ = z(planetSystemT);
 
@@ -173,7 +188,7 @@ function computeLayout(f: StationFractions): Layout {
          unverändert (START_Z/END_Z bleiben konstant), also bleibt der Delta
          gültig. */
       satelliteZ: planetZ + 17,
-      stationViewportZ: z(warpEndT),
+      stationViewportZ: z(stationViewportT),
       railTickZs: missionT.map(z),
     },
   };
