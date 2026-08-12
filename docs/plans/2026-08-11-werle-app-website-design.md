@@ -1,7 +1,9 @@
 # werle.app — Hauptdomain-Website — Design
 
-Status: freigegeben (11.08.2026). Nächster Schritt: huashu-design Direction-Advisory
-für die visuelle Richtung, danach Implementierungsplan.
+Status: freigegeben (11.08.2026), Richtung + Vertiefung durch fünf Demo-Runden
+bestätigt (12.08.2026: "trägt sich, gefällt mir gut"). Nächster Schritt: die
+sechs Atmosphäre-Features (siehe unten) fertigstellen, danach echter
+Next.js-Implementierungsplan.
 
 ## Zweck
 
@@ -9,33 +11,71 @@ Landingpage für `werle.app` — das Dach über Patrick Werles Unternehmung „W
 Technologies". Kein Karriere-/CV-Auftritt, sondern eine Produkt-Vitrine: was
 gebaut wurde, steht im Zentrum, Patrick als Macher bleibt im Hintergrund.
 
-Nicht Teil dieser Seite: Labrechner/DentalBilling Engine bekommt bewusst keine
-eigene Sektion — es läuft als unabhängig verkäuflicher Asset-Deal unter einer
-eigenen Domain. Auf werle.app taucht es nur als dezente Zeile unter „weitere
-Ventures" mit Link auf `check.labrechner.de` auf, keine Case-Study-Tiefe.
+**Revidiert (12.08.2026):** Labrechner/DentalBilling Engine bekommt entgegen
+der ursprünglichen Entscheidung doch eine **vollwertige Section wie die Apps**,
+nicht nur eine Zeile — mit Fakten (68.000+ LOC, 510+ Tests, Pentest bestanden)
+und einem kurzen Ausblick-Satz zum übertragbaren Muster. Bewusst weiterhin
+NICHT erwähnt: Verkaufspreis, Asset-Deal-Status, Käufersuche — das bleibt
+Buyer-Datenraum-Terrain, nicht öffentliche Website. Tonal/visuell abgesetzt von
+den Spiele-Karten (eigene "Infrastruktur"-Optik statt Space-Ästhetik).
 
-## Content-Struktur (eine scrollende Seite)
+## Content-Struktur (eine scrollende Seite, als Weltraum-Reise inszeniert)
 
-1. **Hero** — Werle Technologies als Absender, kurzer Claim (kein Fließtext-CV).
-2. **Produkt-Grid** — je eine Karte pro Produkt, Status ehrlich sichtbar
-   (Live / Im App-Store-Review / In Entwicklung):
-   - **PulseGate: Echo Shift** — Im App-Store-Review (Shipaton-Track, RevenueCat).
-     Karte verlinkt auf `pulsegate.werle.app` (Support/Privacy/Store-Link liegen
-     dort ohnehin für den App-Store-Pflichtauftritt).
-   - **ALIBI — Das Verhör** — In Entwicklung. Karte verlinkt auf
+1. **Boot-up-Intro** — kurze Terminal-Sequenz (1–1,5 s, einmal pro Session,
+   überspringbar) vor dem eigentlichen Hero.
+2. **Hero** — Werle Technologies als Absender, kurzer Claim. Textzone bewusst
+   auf ruhiger, dunkler Fläche (Kontrast-Learnings siehe unten), helles
+   Glow-Element deutlich versetzt (oben links), nicht direkt hinter dem Text.
+3. **Produkt-Grid** — je eine Karte pro Produkt, Status ehrlich sichtbar
+   (Live / Im App-Store-Review / In Entwicklung), mit echtem Bildmaterial aus
+   den jeweiligen Projekten (Screenshots/Artwork, keine Platzhalter):
+   - **PulseGate: Echo Shift** — Im App-Store-Review (Shipaton-Track,
+     RevenueCat). Karte zeigt echtes Menü-Screenshot + verstärkten
+     Puls-Ring-Effekt, verlinkt auf `pulsegate.werle.app`.
+   - **ALIBI — Das Verhör** — In Entwicklung. Karte als angepinnte
+     Case-Board-Komposition (echtes Fall-Artwork + Porträt), verlinkt auf
      `verhoer.werle.app`, sobald das Repo/die Domain live ist.
-   - **CoParents** (mit Timo) — In Entwicklung, kommt in einigen Wochen. Karte
-     ohne Ziel-Link, nur Status-Badge, bis es einen Store-Eintrag gibt.
+   - **coParents** (mit Timo, korrekte Schreibweise: kleines c) — In
+     Entwicklung. Karte zeigt echten Kalender-Screenshot + App-Icon, bewusst
+     OHNE Link ("Noch kein Store-Eintrag") bis ein Store-Eintrag existiert.
    Kein separates „mehr erfahren" auf werle.app selbst — die Subdomains/Stores
-   sind ohnehin Pflicht fürs App-Store-Listing und übernehmen diese Rolle.
-3. **Buch-Sektion, tonal abgesetzt** — „Bechterew unter Kontrolle" (Amazon KDP +
-   Apple Books). Gesundheitsthema, anderes Register als die Spiele — eigene,
-   visuell abgegrenzte Sektion, keine vierte Karte in der Produktreihe.
-4. **Weitere Ventures** — eine dezente Zeile, Link auf `check.labrechner.de`.
-5. **Footer** — kurze Bio-Zeile („Ein-Personen-Studio aus Minden, digitale
-   Ideen") + LinkedIn-Link (`linkedin.com/in/patrick-werle-dental`) +
-   Impressum-Pflichtlink. Keine Zertifikate, keine CV-Tiefe — die gehören zu
-   LinkedIn selbst, nicht auf diese Seite.
+   übernehmen diese Rolle ohnehin (App-Store-Pflichtauftritt).
+4. **Labrechner-Section** — vollwertig wie die Apps, siehe Revision oben.
+   Link auf `check.labrechner.de`.
+5. **Buch-Sektion, tonal abgesetzt** — „Bechterew unter Kontrolle" (Amazon KDP,
+   Apple Books, Tolino — alle drei E-Book-Kanäle seit 10.08.2026 live; Print
+   via KDP steht noch aus). Zeigt echtes Cover UND echte, lesbare Backcover-
+   Rückseite (Zitat, Beschreibung, Bullets, Autoren-Bio) — Gesundheitsthema,
+   anderes Register als die Spiele, eigene visuell abgegrenzte Sektion.
+6. **Warp-Übergang** — Hyperraum-Sprung-Effekt als Übergang zur letzten Sektion.
+7. **Ankunft: Kontakt + Footer als Szene** — kein klassischer Footer-Balken.
+   Landet an einer warm beleuchteten "Station": Kontaktformular wirkt wie ein
+   Bordterminal, die bisherigen Footer-Infos (Bio, Standort, LinkedIn,
+   Impressum) erscheinen als angeheftete "Mission-Plaque". LinkedIn-Link:
+   `linkedin.com/in/patrick-werle-dental`. Keine Zertifikate, keine CV-Tiefe —
+   die gehören zu LinkedIn selbst, nicht auf diese Seite.
+
+### Sechs Atmosphäre-Features (Kundenwunsch 12.08.2026, alle bestätigt)
+
+- **Sound-Design** — leiser Ambient-Loop + Warp-Whoosh, per Web Audio API
+  synthetisiert (keine externen Dateien), standardmäßig stumm mit sichtbarem
+  Toggle.
+- **Boot-up-Intro** — siehe Struktur-Punkt 1.
+- **Easter Egg** — Klick auf Satellit/Planet löst eine kleine Überraschung aus
+  (Reaktion + Sound), unbeworben, zum Entdecken.
+- **Sternstaub-Cursor-Trail** — feine Partikelspur der Maus, Desktop-only.
+- **Vertikale Missions-Navigation** — klickbare Fortschrittspunkte am
+  Bildschirmrand, ein Punkt pro Sektion, aktiver Punkt hervorgehoben,
+  Direktsprung per Klick.
+- **Rücksprung zum Start** — dezenter Link am Seitenende zurück zum Anfang.
+
+### Mobile: Hinweis statt Kompromiss
+
+Volle 3D-Szene + Scroll-Kamera + Maus-Parallaxe lässt sich auf Touch/Hochformat
+nicht 1:1 garantieren. Statt einer heimlich degradierten Erfahrung: bei
+schmalem Hochformat ein dezentes, nicht blockierendes Banner „Für das beste
+Erlebnis: Gerät ins Querformat drehen" mit „Trotzdem fortfahren"-Option,
+einmal pro Session.
 
 ## Stack
 
@@ -70,6 +110,33 @@ Stil bereits eine erkennbare, hochwertige Handschrift hat.
 Neues, eigenständiges Repo: `~/Projekte/werle-app/` (git-initialisiert
 11.08.2026), Deploy über Vercel.
 
+## Kontaktformular — Backend
+
+Echtes Formular (Name/E-Mail/Nachricht), kein mailto-Link (Kundenwunsch,
+12.08.2026). In den Demo-Runden bisher nur die UI-Ebene gebaut (Placeholder-
+Submit). Für die echte Umsetzung: Next.js API-Route nimmt die Eingabe
+entgegen, verschickt per Resend direkt an Patricks Posteingang — Resend ist
+bereits eingerichtet und getestet (siehe `Games/alibi/DOMAIN-SETUP.md`,
+Email-Routing-Test 11.08.2026), kein neuer Dienst nötig.
+
+## Zwei Produktionsentscheidungen (Kundenwunsch 12.08.2026, NICHT in der
+## Wegwerf-Demo gebaut — echte Next.js-Implementierungsarbeit)
+
+- **Englische Sprachversion.** Relevant wegen internationaler Sichtbarkeit
+  (Buch-Käufer außerhalb DE, Karriere-/LinkedIn-Netzwerk). Kein Detail, das
+  sich in eine Demo-HTML-Datei nebenbei einbauen lässt — vollständige
+  Content-Übersetzung (Produkt-Hooks, Labrechner-Fakten, Buch-Beschreibung,
+  Formular, Mission-Plaque, Boot-up-/Warp-Texte) + Sprachumschalter DE/EN.
+  Umfang und genaue Routing-Struktur (z. B. `/en`) sind Teil des
+  Implementierungsplans, nicht dieses Design-Dokuments.
+- **Eigenes Social-Share-Bild (Open-Graph-Image).** Ohne eigenes OG-Bild zeigt
+  eine geteilte werle.app-URL (z. B. auf LinkedIn) nichts oder eine generische
+  Vorschau. Ein statisches 1200×630-Bild im selben visuellen Look (Ausschnitt
+  aus der Hero-Komposition, dunkler Weltraumgrund + „Werle Technologies") wird
+  Teil der Next.js-Metadaten (`opengraph-image`). Lässt sich erst gegen eine
+  echte URL testen (LinkedIn Post Inspector o. ä.) — deshalb erst nach dem
+  ersten Deploy final verifizierbar, nicht vorher.
+
 ## Offene Punkte für später
 
 - ALIBI-Karte kann erst live verlinken, sobald `alibi-support` existiert
@@ -78,3 +145,6 @@ Neues, eigenständiges Repo: `~/Projekte/werle-app/` (git-initialisiert
 - CoParents-Karte braucht Ziel-Link, sobald ein Store-Eintrag existiert.
 - werle.app selbst braucht eigenes Impressum/Datenschutz (Root-Domain,
   eigene Pflichtseiten, unabhängig von den Subdomains).
+- Subdomains (`pulsegate.werle.app`, `verhoer.werle.app`) brauchen langfristig
+  eigene, vollständige Seiten (nicht nur die App-Store-Pflichtseiten) —
+  Kundenhinweis 12.08.2026, noch nicht terminiert.
