@@ -51,8 +51,7 @@ const ACCENT_TAG_CLASS: Record<ProductCardAccent, string> = {
 
 /**
  * E-Mail-Vormerkung für ALIBI/coParents ("Bescheid sagen, wenn's da ist").
- * Reiner UI-Placeholder wie in der freigegebenen Demo — Submit loggt nur
- * und zeigt eine kurze Bestätigung, kein echter Versand.
+ * Sendet an /api/notify (Resend-Backend, siehe app/api/notify/route.ts).
  */
 function NotifyForm({
   variant,
@@ -61,26 +60,36 @@ function NotifyForm({
   variant: ProductCardVariant;
   notify: ProductCardNotify;
 }) {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
   const fieldId = `notify-${notify.product}-email`;
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const email = String(new FormData(form).get("email") ?? "");
 
-    // TODO: echte Next.js API-Route siehe Task 6/7 (Kontaktformular +
-    // E-Mail-Vormerkung, Resend-Backend). Bislang nur UI-Placeholder wie
-    // in der freigegebenen Demo — console.log + kurze Bestätigung, kein
-    // echter Versand.
-    console.log("[E-Mail-Vormerkung — Placeholder, kein echter Versand]", {
-      product: notify.product,
-      email,
-    });
+    setStatus("sending");
 
-    setStatus("sent");
-    form.reset();
-    setTimeout(() => setStatus("idle"), 4000);
+    try {
+      const res = await fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, product: notify.product }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request fehlgeschlagen (${res.status})`);
+      }
+
+      setStatus("sent");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch (error) {
+      console.error("[E-Mail-Vormerkung] Versand fehlgeschlagen:", error);
+      setStatus("error");
+    }
   }
 
   const formClass =
@@ -104,13 +113,18 @@ function NotifyForm({
           required
           autoComplete="email"
         />
-        <button type="submit">Los</button>
+        <button type="submit" disabled={status === "sending"}>
+          {status === "sending" ? "…" : "Los"}
+        </button>
       </div>
       <span
-        className={`${styles.notifyStatus} ${status === "sent" ? styles.show : ""}`}
+        className={`${styles.notifyStatus} ${
+          status === "error" ? styles.error : ""
+        } ${status === "sent" || status === "error" ? styles.show : ""}`}
         aria-live="polite"
       >
-        {status === "sent" ? "Danke, melde mich!" : ""}
+        {status === "sent" && "Danke, melde mich!"}
+        {status === "error" && "Hat nicht geklappt — nochmal versuchen."}
       </span>
     </form>
   );

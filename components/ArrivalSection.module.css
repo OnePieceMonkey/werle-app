@@ -160,6 +160,17 @@
   opacity: 1;
 }
 
+.formStatus.error {
+  color: var(--coral);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
 .plaque {
   pointer-events: auto;
   width: min(88vw, 290px);

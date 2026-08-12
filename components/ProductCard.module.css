@@ -398,6 +398,17 @@ a.productCard:hover .arrow {
   opacity: 1;
 }
 
+.notifyAlibi .notifyStatus.error {
+  color: #a4392a;
+}
+
+.notifyAlibi button:disabled,
+.notifyCoparents button:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+
 /* coParents — dezente Zeile unter dem Store-Hinweis, gleiche dunkle
    Glas-Optik wie die Karte selbst, Akzent in Coral. */
 .notifyCoparents {
@@ -469,6 +480,10 @@ a.productCard:hover .arrow {
 
 .notifyCoparents .notifyStatus.show {
   opacity: 1;
+}
+
+.notifyCoparents .notifyStatus.error {
+  color: var(--coral);
 }
 
 @media (max-width: 760px) {

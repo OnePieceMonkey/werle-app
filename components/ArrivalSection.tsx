@@ -4,9 +4,11 @@ import { useState, type FormEvent } from "react";
 import styles from "./ArrivalSection.module.css";
 
 export default function ArrivalSection() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -16,18 +18,26 @@ export default function ArrivalSection() {
       message: data.get("message"),
     };
 
-    // TODO: echte Next.js API-Route siehe Task 6/7 (Kontaktformular +
-    // E-Mail-Vormerkung, Resend-Backend). Bislang nur UI-Placeholder wie
-    // in der freigegebenen Demo — console.log + kurze Bestätigung, kein
-    // echter Versand.
-    console.log(
-      "[Kontaktformular — Placeholder, kein echter Versand]",
-      payload,
-    );
+    setStatus("sending");
 
-    setStatus("sent");
-    form.reset();
-    setTimeout(() => setStatus("idle"), 4000);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request fehlgeschlagen (${res.status})`);
+      }
+
+      setStatus("sent");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch (error) {
+      console.error("[Kontaktformular] Versand fehlgeschlagen:", error);
+      setStatus("error");
+    }
   }
 
   return (
@@ -67,14 +77,22 @@ export default function ArrivalSection() {
             <textarea id="cf-message" name="message" placeholder="Worum geht's?" required />
           </div>
           <div className={styles.submitRow}>
-            <button type="submit" className={styles.submitBtn}>
-              Nachricht senden
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={status === "sending"}
+            >
+              {status === "sending" ? "Sende…" : "Nachricht senden"}
             </button>
             <span
-              className={`${styles.formStatus} ${status === "sent" ? styles.show : ""}`}
+              className={`${styles.formStatus} ${
+                status === "error" ? styles.error : ""
+              } ${status === "sent" || status === "error" ? styles.show : ""}`}
               aria-live="polite"
             >
-              {status === "sent" ? "Danke, melde mich!" : ""}
+              {status === "sent" && "Danke, melde mich!"}
+              {status === "error" &&
+                "Senden hat nicht geklappt — bitte gleich nochmal versuchen."}
             </span>
           </div>
         </form>
