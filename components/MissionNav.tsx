@@ -1,17 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { content, type Locale } from "@/lib/content";
 import styles from "./MissionNav.module.css";
 
-const SECTIONS = [
-  { id: "hero", label: "Zu: Start" },
-  { id: "pulsegate", label: "Zu: Pulse Gate" },
-  { id: "alibi", label: "Zu: ALIBI" },
-  { id: "coparents", label: "Zu: coParents" },
-  { id: "labrechner", label: "Zu: Labrechner" },
-  { id: "buch", label: "Zu: Buch" },
-  { id: "kontakt", label: "Zu: Kontakt / Ankunft" },
+/* Reine ID-Reihenfolge — bewusst getrennt von den (übersetzbaren) Labels
+   in lib/content.ts. Diese IDs sind identisch mit SECTION_IDS in
+   SpaceScene.tsx und dürfen NIE übersetzt werden, siehe Task-Auftrag:
+   die 3D-Kamera misst document.getElementById(id).offsetTop für genau
+   diese Strings. */
+const SECTION_IDS = [
+  "hero",
+  "pulsegate",
+  "alibi",
+  "coparents",
+  "labrechner",
+  "buch",
+  "kontakt",
 ] as const;
+
+interface MissionNavProps {
+  locale?: Locale;
+}
 
 /**
  * Vertikale Missions-Navigation: ein Punkt pro Sektion, aktive Sektion via
@@ -20,11 +30,19 @@ const SECTIONS = [
  * entlang — hier (ohne 3D-Szene, siehe SpaceScene-Platzhalter) an den
  * tatsächlichen Sektions-Elementen im normalen Dokumentenfluss.
  */
-export default function MissionNav() {
+export default function MissionNav({ locale = "de" }: MissionNavProps) {
   const [active, setActive] = useState<string>("hero");
+  const nav = content[locale].nav;
+  const SECTIONS = useMemo(
+    () => SECTION_IDS.map((id) => ({ id, label: nav[id] })),
+    [nav],
+  );
 
   useEffect(() => {
-    const elements = SECTIONS.map(({ id }) => document.getElementById(id)).filter(
+    // Beobachtet die stabilen IDs direkt (nicht das übersetzte SECTIONS-
+    // Array) — die Sichtbarkeits-Logik hängt nie von den Labels ab, das
+    // hält die Dependency-Liste bei [] wie im Original.
+    const elements = SECTION_IDS.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => el !== null,
     );
     if (elements.length === 0) return;
@@ -58,7 +76,7 @@ export default function MissionNav() {
   }
 
   return (
-    <nav className={styles.nav} aria-label="Abschnitts-Navigation">
+    <nav className={styles.nav} aria-label={nav.ariaLabel}>
       <div className={styles.line} aria-hidden="true" />
       {SECTIONS.map(({ id, label }, index) => (
         <button

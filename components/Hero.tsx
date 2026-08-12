@@ -1,23 +1,30 @@
 "use client";
 
 import { useAmbientSound } from "@/hooks/useAmbientSound";
+import { content, type Locale } from "@/lib/content";
 import styles from "./Hero.module.css";
 
-export default function Hero() {
+interface HeroProps {
+  locale?: Locale;
+}
+
+export default function Hero({ locale = "de" }: HeroProps) {
   const { soundEnabled, toggleSound } = useAmbientSound();
+  const t = content[locale].hero;
+  const langSwitch = content[locale].languageSwitch;
 
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.brand}>
         <span className={styles.dot} aria-hidden="true" />
-        <span>Werle Technologies</span>
+        <span>{t.headline}</span>
         {/* v5-Äquivalent: dezenter Ton-Toggle neben der Marke, siehe
             hooks/useAmbientSound.ts für den geteilten Sound-Zustand. */}
         <button
           type="button"
           className={`${styles.soundToggle}${soundEnabled ? ` ${styles.on}` : ""}`}
           aria-pressed={soundEnabled}
-          aria-label={soundEnabled ? "Ton stumm schalten" : "Ton aktivieren"}
+          aria-label={soundEnabled ? t.soundOn : t.soundOff}
           onClick={toggleSound}
           data-testid="sound-toggle"
         >
@@ -74,19 +81,34 @@ export default function Hero() {
             />
           </svg>
         </button>
+        {/* Sprachumschalter — einfacher Link statt next/link, siehe
+            Architektur-Entscheidung im Task-Auftrag: keine client-seitige
+            Transition zwischen zwei eigenständigen SpaceScene-Bäumen, ein
+            harter Seitenwechsel ist hier robuster. pointer-events:auto
+            durchbricht wie beim Sound-Toggle das pointer-events:none von
+            .hero (via .brand vererbt). */}
+        <a
+          className={styles.langSwitch}
+          href={langSwitch.href}
+          aria-label={langSwitch.ariaLabel}
+          data-testid="language-switch"
+        >
+          {langSwitch.label}
+        </a>
       </div>
 
       <div className={styles.copy}>
-        <p className={styles.kicker}>Minden · Remote</p>
-        <h1 className={styles.headline}>Werle Technologies</h1>
+        <p className={styles.kicker}>{t.kicker}</p>
+        <h1 className={styles.headline}>{t.headline}</h1>
         <p className={styles.tag}>
-          Zwei Spiele, eine App und ein Buch — <em>zum Anfassen</em>, nicht
-          nur zum Ansehen.
+          {t.tagPrefix}
+          <em>{t.tagEmphasis}</em>
+          {t.tagSuffix}
         </p>
       </div>
 
       <div className={styles.hint}>
-        Scroll, um zu erkunden
+        {t.scrollHint}
         <div className={styles.chevron} aria-hidden="true">
           ↓
         </div>

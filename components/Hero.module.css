@@ -95,6 +95,39 @@
   display: block;
 }
 
+/* Sprachumschalter — gleiches Muster wie .soundToggle (pointer-events:auto
+   durchbricht das pointer-events:none von .hero), aber als kleines
+   Text-Badge statt Icon-Kreis, da "EN"/"DE" selbsterklärend ist. */
+.langSwitch {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  margin-left: 2px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.langSwitch:hover,
+.langSwitch:focus-visible {
+  color: var(--ink);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
 .copy {
   position: relative;
   width: min(90vw, 720px);

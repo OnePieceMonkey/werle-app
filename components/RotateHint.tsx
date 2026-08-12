@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { content, type Locale } from "@/lib/content";
 import styles from "./RotateHint.module.css";
 
 /* ==================================================================
@@ -29,7 +30,12 @@ function isNarrowPortrait(): boolean {
   );
 }
 
-export default function RotateHint() {
+interface RotateHintProps {
+  locale?: Locale;
+}
+
+export default function RotateHint({ locale = "de" }: RotateHintProps) {
+  const t = content[locale].rotateHint;
   const [visible, setVisible] = useState(false);
   const lastRef = useRef(false);
 
@@ -102,7 +108,9 @@ export default function RotateHint() {
           </svg>
         </span>
         <p className={styles.text}>
-          Für das beste Erlebnis: Gerät ins <em>Querformat</em> drehen.
+          {t.textPre}
+          <em>{t.textEmphasis}</em>
+          {t.textPost}
         </p>
         <button
           type="button"
@@ -110,7 +118,7 @@ export default function RotateHint() {
           onClick={handleDismiss}
           data-testid="rotate-hint-dismiss"
         >
-          Trotzdem fortfahren
+          {t.dismiss}
         </button>
       </div>
     </div>

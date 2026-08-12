@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { content, type Locale } from "@/lib/content";
 import styles from "./BootupIntro.module.css";
 
 /* ==================================================================
@@ -49,9 +50,11 @@ export interface BootupIntroProps {
   /** True, sobald SpaceScene ihren ersten Frame gerendert hat — Ersatz
    *  für das `werle:scene-ready`-Window-Event der Demo. */
   sceneReady: boolean;
+  locale?: Locale;
 }
 
-export default function BootupIntro({ sceneReady }: BootupIntroProps) {
+export default function BootupIntro({ sceneReady, locale = "de" }: BootupIntroProps) {
+  const t = content[locale].bootup;
   const [shown, setShown] = useState(false);
   const [stage, setStage] = useState<Stage>("loading");
   const [pct, setPct] = useState(0);
@@ -140,7 +143,7 @@ export default function BootupIntro({ sceneReady }: BootupIntroProps) {
     >
       {stage === "loading" && (
         <div className={styles.bootLoading} aria-hidden="true">
-          <p className={styles.bootLoadingLabel}>&gt; Assets werden geladen…</p>
+          <p className={styles.bootLoadingLabel}>{t.loadingLabel}</p>
           <div className={styles.bootLoadingBar}>
             <div className={styles.bootLoadingBarFill} style={{ width: `${pct}%` }} />
           </div>
@@ -149,12 +152,10 @@ export default function BootupIntro({ sceneReady }: BootupIntroProps) {
       )}
       {stage === "lines" && (
         <div className={styles.bootupLines} aria-hidden="true">
+          <p className={cx(styles.bootupLine, styles.show)}>{t.lines[0]}</p>
+          <p className={cx(styles.bootupLine, styles.show)}>{t.lines[1]}</p>
           <p className={cx(styles.bootupLine, styles.show)}>
-            &gt; Sternenkarte wird geladen…
-          </p>
-          <p className={cx(styles.bootupLine, styles.show)}>&gt; Kurs berechnet.</p>
-          <p className={cx(styles.bootupLine, styles.show)}>
-            &gt; Verbindung stabil.
+            {t.lines[2]}
             <span className={`${styles.bootupCaret} bootup-caret`} />
           </p>
         </div>

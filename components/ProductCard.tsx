@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent, type ReactNode } from "react";
 import Image from "next/image";
+import { content, type Locale } from "@/lib/content";
 import styles from "./ProductCard.module.css";
 
 export type ProductCardVariant = "pulsegate" | "alibi" | "coparents";
@@ -41,6 +42,11 @@ export interface ProductCardProps {
   ctaLabel: string;
   media: ProductCardMedia;
   notify?: ProductCardNotify;
+  /** Steuert nur die ProductCard-internen UI-Strings (E-Mail-Placeholder,
+   *  Button-Label, Vormerkungs-Statusmeldungen) — title/description/etc.
+   *  kommen weiterhin explizit vom Aufrufer (app/page.tsx bzw.
+   *  app/en/page.tsx), siehe lib/content.ts. */
+  locale?: Locale;
 }
 
 const ACCENT_TAG_CLASS: Record<ProductCardAccent, string> = {
@@ -56,10 +62,13 @@ const ACCENT_TAG_CLASS: Record<ProductCardAccent, string> = {
 function NotifyForm({
   variant,
   notify,
+  locale,
 }: {
   variant: ProductCardVariant;
   notify: ProductCardNotify;
+  locale: Locale;
 }) {
+  const t = content[locale].productCard;
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
@@ -109,12 +118,12 @@ function NotifyForm({
           type="email"
           id={fieldId}
           name="email"
-          placeholder="du@beispiel.de"
+          placeholder={t.emailPlaceholder}
           required
           autoComplete="email"
         />
         <button type="submit" disabled={status === "sending"}>
-          {status === "sending" ? "…" : "Los"}
+          {status === "sending" ? t.sendingLabel : t.goLabel}
         </button>
       </div>
       <span
@@ -123,8 +132,8 @@ function NotifyForm({
         } ${status === "sent" || status === "error" ? styles.show : ""}`}
         aria-live="polite"
       >
-        {status === "sent" && "Danke, melde mich!"}
-        {status === "error" && "Hat nicht geklappt — nochmal versuchen."}
+        {status === "sent" && t.notifySuccess}
+        {status === "error" && t.notifyError}
       </span>
     </form>
   );
@@ -141,6 +150,7 @@ export default function ProductCard({
   ctaLabel,
   media,
   notify,
+  locale = "de",
 }: ProductCardProps) {
   const tagClass = `${styles.tag} ${ACCENT_TAG_CLASS[accent]}`;
 
@@ -244,7 +254,7 @@ export default function ProductCard({
           (ohne href) kein <a> ist — anders als bei ALIBI unten braucht es
           hier keinen separaten Wrapper. */}
       {variant === "coparents" && notify && (
-        <NotifyForm variant={variant} notify={notify} />
+        <NotifyForm variant={variant} notify={notify} locale={locale} />
       )}
     </div>
   );
@@ -266,7 +276,7 @@ export default function ProductCard({
           {mediaBlock}
           {body}
         </a>
-        {notify && <NotifyForm variant={variant} notify={notify} />}
+        {notify && <NotifyForm variant={variant} notify={notify} locale={locale} />}
       </div>
     );
   }

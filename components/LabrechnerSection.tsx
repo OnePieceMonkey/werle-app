@@ -1,55 +1,55 @@
 import FadeInSection from "@/components/FadeInSection";
+import { content, type Locale } from "@/lib/content";
 import styles from "./LabrechnerSection.module.css";
 
-export default function LabrechnerSection() {
+interface LabrechnerSectionProps {
+  locale?: Locale;
+}
+
+export default function LabrechnerSection({ locale = "de" }: LabrechnerSectionProps) {
+  const t = content[locale].labrechner;
+
   return (
     <section id="labrechner" className={styles.stage}>
       <FadeInSection>
-        <div
-          className={styles.panel}
-          aria-label="Labrechner — DentalBilling Engine"
-        >
+        <div className={styles.panel} aria-label={t.ariaLabel}>
           <p className={`${styles.kicker} mono`}>
             <span className={styles.dot} aria-hidden="true" />
-            Eigenständiges Venture · Werle Technologies
+            {t.kicker}
           </p>
           <div className={styles.titles}>
-            <h2>Labrechner</h2>
-            <span className={`${styles.sub} mono`}>
-              DentalBilling Engine — die Infrastruktur-Ebene darunter
-            </span>
+            <h2>{t.title}</h2>
+            <span className={`${styles.sub} mono`}>{t.sub}</span>
           </div>
           <p className={styles.body}>
-            Die deutschen Abrechnungsregelwerke für Zahntechnik —{" "}
-            <strong>BEL-II</strong> und <strong>BEB&apos;97</strong> —
-            vollständig in Code abgebildet, GoBD-konform und nachvollziehbar
-            bis zur einzelnen Regel. Labrechner ist die Kundenmarke,
-            DentalBilling Engine die B2B-Infrastruktur-Ebene darunter: ein
-            eigenständiges Venture unter Werle Technologies, das unabhängig
-            läuft.
+            {t.bodyPre}
+            <strong>BEL-II</strong>
+            {t.bodyMid}
+            <strong>BEB&apos;97</strong>
+            {t.bodyPost}
           </p>
           <div className={`${styles.stats} mono`}>
             <div className={styles.stat}>
-              <span className={styles.num}>68.000+</span>
-              <span className={styles.lbl}>Lines of Code</span>
+              <span className={styles.num}>{t.stats.locValue}</span>
+              <span className={styles.lbl}>{t.stats.locLabel}</span>
             </div>
             <div className={styles.stat}>
-              <span className={styles.num}>510+</span>
-              <span className={styles.lbl}>Automatisierte Tests</span>
+              <span className={styles.num}>{t.stats.testsValue}</span>
+              <span className={styles.lbl}>{t.stats.testsLabel}</span>
             </div>
             <div className={styles.stat}>
-              <span className={styles.num}>0</span>
+              <span className={styles.num}>{t.stats.findingsValue}</span>
               <span className={styles.lbl}>
-                Offene High/Critical Findings
+                {t.stats.findingsLabelLine1}
                 <br />
-                Pentest, Stand 03/2026
+                {t.stats.findingsLabelLine2}
               </span>
             </div>
           </div>
           <p className={styles.outlook}>
-            Das Muster dahinter — <em>komplexe regulierte Fachlogik in
-            auditierbare Software übersetzen</em> — trägt über die
-            Zahnmedizin hinaus.
+            {t.outlookPre}
+            <em>{t.outlookEmphasis}</em>
+            {t.outlookPost}
           </p>
           <a
             className={styles.cta}
@@ -57,7 +57,7 @@ export default function LabrechnerSection() {
             target="_blank"
             rel="noopener"
           >
-            check.labrechner.de{" "}
+            {t.ctaLabel}{" "}
             <span aria-hidden="true" className={styles.arrow}>
               ↗
             </span>

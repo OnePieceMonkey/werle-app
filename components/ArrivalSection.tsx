@@ -3,9 +3,15 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
+import { content, type Locale } from "@/lib/content";
 import styles from "./ArrivalSection.module.css";
 
-export default function ArrivalSection() {
+interface ArrivalSectionProps {
+  locale?: Locale;
+}
+
+export default function ArrivalSection({ locale = "de" }: ArrivalSectionProps) {
+  const t = content[locale].arrival;
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
@@ -46,38 +52,40 @@ export default function ArrivalSection() {
     <section id="kontakt" className={styles.stage}>
       <FadeInSection>
         <div className={styles.consolePanel}>
-          <p className={`${styles.kicker} mono`}>Ankunft · Kontrollpult</p>
-          <h2>Kontakt aufnehmen</h2>
-          <p className={styles.sub}>
-            Frage, Idee oder Zusammenarbeit — eine Nachricht genügt, ich
-            melde mich zurück.
-          </p>
+          <p className={`${styles.kicker} mono`}>{t.kicker}</p>
+          <h2>{t.heading}</h2>
+          <p className={styles.sub}>{t.sub}</p>
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.field}>
-              <label htmlFor="cf-name">Name</label>
+              <label htmlFor="cf-name">{t.form.nameLabel}</label>
               <input
                 type="text"
                 id="cf-name"
                 name="name"
-                placeholder="Wie heißt du?"
+                placeholder={t.form.namePlaceholder}
                 required
                 autoComplete="name"
               />
             </div>
             <div className={styles.field}>
-              <label htmlFor="cf-email">E-Mail</label>
+              <label htmlFor="cf-email">{t.form.emailLabel}</label>
               <input
                 type="email"
                 id="cf-email"
                 name="email"
-                placeholder="du@beispiel.de"
+                placeholder={t.form.emailPlaceholder}
                 required
                 autoComplete="email"
               />
             </div>
             <div className={styles.field}>
-              <label htmlFor="cf-message">Nachricht</label>
-              <textarea id="cf-message" name="message" placeholder="Worum geht's?" required />
+              <label htmlFor="cf-message">{t.form.messageLabel}</label>
+              <textarea
+                id="cf-message"
+                name="message"
+                placeholder={t.form.messagePlaceholder}
+                required
+              />
             </div>
             <div className={styles.submitRow}>
               <button
@@ -85,7 +93,7 @@ export default function ArrivalSection() {
                 className={styles.submitBtn}
                 disabled={status === "sending"}
               >
-                {status === "sending" ? "Sende…" : "Nachricht senden"}
+                {status === "sending" ? t.form.submitSending : t.form.submitIdle}
               </button>
               <span
                 className={`${styles.formStatus} ${
@@ -93,9 +101,8 @@ export default function ArrivalSection() {
                 } ${status === "sent" || status === "error" ? styles.show : ""}`}
                 aria-live="polite"
               >
-                {status === "sent" && "Danke, melde mich!"}
-                {status === "error" &&
-                  "Senden hat nicht geklappt — bitte gleich nochmal versuchen."}
+                {status === "sent" && t.form.success}
+                {status === "error" && t.form.error}
               </span>
             </div>
           </form>
@@ -108,28 +115,29 @@ export default function ArrivalSection() {
           <span className={`${styles.rivet} ${styles.tr}`} aria-hidden="true" />
           <span className={`${styles.rivet} ${styles.bl}`} aria-hidden="true" />
           <span className={`${styles.rivet} ${styles.br}`} aria-hidden="true" />
-          <p className={`${styles.plaqueLabel} mono`}>Betreiber</p>
-          <p className={styles.plaqueBio}>
-            Patrick Werle — Software zwischen Fachdomäne und Code.
-          </p>
-          <p className={`${styles.plaqueMeta} mono`}>Minden · Remote</p>
+          <p className={`${styles.plaqueLabel} mono`}>{t.plaque.label}</p>
+          <p className={styles.plaqueBio}>{t.plaque.bio}</p>
+          <p className={`${styles.plaqueMeta} mono`}>{t.plaque.meta}</p>
           <div className={styles.plaqueLinks}>
             <a
               href="https://www.linkedin.com/in/patrick-werle-dental"
               target="_blank"
               rel="noopener"
             >
-              LinkedIn ↗
+              {t.plaque.linkedinLabel}
             </a>
-            <Link href="/impressum">Impressum</Link>
-            <Link href="/datenschutz">Datenschutz</Link>
+            {/* Zeigt auf beiden Sprachversionen auf dieselben deutschen
+                Rechtsseiten (kein separates EN-Impressum/-Datenschutz,
+                bewusster Scope-Cut) — nur das Link-Label ist übersetzt. */}
+            <Link href="/impressum">{t.plaque.imprintLabel}</Link>
+            <Link href="/datenschutz">{t.plaque.privacyLabel}</Link>
           </div>
         </div>
       </FadeInSection>
 
       <div className={styles.back}>
         <a href="#top">
-          <span aria-hidden="true">↑</span> Zurück zur Startrampe
+          <span aria-hidden="true">↑</span> {t.back}
         </a>
       </div>
     </section>

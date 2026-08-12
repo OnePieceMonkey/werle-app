@@ -36,6 +36,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://werle.app"),
   title,
   description,
+  alternates: {
+    canonical: "/",
+    languages: {
+      "de-DE": "/",
+      "en-US": "/en",
+    },
+  },
   openGraph: {
     title,
     description,

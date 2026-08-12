@@ -6,6 +6,11 @@ import BootupIntro from "@/components/BootupIntro";
 import CursorTrail from "@/components/CursorTrail";
 import RotateHint from "@/components/RotateHint";
 import { useAmbientSound } from "@/hooks/useAmbientSound";
+import type { Locale } from "@/lib/content";
+
+interface ExperienceProps {
+  locale?: Locale;
+}
 
 /* ==================================================================
    Erlebnis-Chrome, das die 3D-Szene umhüllt — Boot-up-Intro, Sound-
@@ -13,7 +18,7 @@ import { useAmbientSound } from "@/hooks/useAmbientSound";
    Cursor-Trail und Mobil-Querformat-Hinweis. Eigene Client-Component,
    damit app/page.tsx eine Server Component bleiben kann.
    ================================================================== */
-export default function Experience() {
+export default function Experience({ locale = "de" }: ExperienceProps) {
   const [sceneReady, setSceneReady] = useState(false);
   const { playWhoosh, playChime } = useAmbientSound();
 
@@ -24,9 +29,9 @@ export default function Experience() {
         onWarpTrigger={playWhoosh}
         onEasterEggClick={playChime}
       />
-      <BootupIntro sceneReady={sceneReady} />
+      <BootupIntro sceneReady={sceneReady} locale={locale} />
       <CursorTrail />
-      <RotateHint />
+      <RotateHint locale={locale} />
     </>
   );
 }

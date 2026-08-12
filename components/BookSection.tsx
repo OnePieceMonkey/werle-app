@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import FadeInSection from "@/components/FadeInSection";
+import { content, type Locale } from "@/lib/content";
 import styles from "./BookSection.module.css";
 
 interface Cover {
@@ -15,27 +16,34 @@ interface Cover {
   back?: boolean;
 }
 
-const COVERS: Cover[] = [
-  {
-    key: "cover",
-    src: "/images/buch-cover.jpg",
-    alt: "Buchcover — Bechterew unter Kontrolle",
-    caption: "Cover",
-    width: 625,
-    height: 1000,
-  },
-  {
-    key: "backcover",
-    src: "/images/buch-backcover.jpg",
-    alt: "Buchrückseite mit Beschreibung, Zitat und Autoren-Biografie",
-    caption: "Rückseite — anklicken zum Vergrößern",
-    width: 625,
-    height: 1000,
-    back: true,
-  },
-];
+interface BookSectionProps {
+  locale?: Locale;
+}
 
-export default function BookSection() {
+export default function BookSection({ locale = "de" }: BookSectionProps) {
+  const t = content[locale].book;
+  const COVERS: Cover[] = useMemo(
+    () => [
+      {
+        key: "cover",
+        src: "/images/buch-cover.jpg",
+        alt: t.coverAlt,
+        caption: t.coverCaption,
+        width: 625,
+        height: 1000,
+      },
+      {
+        key: "backcover",
+        src: "/images/buch-backcover.jpg",
+        alt: t.backCoverAlt,
+        caption: t.backCoverCaption,
+        width: 625,
+        height: 1000,
+        back: true,
+      },
+    ],
+    [t],
+  );
   const [lightbox, setLightbox] = useState<Cover | null>(null);
 
   useEffect(() => {
@@ -50,17 +58,13 @@ export default function BookSection() {
   return (
     <section id="buch" className={styles.stage}>
       <FadeInSection>
-        <div
-          className={styles.panel}
-          aria-label="Bechterew unter Kontrolle — Buchcover und Rückseite"
-        >
-          <p className={`${styles.kicker} mono`}>Buch</p>
+        <div className={styles.panel} aria-label={t.ariaLabel}>
+          <p className={`${styles.kicker} mono`}>{t.kicker}</p>
           <h2 className={styles.title}>
-            Bechterew <em>unter Kontrolle</em>
+            {t.titlePre}
+            <em>{t.titleEmphasis}</em>
           </h2>
-          <p className={`${styles.tagline} serif`}>
-            Mein Weg durch 20 Jahre Morbus Bechterew.
-          </p>
+          <p className={`${styles.tagline} serif`}>{t.tagline}</p>
           <div className={styles.covers}>
             {COVERS.map((cover) => (
               <figure
@@ -91,7 +95,7 @@ export default function BookSection() {
           <button
             type="button"
             className={styles.lightboxClose}
-            aria-label="Schließen"
+            aria-label={t.lightboxClose}
             onClick={(event) => {
               event.stopPropagation();
               setLightbox(null);
