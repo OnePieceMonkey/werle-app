@@ -82,10 +82,15 @@ function buildAmbientHum(ctx: AudioContext): AmbientHum {
   filter.Q.value = 0.6;
   filter.connect(masterGain);
 
+  /* Live-Feedback: auf Mac-internen Lautsprechern (schwache Wiedergabe
+     unter ~100Hz) war der Hum bei den ursprünglichen 55/82,5/110Hz aus der
+     Demo praktisch unhörbar. Eine Oktave höher (110/165/220Hz) bleibt
+     klanglich ein warmer, tiefer Drone, liegt aber im Bereich, den auch
+     kleine Lautsprecher tatsächlich wiedergeben. */
   const partials: { type: OscillatorType; freq: number; detune: number; gain: number }[] = [
-    { type: "sine", freq: 55, detune: 0, gain: 0.5 },
-    { type: "sine", freq: 82.5, detune: -6, gain: 0.26 },
-    { type: "triangle", freq: 110, detune: 5, gain: 0.15 },
+    { type: "sine", freq: 110, detune: 0, gain: 0.5 },
+    { type: "sine", freq: 165, detune: -6, gain: 0.26 },
+    { type: "triangle", freq: 220, detune: 5, gain: 0.15 },
   ];
   const oscillators = partials.map((p) => {
     const osc = ctx.createOscillator();
@@ -186,7 +191,10 @@ async function toggleSoundInternal(): Promise<void> {
   ambientHum.masterGain.gain.cancelScheduledValues(now);
   ambientHum.masterGain.gain.setValueAtTime(ambientHum.masterGain.gain.value, now);
   ambientHum.masterGain.gain.linearRampToValueAtTime(
-    soundEnabled ? 0.055 : 0.0,
+    // 0.055 (Demo-Original) war auf schwachen Lautsprechern praktisch
+    // unhörbar — auf 0.13 angehoben, zusammen mit der Oktave-Anhebung
+    // oben spürbar hörbar, aber immer noch ein dezenter Hintergrund-Drone.
+    soundEnabled ? 0.13 : 0.0,
     now + (soundEnabled ? 1.4 : 0.5),
   );
 }
