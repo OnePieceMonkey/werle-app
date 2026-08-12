@@ -167,13 +167,19 @@ export function playChime(): void {
   });
 }
 
-function toggleSoundInternal(): void {
+/* `ctx.currentTime` steht bei einem noch `suspended` Context auf einem
+   eingefrorenen/unzuverlässigen Wert — jede Zeitplanung, die davor gelesen
+   wird, kann beim tatsächlichen Losaufen des Contexts bereits in der
+   Vergangenheit liegen (Browser klemmen das dann meist hart auf "sofort",
+   statt die geplante Fade-Dauer einzuhalten). `resume()` muss daher
+   abgeschlossen sein, bevor `now` gelesen und die Rampe geplant wird. */
+async function toggleSoundInternal(): Promise<void> {
   soundEnabled = !soundEnabled;
   notify();
 
   const ctx = ensureAudioCtx();
   if (!ctx) return;
-  if (ctx.state === "suspended") ctx.resume();
+  if (ctx.state === "suspended") await ctx.resume();
   if (!ambientHum) ambientHum = buildAmbientHum(ctx);
 
   const now = ctx.currentTime;
@@ -196,7 +202,7 @@ export function useAmbientSound(): UseAmbientSoundResult {
   const enabled = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggleSound = useCallback(() => {
-    toggleSoundInternal();
+    void toggleSoundInternal();
   }, []);
 
   return { soundEnabled: enabled, toggleSound, playWhoosh, playChime };

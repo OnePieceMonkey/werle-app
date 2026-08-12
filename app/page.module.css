@@ -38,3 +38,8 @@
     padding: 8vh 5vw;
   }
 }
+
+.warpSpacer {
+  min-height: 130vh;
+  pointer-events: none;
+}

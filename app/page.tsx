@@ -124,6 +124,14 @@ export default function Home() {
 
         <LabrechnerSection />
         <BookSection />
+        {/* Reine Scroll-Distanz, kein Inhalt: gibt dem Warp-Effekt (siehe
+            SpaceScene.tsx, zwischen "buch" und "kontakt" positioniert) Raum,
+            bevor der Ankunfts-Inhalt am unteren Viewport-Rand auftaucht.
+            Ohne diesen Puffer grenzen Buch- und Kontakt-Sektion direkt
+            aneinander (normaler Dokumentenfluss) — der Kontakt-Inhalt wäre
+            dann schon sichtbar, sobald man in die Buch-Sektion scrollt,
+            lange bevor der scrollY-gesteuerte Warp überhaupt einsetzt. */}
+        <div className={styles.warpSpacer} aria-hidden="true" />
         <ArrivalSection />
       </main>
     </>
