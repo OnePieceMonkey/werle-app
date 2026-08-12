@@ -6,9 +6,13 @@
   align-items: center;
   justify-content: center;
   padding: 8vh 6vw;
+  /* Sektion liegt volldeckend über dem fixen SpaceScene-Canvas dahinter —
+     .panel holt sich Klickbarkeit für den CTA-Link zurück. */
+  pointer-events: none;
 }
 
 .panel {
+  pointer-events: auto;
   width: min(92vw, 760px);
   padding: 38px 42px;
   border-radius: 20px;

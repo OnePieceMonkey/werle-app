@@ -8,6 +8,12 @@
   justify-content: center;
   text-align: center;
   padding: 8vh 6vw;
+  /* Sektionen liegen volldeckend (min-height:100vh) über dem fixen
+     SpaceScene-Canvas dahinter — ohne diese Regel fangen sie jeden Klick
+     ab, bevor er den Canvas erreicht (Planet-/Satellit-Easter-Eggs wären
+     nie klickbar). Hero hat keine interaktiven Kinder, braucht also keinen
+     pointer-events:auto-Gegenpart. */
+  pointer-events: none;
 }
 
 /* Marken-Label oben links — bleibt beim Scrollen sichtbar (in der Demo

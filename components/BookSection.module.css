@@ -6,9 +6,13 @@
   align-items: center;
   justify-content: center;
   padding: 8vh 6vw;
+  /* Sektion liegt volldeckend über dem fixen SpaceScene-Canvas dahinter —
+     .panel und .lightbox holen sich Klickbarkeit gezielt zurück. */
+  pointer-events: none;
 }
 
 .panel {
+  pointer-events: auto;
   width: min(94vw, 820px);
   text-align: center;
 }
@@ -86,6 +90,10 @@
 }
 
 .lightbox {
+  /* Liegt außerhalb von .panel, aber innerhalb von .stage (dessen
+     pointer-events:none sonst auch die Lightbox selbst unklickbar
+     machen würde — Schließen-Button/Backdrop-Klick müssen funktionieren). */
+  pointer-events: auto;
   position: fixed;
   inset: 0;
   z-index: 50;

@@ -1,4 +1,8 @@
 .productCard {
+  /* Holt sich Klickbarkeit zurück, die der volldeckende .stageLeft/
+     .stageRight-Elternrahmen (page.module.css) bewusst abgibt — siehe
+     Kommentar dort. */
+  pointer-events: auto;
   display: flex;
   gap: 22px;
   align-items: flex-start;
@@ -216,6 +220,9 @@ a.productCard:hover .arrow {
 
 /* ---------------- ALIBI — angepinnte Case-Board-Komposition ---------------- */
 .cardWrap {
+  /* Direktes Kind von .stageRight (ALIBI-Variante) — holt sich
+     Klickbarkeit zurück wie .productCard oben. */
+  pointer-events: auto;
   display: block;
   width: min(90vw, 620px);
 }

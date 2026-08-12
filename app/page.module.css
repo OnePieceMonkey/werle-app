@@ -1,6 +1,13 @@
 .main {
   position: relative;
   z-index: 1;
+  /* Deckt exakt dieselbe Fläche wie seine Sektionen ab — ohne dies würde
+     dieser Wrapper selbst (statt seiner auf none gesetzten Kinder) jeden
+     Klick abfangen, der eigentlich den fixen SpaceScene-Canvas dahinter
+     erreichen soll. Interaktive Inhalte holen sich pointer-events gezielt
+     zurück (siehe .panel/.consolePanel/.productCard etc. in den jeweiligen
+     Sektions-Modulen). */
+  pointer-events: none;
 }
 
 .stageLeft,
@@ -9,6 +16,11 @@
   display: flex;
   align-items: center;
   padding: 8vh 7vw;
+  /* Sektionen liegen volldeckend über dem fixen SpaceScene-Canvas dahinter
+     — ohne diese Regel fangen sie jeden Klick ab, bevor er den Canvas
+     erreicht. Die Produktkarte selbst holt sich pointer-events per
+     ProductCard.module.css zurück. */
+  pointer-events: none;
 }
 
 .stageLeft {
