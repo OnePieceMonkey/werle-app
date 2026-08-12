@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import FadeInSection from "@/components/FadeInSection";
 import styles from "./BookSection.module.css";
 
 interface Cover {
@@ -48,35 +49,37 @@ export default function BookSection() {
 
   return (
     <section id="buch" className={styles.stage}>
-      <div
-        className={styles.panel}
-        aria-label="Bechterew unter Kontrolle — Buchcover und Rückseite"
-      >
-        <p className={`${styles.kicker} mono`}>Buch</p>
-        <h2 className={styles.title}>
-          Bechterew <em>unter Kontrolle</em>
-        </h2>
-        <p className={`${styles.tagline} serif`}>
-          Mein Weg durch 20 Jahre Morbus Bechterew.
-        </p>
-        <div className={styles.covers}>
-          {COVERS.map((cover) => (
-            <figure
-              key={cover.key}
-              className={`${styles.plate} ${cover.back ? styles.back : ""}`}
-              onClick={() => setLightbox(cover)}
-            >
-              <Image
-                src={cover.src}
-                alt={cover.alt}
-                width={cover.width}
-                height={cover.height}
-              />
-              <figcaption className="mono">{cover.caption}</figcaption>
-            </figure>
-          ))}
+      <FadeInSection>
+        <div
+          className={styles.panel}
+          aria-label="Bechterew unter Kontrolle — Buchcover und Rückseite"
+        >
+          <p className={`${styles.kicker} mono`}>Buch</p>
+          <h2 className={styles.title}>
+            Bechterew <em>unter Kontrolle</em>
+          </h2>
+          <p className={`${styles.tagline} serif`}>
+            Mein Weg durch 20 Jahre Morbus Bechterew.
+          </p>
+          <div className={styles.covers}>
+            {COVERS.map((cover) => (
+              <figure
+                key={cover.key}
+                className={`${styles.plate} ${cover.back ? styles.back : ""}`}
+                onClick={() => setLightbox(cover)}
+              >
+                <Image
+                  src={cover.src}
+                  alt={cover.alt}
+                  width={cover.width}
+                  height={cover.height}
+                />
+                <figcaption className="mono">{cover.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
-      </div>
+      </FadeInSection>
 
       {lightbox && (
         <div

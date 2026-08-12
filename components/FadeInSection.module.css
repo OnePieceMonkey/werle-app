@@ -1,0 +1,19 @@
+.fadeIn {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+  /* Wird teils um ganze Sektionen herum verwendet (die selbst schon
+     pointer-events:none auf sich haben, siehe page.module.css/.stage-
+     Klassen) — der Wrapper darf diese Kette nicht durchbrechen, sonst
+     blockiert er wieder Klicks auf den SpaceScene-Canvas dahinter. Die
+     tatsächlich interaktiven Inhalte (.panel/.productCard/.consolePanel
+     etc.) holen sich pointer-events bereits explizit selbst zurück. */
+  pointer-events: none;
+}
+
+.fadeIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
