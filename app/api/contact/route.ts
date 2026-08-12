@@ -1,6 +1,12 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy statt Modulebene: `new Resend(undefined)` wirft sofort, und Next.js
+// wertet Route-Module beim Build aus ("Collecting page data"), nicht erst
+// zur Laufzeit — ein fehlender RESEND_API_KEY hätte sonst den kompletten
+// Build zum Absturz gebracht, nicht nur diesen Endpunkt zur Laufzeit.
+function getResendClient(): Resend {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 const SENDER = "Werle Technologies <kontakt@mail.labrechner.de>";
 const RECIPIENT = "werle.business@gmail.com";
@@ -33,7 +39,7 @@ export async function POST(req: Request) {
     return Response.json({ error: "Pflichtfeld fehlt" }, { status: 400 });
   }
 
-  const { error } = await resend.emails.send({
+  const { error } = await getResendClient().emails.send({
     from: SENDER,
     to: RECIPIENT,
     replyTo: email,

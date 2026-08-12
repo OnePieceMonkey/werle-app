@@ -1,6 +1,9 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy statt Modulebene — siehe Kommentar in app/api/contact/route.ts.
+function getResendClient(): Resend {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 const SENDER = "Werle Technologies <kontakt@mail.labrechner.de>";
 const RECIPIENT = "werle.business@gmail.com";
@@ -41,7 +44,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const { error } = await resend.emails.send({
+  const { error } = await getResendClient().emails.send({
     from: SENDER,
     to: RECIPIENT,
     replyTo: email,
