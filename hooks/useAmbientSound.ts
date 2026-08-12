@@ -3,36 +3,33 @@
 import { useCallback, useSyncExternalStore } from "react";
 
 /* ==================================================================
-   Ambient-Sound-System — 1:1 aus dem SOUND-DESIGN-Skriptblock der
-   freigegebenen Demo portiert (`_temp/design-demos/demo-3d-world-v6.html`,
-   Zeilen 1201–1336): Ambient-Hum (drei leicht verstimmte Oszillatoren
-   durch ein LFO-moduliertes Lowpass-Filter), ein einmaliger Rausch-
-   Whoosh (Warp-Sync) und ein Dreiklang-Chime (Planet-/Satelliten-
-   Easter-Egg). Alles live per Web Audio API synthetisiert, keine
-   externen Audiodateien.
+   Sound-System — aus dem SOUND-DESIGN-Skriptblock der freigegebenen
+   Demo portiert (`_temp/design-demos/demo-3d-world-v6.html`, Zeilen
+   1201–1336): ein einmaliger Rausch-Whoosh (Warp-Sync) und ein
+   Dreiklang-Chime (Planet-/Satelliten-Easter-Egg). Live per Web Audio
+   API synthetisiert, keine externen Audiodateien.
 
-   Architektur-Entscheidung (siehe Task-Auftrag): audioCtx/ambientHum/
-   soundEnabled sind bewusst Modul-Scope-Variablen — ein echtes
-   Singleton außerhalb von React, analog zu den IIFE-Scope-Variablen
-   der Demo. Grund: der Toggle-Button (lebt bei der Marke in Hero.tsx)
-   und die 3D-Szene (Warp-Whoosh, Planet-/Satelliten-Klick-Chime in
-   SpaceScene.tsx via Experience.tsx) müssen denselben Sound-Zustand
-   lesen/auslösen, obwohl sie an unterschiedlichen Stellen im
-   Komponentenbaum sitzen (keine Eltern-Kind-Beziehung — Prop-Drilling
-   geht strukturell nicht). useSyncExternalStore macht den Hook
-   reaktiv für den Toggle, ohne dass playWhoosh/playChime selbst
-   reaktiv sein müssen — die werden nur imperativ aus Event-/Frame-
-   Callbacks aufgerufen, nie während eines Renders.
+   Live-Feedback nach Deploy: der ursprünglich mitportierte Ambient-Hum
+   (Dauerton im Hintergrund) wirkte hörbar als eintöniger Dauerdrone —
+   bewusst ersatzlos gestrichen, Ton beschränkt sich jetzt auf die zwei
+   Event-Sounds. Der Dateiname bleibt (er steht weiterhin für den
+   gesamten Sound-Zustand der Seite, nicht nur den früheren Hum).
+
+   Architektur-Entscheidung (unverändert): audioCtx/soundEnabled sind
+   bewusst Modul-Scope-Variablen — ein echtes Singleton außerhalb von
+   React, analog zu den IIFE-Scope-Variablen der Demo. Grund: der
+   Toggle-Button (lebt bei der Marke in Hero.tsx) und die 3D-Szene
+   (Warp-Whoosh, Planet-/Satelliten-Klick-Chime in SpaceScene.tsx via
+   Experience.tsx) müssen denselben Sound-Zustand lesen/auslösen,
+   obwohl sie an unterschiedlichen Stellen im Komponentenbaum sitzen
+   (keine Eltern-Kind-Beziehung — Prop-Drilling geht strukturell
+   nicht). useSyncExternalStore macht den Hook reaktiv für den Toggle,
+   ohne dass playWhoosh/playChime selbst reaktiv sein müssen — die
+   werden nur imperativ aus Event-/Frame-Callbacks aufgerufen, nie
+   während eines Renders.
    ================================================================== */
 
-interface AmbientHum {
-  masterGain: GainNode;
-  filter: BiquadFilterNode;
-  oscillators: OscillatorNode[];
-}
-
 let audioCtx: AudioContext | null = null;
-let ambientHum: AmbientHum | null = null;
 let soundEnabled = false;
 let whooshBuffer: AudioBuffer | null = null;
 
@@ -69,51 +66,6 @@ function ensureAudioCtx(): AudioContext | null {
   if (!Ctor) return null;
   if (!audioCtx) audioCtx = new Ctor();
   return audioCtx;
-}
-
-function buildAmbientHum(ctx: AudioContext): AmbientHum {
-  const masterGain = ctx.createGain();
-  masterGain.gain.value = 0;
-  masterGain.connect(ctx.destination);
-
-  const filter = ctx.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.value = 320;
-  filter.Q.value = 0.6;
-  filter.connect(masterGain);
-
-  /* Live-Feedback: auf Mac-internen Lautsprechern (schwache Wiedergabe
-     unter ~100Hz) war der Hum bei den ursprünglichen 55/82,5/110Hz aus der
-     Demo praktisch unhörbar. Eine Oktave höher (110/165/220Hz) bleibt
-     klanglich ein warmer, tiefer Drone, liegt aber im Bereich, den auch
-     kleine Lautsprecher tatsächlich wiedergeben. */
-  const partials: { type: OscillatorType; freq: number; detune: number; gain: number }[] = [
-    { type: "sine", freq: 110, detune: 0, gain: 0.5 },
-    { type: "sine", freq: 165, detune: -6, gain: 0.26 },
-    { type: "triangle", freq: 220, detune: 5, gain: 0.15 },
-  ];
-  const oscillators = partials.map((p) => {
-    const osc = ctx.createOscillator();
-    osc.type = p.type;
-    osc.frequency.value = p.freq;
-    osc.detune.value = p.detune;
-    const g = ctx.createGain();
-    g.gain.value = p.gain;
-    osc.connect(g).connect(filter);
-    osc.start();
-    return osc;
-  });
-
-  const lfo = ctx.createOscillator();
-  lfo.type = "sine";
-  lfo.frequency.value = 0.045;
-  const lfoGain = ctx.createGain();
-  lfoGain.gain.value = 85;
-  lfo.connect(lfoGain).connect(filter.frequency);
-  lfo.start();
-  oscillators.push(lfo);
-
-  return { masterGain, filter, oscillators };
 }
 
 function buildNoiseBuffer(ctx: AudioContext, duration: number): AudioBuffer {
@@ -172,12 +124,11 @@ export function playChime(): void {
   });
 }
 
-/* `ctx.currentTime` steht bei einem noch `suspended` Context auf einem
-   eingefrorenen/unzuverlässigen Wert — jede Zeitplanung, die davor gelesen
-   wird, kann beim tatsächlichen Losaufen des Contexts bereits in der
-   Vergangenheit liegen (Browser klemmen das dann meist hart auf "sofort",
-   statt die geplante Fade-Dauer einzuhalten). `resume()` muss daher
-   abgeschlossen sein, bevor `now` gelesen und die Rampe geplant wird. */
+/* Reiner Zustands-Toggle: aktiviert/deaktiviert die beiden Event-Sounds
+   und stellt sicher, dass der AudioContext (aus derselben User-Geste
+   heraus, wie von Autoplay-Policies verlangt) bereits läuft, wenn
+   später ein Whoosh/Chime ausgelöst wird — kein eigener Ton beim
+   Toggle-Klick selbst. */
 async function toggleSoundInternal(): Promise<void> {
   soundEnabled = !soundEnabled;
   notify();
@@ -185,18 +136,6 @@ async function toggleSoundInternal(): Promise<void> {
   const ctx = ensureAudioCtx();
   if (!ctx) return;
   if (ctx.state === "suspended") await ctx.resume();
-  if (!ambientHum) ambientHum = buildAmbientHum(ctx);
-
-  const now = ctx.currentTime;
-  ambientHum.masterGain.gain.cancelScheduledValues(now);
-  ambientHum.masterGain.gain.setValueAtTime(ambientHum.masterGain.gain.value, now);
-  ambientHum.masterGain.gain.linearRampToValueAtTime(
-    // 0.055 (Demo-Original) war auf schwachen Lautsprechern praktisch
-    // unhörbar — auf 0.13 angehoben, zusammen mit der Oktave-Anhebung
-    // oben spürbar hörbar, aber immer noch ein dezenter Hintergrund-Drone.
-    soundEnabled ? 0.13 : 0.0,
-    now + (soundEnabled ? 1.4 : 0.5),
-  );
 }
 
 export interface UseAmbientSoundResult {
