@@ -99,34 +99,44 @@ Texturen/Blur) — das ist für einen anderen Zweck gebaut und widerspricht dem
 hier gewünschten, stark animierten, bewegungsreichen Auftritt direkt. werle.app
 bekommt eine eigene, unabhängige Identität.
 
-Nächster Schritt: `huashu-design` Direction-Advisory — 2–3 echte visuelle
-Demo-Richtungen parallel generieren statt Textbeschreibung. Eine Richtung
-testweise mit den ALIBI-Illustrationen (Tusche-Kreuzschraffur + Blauwäsche auf
-cremefarbenem Papier, aus der heutigen Session) als Bildmaterial, weil dieser
-Stil bereits eine erkennbare, hochwertige Handschrift hat.
+**Stand 12.08.2026:** Die Direction-Advisory ist gelaufen und die Richtung
+„Experimentelle 3D-Welt" (Three.js-Raumfahrt, im Geist von Bruno Simon) wurde
+über sechs Demo-Runden (v1–v6, `_temp/design-demos/`) vertieft und vom Kunden
+freigegeben. Die ALIBI-Illustrationen sind als echtes Bildmaterial verbaut
+(Case-Board-Komposition). Nächster Schritt ist nicht mehr Richtungsfindung,
+sondern der echte Next.js-Implementierungsplan (siehe `writing-plans`-Skill).
 
 ## Projekt-Ort
 
 Neues, eigenständiges Repo: `~/Projekte/werle-app/` (git-initialisiert
 11.08.2026), Deploy über Vercel.
 
-## Kontaktformular — Backend
+## Formulare — Backend (Kontakt + E-Mail-Vormerkung)
 
-Echtes Formular (Name/E-Mail/Nachricht), kein mailto-Link (Kundenwunsch,
-12.08.2026). In den Demo-Runden bisher nur die UI-Ebene gebaut (Placeholder-
-Submit). Für die echte Umsetzung: Next.js API-Route nimmt die Eingabe
-entgegen, verschickt per Resend direkt an Patricks Posteingang — Resend ist
-bereits eingerichtet und getestet (siehe `Games/alibi/DOMAIN-SETUP.md`,
-Email-Routing-Test 11.08.2026), kein neuer Dienst nötig.
+Beide sind echte Formulare, kein mailto-Link (Kundenwunsch, 12.08.2026). In
+den Demo-Runden bisher nur die UI-Ebene gebaut (Placeholder-Submit):
 
-## Zwei Produktionsentscheidungen (Kundenwunsch 12.08.2026, NICHT in der
+- **Kontaktformular** (Name/E-Mail/Nachricht, in der Ankunfts-Sektion).
+- **E-Mail-Vormerkung** „Bescheid sagen, wenn's da ist" auf den Karten von
+  ALIBI und coParents (nicht PulseGate — das hat schon ein echtes Linkziel).
+
+Für die echte Umsetzung: Next.js API-Routen nehmen die Eingaben entgegen,
+verschicken per Resend direkt an Patricks Posteingang — Resend ist bereits
+eingerichtet und getestet (siehe `Games/alibi/DOMAIN-SETUP.md`,
+Email-Routing-Test 11.08.2026), kein neuer Dienst nötig. Für die
+Vormerkungs-Adressen reicht vorerst eine einfache Weiterleitungsmail pro
+Eintrag (Betreff: welches Produkt) statt einer eigenen Kontakt-Datenbank —
+Umfang bei Bedarf im Implementierungsplan hochskalieren, wenn die Liste
+wächst.
+
+## Produktionsentscheidungen (Kundenwünsche 12.08.2026, NICHT in der
 ## Wegwerf-Demo gebaut — echte Next.js-Implementierungsarbeit)
 
 - **Englische Sprachversion.** Relevant wegen internationaler Sichtbarkeit
   (Buch-Käufer außerhalb DE, Karriere-/LinkedIn-Netzwerk). Kein Detail, das
   sich in eine Demo-HTML-Datei nebenbei einbauen lässt — vollständige
   Content-Übersetzung (Produkt-Hooks, Labrechner-Fakten, Buch-Beschreibung,
-  Formular, Mission-Plaque, Boot-up-/Warp-Texte) + Sprachumschalter DE/EN.
+  Formulare, Mission-Plaque, Boot-up-/Warp-Texte) + Sprachumschalter DE/EN.
   Umfang und genaue Routing-Struktur (z. B. `/en`) sind Teil des
   Implementierungsplans, nicht dieses Design-Dokuments.
 - **Eigenes Social-Share-Bild (Open-Graph-Image).** Ohne eigenes OG-Bild zeigt
@@ -136,6 +146,17 @@ Email-Routing-Test 11.08.2026), kein neuer Dienst nötig.
   Teil der Next.js-Metadaten (`opengraph-image`). Lässt sich erst gegen eine
   echte URL testen (LinkedIn Post Inspector o. ä.) — deshalb erst nach dem
   ersten Deploy final verifizierbar, nicht vorher.
+- **Datenschutzfreundliche Besucherzahlen.** Vercel Analytics (nativ,
+  cookie-los, kein Consent-Banner nötig) statt Google Analytics — passt zu
+  Patricks Privacy-first-Haltung (siehe `about-me.md`). Aktivierung ist ein
+  Vercel-Dashboard-Schalter nach dem ersten Deploy, kein Code-Aufwand.
+- **Eigene 404-Seite im selben Look.** Bewusst nicht als isolierte Demo-Datei
+  vorgebaut — eine gute 404-Seite braucht dieselben Bausteine wie die
+  Hauptseite (Sternenhintergrund, Header, Typografie), die erst mit dem
+  echten Next.js-Build als wiederverwendbare Komponenten existieren.
+  Richtwort-Vorschlag fürs Copy: „Kurs verloren" / „Dieser Ort existiert
+  nicht auf der Sternenkarte" + Link zurück zur Startrampe (Anschluss an die
+  bereits gebaute „Zurück zur Startrampe"-Formulierung der Ankunfts-Sektion).
 
 ## Offene Punkte für später
 
