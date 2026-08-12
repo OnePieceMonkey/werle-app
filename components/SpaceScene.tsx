@@ -162,11 +162,16 @@ interface Layout {
 function computeLayout(f: StationFractions): Layout {
   const z = (t: number) => START_Z + (END_Z - START_Z) * t;
   const gap = f.kontakt - f.buch;
-  const planetSystemT = f.buch + gap * 0.15;
-  const warpStartT = f.buch + gap * 0.25;
-  const warpPeakT = f.buch + gap * 0.35;
-  const warpEndT = f.buch + gap * 0.45;
-  const stationViewportT = f.buch + gap * 0.7;
+  const planetSystemT = f.buch + gap * 0.12;
+  const warpStartT = f.buch + gap * 0.22;
+  const warpPeakT = f.buch + gap * 0.32;
+  const warpEndT = f.buch + gap * 0.4;
+  /* Station-Viewport-Ring dicht ans Warp-Ende gelegt (statt der früheren
+     0.7), damit der Ring sichtbar mit dem Abklingen des Warp-Farbeinschlags
+     zusammenfällt statt als unabhängiger, später Beat zu wirken — Rückmeldung
+     nach Live-Test: "Flash nicht synchron mit dem Ring". Der verbleibende
+     Rest der Distanz bis kontaktT bleibt bewusst reiner Ankunfts-Puffer. */
+  const stationViewportT = f.buch + gap * 0.45;
   const missionT = [f.hero, f.pulsegate, f.alibi, f.coparents, f.labrechner, f.buch, f.kontakt];
   const planetZ = z(planetSystemT);
 
