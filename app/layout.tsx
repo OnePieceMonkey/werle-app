@@ -28,10 +28,24 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const title = "Werle Technologies";
+const description =
+  "Zwei Spiele, eine App und ein Buch — zum Anfassen, nicht nur zum Ansehen.";
+
 export const metadata: Metadata = {
-  title: "Werle Technologies",
-  description:
-    "Zwei Spiele, eine App und ein Buch — zum Anfassen, nicht nur zum Ansehen.",
+  metadataBase: new URL("https://werle.app"),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    type: "website",
+    locale: "de_DE",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {

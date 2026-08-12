@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import styles from "./ArrivalSection.module.css";
 
 export default function ArrivalSection() {
@@ -116,9 +117,8 @@ export default function ArrivalSection() {
           >
             LinkedIn ↗
           </a>
-          {/* Impressum-Seite ist eigene, spätere Aufgabe (Ladungsfähige
-              Anschrift fehlt noch) — Platzhalter-Ziel wie in der Demo. */}
-          <a href="#">Impressum</a>
+          <Link href="/impressum">Impressum</Link>
+          <Link href="/datenschutz">Datenschutz</Link>
         </div>
       </div>
 
