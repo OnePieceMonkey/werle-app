@@ -46,24 +46,30 @@ verwenden, nur v6 zählt.
   mit R3F, GSAP, Resend`). App Router, TypeScript, kein Tailwind. Dependencies
   installiert: `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`,
   `resend`. `npm run build` lief zuletzt fehlerfrei.
-- 🔶 **Tasks 2–5 (DOM-Struktur, Styles, Content-Sektionen, noch OHNE
-  3D-Szene)**: Ein Agent hat das umgesetzt, **Stand des Sessionwechsels: auf
-  der Platte, aber noch NICHT committet und nicht final verifiziert.** Erster
-  Schritt der neuen Session: `git status` prüfen. Falls `components/` und
-  `public/images/` unstaged Änderungen zeigen — das ist dieser Durchgang.
-  Selbst nachprüfen (`npm run build`, `npm run dev` + Playwright-Screenshot
-  gegen die v6-Demo), dann erst committen. Falls unvollständig/fehlerhaft:
-  nicht von Hand reparieren, sondern gezielt nachbessern lassen oder neu
-  aufsetzen — siehe `subagent-driven-development`-Skill.
-  - `SpaceScene.tsx` ist in diesem Durchgang bewusst nur ein leerer
-    Platzhalter — die eigentliche 3D-Szene ist ein **eigener Folge-Task**
-    (war im Original-Plan Teil von Task 3, siehe unten).
-- ⬜ **3D-Szene** (ursprünglich Task 3): Three.js-Logik aus der v6-Demo in
-  `SpaceScene.tsx` als React-Three-Fiber-Komponente portieren — Sterne, Nebel,
-  Hero-Glow, alle Produkt-Panel-Objekte, Ringplanet+Satellit (inkl. Realismus-
-  Shader und Klick-Easter-Eggs), Warp, scroll-gekoppelte Kamerafahrt,
-  Maus-Parallaxe, `prefers-reduced-motion`-Fallback. Größter verbleibender
-  Einzel-Task. 1:1-Verhalten zur Demo ist Pflicht, kein Neuentwurf.
+- ✅ **Tasks 2–5, DOM-Teil (DOM-Struktur, Styles, Content-Sektionen, noch OHNE
+  3D-Szene)**: fertig UND committet (`9df810c`), nach diesem Übergabe-Dokument
+  abgeschlossen. `npm run build`, `npm run lint`, TypeScript alle sauber.
+  Komponenten: `Hero`, `ProductCard`, `LabrechnerSection`, `BookSection`,
+  `ArrivalSection`, `MissionNav`, `SpaceScene` (Platzhalter) unter
+  `components/`, Bilder in `public/images/`.
+  - **Bewusste Abweichung von der Demo, die die nächste Session kennen muss:**
+    Die Sektionen liegen im normalen Dokumentenfluss (`min-height:100vh` pro
+    Sektion, `IntersectionObserver` für die aktive Sektion in `MissionNav`)
+    statt als `position:fixed`-Overlays, die die (noch fehlende) Scroll-Kamera
+    per Opacity einblendet. Das ist ok, muss aber beim Einbau der 3D-Szene
+    (nächster Punkt) mitgedacht werden — die Szene muss sich an dieses
+    bestehende Scroll-Modell andocken, nicht das DOM-Layout nochmal umbauen.
+  - `SpaceScene.tsx` ist bewusst nur ein leerer Platzhalter — die eigentliche
+    3D-Szene ist der nächste, größte Einzel-Task (siehe unten).
+  - Impressum-Link ist noch `href="#"` (Seite existiert erst mit Task 8).
+- ⬜ **3D-Szene** (ursprünglich Task 3, größter verbleibender Einzel-Task):
+  Three.js-Logik aus der v6-Demo in `SpaceScene.tsx` als React-Three-Fiber-
+  Komponente portieren — Sterne, Nebel, Hero-Glow, alle Produkt-Panel-Objekte,
+  Ringplanet+Satellit (inkl. Realismus-Shader und Klick-Easter-Eggs), Warp,
+  scroll-gekoppelte Kamerafahrt, Maus-Parallaxe, `prefers-reduced-motion`-
+  Fallback — **angedockt an das bestehende IntersectionObserver-/
+  Dokumentenfluss-Scroll-Modell aus dem vorigen Punkt**, nicht als Neubau des
+  Layouts. 1:1-Verhalten zur Demo ist Pflicht, kein Neuentwurf.
 - ⬜ **Boot-up/Sound/Cursor-Trail** (Task 5): mit der 3D-Szene zusammen bauen
   (Boot-up blendet visuell in die Szene über, eng gekoppelt).
 - ⬜ **Task 6 — Kontaktformular-API**: `app/api/contact/route.ts` +
