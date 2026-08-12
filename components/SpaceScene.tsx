@@ -612,9 +612,15 @@ interface FloaterEntry {
 interface SceneContentProps {
   layout: Layout;
   onReady?: () => void;
+  /** Feuert einmalig pro Warp-Durchlauf (Folge-Task: Sound-System) —
+   *  exakt die `warpSoundFired`-Logik der Demo (Zeile ~2263-2267). */
+  onWarpTrigger?: () => void;
+  /** Feuert bei jedem Planeten-/Satelliten-Easter-Egg-Klick (Folge-Task:
+   *  Sound-System) — zusätzlich zur bestehenden Nova-/Reaktions-Logik. */
+  onEasterEggClick?: () => void;
 }
 
-function SceneContent({ layout, onReady }: SceneContentProps) {
+function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: SceneContentProps) {
   const [isMobile] = useState(() => typeof window !== "undefined" && window.innerWidth < 780);
   const [reducedMotion] = useState(
     () =>
@@ -722,6 +728,10 @@ function SceneContent({ layout, onReady }: SceneContentProps) {
   const satelliteReaction = useRef({ reactStart: 0, reactUntil: 0 });
   const satBlinkBoost = useRef({ boostUntil: 0, boostSpan: 0.5 });
 
+  /* Feuert einmalig pro Warp-Durchlauf — analog zum hasFiredReadyRef-
+     Pattern oben, siehe useFrame unten für Setzen/Reset. */
+  const warpSoundFiredRef = useRef(false);
+
   /* Feste Floater-Konfiguration — Bob/Rotations-Parameter 1:1 aus den
      jeweiligen addFloater()-Aufrufen der Demo, nur die Basis-Y/-RotY
      kommen aus den bekannten Konstruktionswerten (Z ist für den Bob
@@ -802,8 +812,9 @@ function SceneContent({ layout, onReady }: SceneContentProps) {
         novaState.current[i].novaUntil = t + 0.7;
         novaState.current[i].novaDuration = 0.7;
       });
+      onEasterEggClick?.();
     },
-    [clock],
+    [clock, onEasterEggClick],
   );
 
   const handleSatelliteClick = useCallback(
@@ -814,8 +825,9 @@ function SceneContent({ layout, onReady }: SceneContentProps) {
       satelliteReaction.current.reactUntil = t + 0.6;
       satBlinkBoost.current.boostUntil = t + 0.5;
       satBlinkBoost.current.boostSpan = 0.5;
+      onEasterEggClick?.();
     },
-    [clock],
+    [clock, onEasterEggClick],
   );
 
   /* document.body statt gl.domElement als Cursor-Ziel: eine direkte
@@ -875,6 +887,19 @@ function SceneContent({ layout, onReady }: SceneContentProps) {
       if (warpGroupRef.current) warpGroupRef.current.scale.z = 0.02 + warpP * 0.98;
       if (warpMatRef.current) warpMatRef.current.opacity = warpP * 0.85;
     }
+
+    /* Whoosh genau einmal pro Warp-Durchgang, unabhängig von
+       reducedMotion (1:1 aus der Demo, Zeile ~2263-2267). Reset erst,
+       wenn deutlich vor der Warp-Zone zurückgescrollt wurde. */
+    if (warpP > 0.04) {
+      if (!warpSoundFiredRef.current) {
+        warpSoundFiredRef.current = true;
+        onWarpTrigger?.();
+      }
+    } else if (scrollT < layout.warpStartT - 0.02) {
+      warpSoundFiredRef.current = false;
+    }
+
     const warpColorT = Math.pow(warpP, 2) * 0.55;
     if (warpColorT > 0.001) {
       tmpColor.copy(bgColorBase).lerp(warpFlashColorConst, warpColorT);
@@ -1237,9 +1262,15 @@ export interface SpaceSceneProps {
   /** Feuert einmalig, sobald die Szene aufgebaut und der erste Frame
    *  gerendert ist — Anschlusspunkt für das Boot-up-System (Folge-Task). */
   onReady?: () => void;
+  /** Feuert einmalig pro Warp-Durchlauf — Anschlusspunkt für den
+   *  Warp-Whoosh im Sound-System (Folge-Task). */
+  onWarpTrigger?: () => void;
+  /** Feuert bei jedem Planeten-/Satelliten-Easter-Egg-Klick —
+   *  Anschlusspunkt für den Chime im Sound-System (Folge-Task). */
+  onEasterEggClick?: () => void;
 }
 
-export default function SpaceScene({ onReady }: SpaceSceneProps) {
+export default function SpaceScene({ onReady, onWarpTrigger, onEasterEggClick }: SpaceSceneProps) {
   const fractions = useStationFractions();
   const layout = useMemo(() => computeLayout(fractions), [fractions]);
 
@@ -1255,7 +1286,12 @@ export default function SpaceScene({ onReady }: SpaceSceneProps) {
       dpr={dpr}
       gl={{ antialias: true, powerPreference: "high-performance" }}
     >
-      <SceneContent layout={layout} onReady={onReady} />
+      <SceneContent
+        layout={layout}
+        onReady={onReady}
+        onWarpTrigger={onWarpTrigger}
+        onEasterEggClick={onEasterEggClick}
+      />
     </Canvas>
   );
 }

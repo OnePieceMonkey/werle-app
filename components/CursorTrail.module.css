@@ -1,0 +1,35 @@
+/* Sternstaub-Cursor-Trail — 1:1 aus der Demo (`.stardust-*`, CSS-
+   Zeilen 464–478). Rein dekorativ, pointer-events:none damit nichts
+   blockiert wird. */
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.anim {
+  animation: stardustFade 700ms ease-out forwards;
+}
+
+@keyframes stardustFade {
+  0% {
+    opacity: 0.8;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.25);
+  }
+}

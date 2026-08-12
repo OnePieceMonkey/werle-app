@@ -49,3 +49,36 @@ em,
 .mono {
   font-family: var(--font-mono), 'SF Mono', monospace;
 }
+
+/* ==================================================================
+   Bewegungsreduzierter Modus — globaler Sicherheitsnetz-Mechanismus,
+   1:1 aus der freigegebenen Demo übernommen
+   (`_temp/design-demos/demo-3d-world-v6.html`, CSS-Zeilen 707–737).
+   Kappt praktisch jede CSS-Transition/-Animation seitenweit auf ~0
+   Dauer — bewusst hier und nicht in einer einzelnen Komponenten-CSS,
+   weil es seitenweit gilt (u. a. Marken-Puls-Punkt, Scroll-Chevron,
+   Rotate-Hint-Einblendung in Hero.module.css/RotateHint.module.css).
+   Die explizite Ausnahme für den Boot-up-Caret bleibt nötig, sonst
+   würde er unter reduced motion bei opacity 0 verharren (unsichtbar)
+   statt als stetig sichtbarer Strich. Der Caret trägt dafür zusätzlich
+   zur gehashten CSS-Modul-Klasse eine stabile globale Klasse
+   `bootup-caret` (siehe BootupIntro.tsx) — nur so von hier aus
+   erreichbar. Die zwei übrigen in der Demo einzeln gelisteten
+   Selektoren (`.hud-brand .dot`, `.hud-hint .chevron`) brauchen keine
+   Entsprechung: sie existieren im Next.js-Port unter gehashten
+   CSS-Modul-Klassennamen und werden von der generischen `*`-Regel
+   unten ohnehin gekappt. */
+@media (prefers-reduced-motion: reduce) {
+  .bootup-caret {
+    animation: none !important;
+    opacity: 1;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

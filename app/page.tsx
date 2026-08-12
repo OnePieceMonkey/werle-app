@@ -1,4 +1,4 @@
-import SpaceScene from "@/components/SpaceScene";
+import Experience from "@/components/Experience";
 import MissionNav from "@/components/MissionNav";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
@@ -10,8 +10,9 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <>
-      {/* Platzhalter für die 3D-Szene, siehe components/SpaceScene.tsx */}
-      <SpaceScene />
+      {/* 3D-Szene + Erlebnis-Chrome (Boot-up, Sound, Cursor-Trail,
+          Rotate-Hint), siehe components/Experience.tsx */}
+      <Experience />
       <MissionNav />
 
       <main id="top" className={styles.main}>

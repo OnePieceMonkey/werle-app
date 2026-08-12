@@ -1,0 +1,119 @@
+/* ==================================================================
+   Boot-up-Intro + Ladefortschritt — 1:1 aus der freigegebenen Demo
+   portiert (`_temp/design-demos/demo-3d-world-v6.html`, CSS-Zeilen
+   433–462 `.bootup*` + 550–569 `.boot-loading*`). Sichtbarkeit wird in
+   BootupIntro.tsx über conditional rendering gesteuert (kein
+   display:none-Toggle nötig), daher hier direkt als sichtbarer Zustand
+   modelliert statt über eine separate `.active`-Klasse.
+   ================================================================== */
+
+.bootup {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity 0.45s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+/* ---------------- Ladefortschritt ---------------- */
+.bootLoading {
+  font-family: var(--font-mono), "SF Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--mono);
+  text-align: left;
+  min-width: 230px;
+}
+
+.bootLoadingLabel {
+  margin: 0 0 12px;
+}
+
+.bootLoadingBar {
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(127, 217, 196, 0.18);
+  margin-bottom: 8px;
+}
+
+.bootLoadingBarFill {
+  height: 100%;
+  background: var(--mono);
+  transition: width 0.25s ease;
+}
+
+.bootLoadingPct {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---------------- Terminal-Zeilen ---------------- */
+.bootupLines {
+  font-family: var(--font-mono), "SF Mono", monospace;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  color: var(--mono);
+  text-align: left;
+  min-width: 250px;
+}
+
+.bootupLine {
+  margin: 0 0 9px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Staffelung per transition-delay statt per-Zeile-JS-Timeout — alle
+   drei Zeilen bekommen ihre .show-Klasse im selben Render (siehe
+   BootupIntro.tsx), der optische Versatz (100ms/400ms/700ms, exakt
+   die 100 + i*300ms-Formel der Demo) entsteht rein über CSS. */
+.bootupLine:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.bootupLine:nth-child(2) {
+  transition-delay: 0.4s;
+}
+.bootupLine:nth-child(3) {
+  transition-delay: 0.7s;
+}
+
+.bootupLine.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bootupCaret {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  margin-left: 3px;
+  background: var(--teal);
+  vertical-align: -2px;
+  animation: bootupCaret 0.8s steps(1) infinite;
+}
+
+@keyframes bootupCaret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
