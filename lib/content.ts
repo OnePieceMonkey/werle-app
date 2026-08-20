@@ -214,7 +214,7 @@ const de: Content = {
   },
   products: {
     pulsegate: {
-      status: "Im App-Store-Review",
+      status: "Live im App Store",
       titlePrefix: "Pulse Gate: ",
       titleEmphasis: "Echo Shift",
       ariaLabel: "Pulse Gate: Echo Shift — pulsegate.werle.app",
@@ -375,7 +375,7 @@ const en: Content = {
   },
   products: {
     pulsegate: {
-      status: "In App Store review",
+      status: "Live on the App Store",
       titlePrefix: "Pulse Gate: ",
       titleEmphasis: "Echo Shift",
       ariaLabel: "Pulse Gate: Echo Shift — pulsegate.werle.app",

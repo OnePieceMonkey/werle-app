@@ -23,7 +23,7 @@ export default function Home() {
           <FadeInSection>
             <ProductCard
               variant="pulsegate"
-              status="Im App-Store-Review"
+              status="Live im App Store"
               accent="teal"
               title={
                 <>
