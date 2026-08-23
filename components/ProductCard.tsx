@@ -179,6 +179,18 @@ export default function ProductCard({
         >
           <path d="M 64 7 Q 104 78 143 103" fill="none" />
         </svg>
+        {/* Mobile Variante: eigenes Koordinatensystem für das breite,
+            zentrierte Board (siehe Media-Query). preserveAspectRatio="none"
+            + non-scaling-stroke, damit der Faden bei jeder Boardbreite auf
+            den Nadeln landet und trotzdem 2px dünn bleibt. */}
+        <svg
+          className={styles.threadSvgMobile}
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M 47 3 Q 70 62 83 43" fill="none" />
+        </svg>
         <span className={`${styles.pinDot} ${styles.pd1}`} aria-hidden="true" />
         <span className={`${styles.pinDot} ${styles.pd2}`} aria-hidden="true" />
         <div className={styles.pinMain}>

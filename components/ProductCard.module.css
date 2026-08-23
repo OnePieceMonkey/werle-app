@@ -260,7 +260,8 @@ a.productCard:hover .arrow {
   font-size: 24px !important;
 }
 
-.threadSvg {
+.threadSvg,
+.threadSvgMobile {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -269,9 +270,16 @@ a.productCard:hover .arrow {
   pointer-events: none;
 }
 
-.threadSvg path {
+.threadSvg path,
+.threadSvgMobile path {
   stroke: var(--verhoer-thread);
   stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Mobile Faden-Variante nur unter 760px (siehe Media-Query unten). */
+.threadSvgMobile {
+  display: none;
 }
 
 .boardMedia {
@@ -549,9 +557,12 @@ a.productCard:hover .arrow {
     margin: 0 auto;
   }
   .boardMedia {
+    /* 200px statt 150px: die Haupt-Karte ist ~182px hoch (132px breit ×
+       1200/896 + Rahmen) — bei 150px ragte sie in den Text, und der
+       Stempel lag auf dem Bild (Live-Feedback 23.08., Mobil-Screenshot). */
     width: 100%;
-    height: 150px;
-    margin: 0 auto 4px;
+    height: 200px;
+    margin: 0 auto 14px;
   }
   .pinMain {
     left: 50%;
@@ -560,7 +571,28 @@ a.productCard:hover .arrow {
   }
   .pinPortrait {
     right: 6%;
-    bottom: -8px;
+    bottom: 4px;
+  }
+  /* Nadeln auf die zentrierte Mobil-Komposition setzen (Desktop-Werte
+     .pd1/.pd2 sind Pixelpositionen fürs 172px-Board und liegen hier
+     daneben). Der Desktop-Faden wird gegen die Mobil-Variante getauscht. */
+  .pd1 {
+    left: calc(50% - 13px);
+    top: -3px;
+  }
+  .pd2 {
+    right: calc(6% + 33px);
+    bottom: auto;
+    top: 82px;
+  }
+  .threadSvg {
+    display: none;
+  }
+  .threadSvgMobile {
+    display: block;
+  }
+  .tagThread {
+    white-space: nowrap;
   }
   .cardBody {
     text-align: left;

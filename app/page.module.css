@@ -49,3 +49,14 @@
   min-height: 220vh;
   pointer-events: none;
 }
+
+@media (max-width: 760px) {
+  .warpSpacer {
+    /* Mobil kam der Warp-Blitz "ganz kurz hinter dem Buch" (Live-Feedback
+       23.08.): kleinere Sektionshöhen stauchen das Buch→Kontakt-Fenster,
+       in dem die Warp-Zeitachse (22–40 % der Distanz, SpaceScene
+       computeLayout) lebt. Mehr Puffer = mehr Scrollweg nach dem Buch,
+       bevor der Blitz einsetzt — nur mobil, Desktop bleibt bei 220vh. */
+    min-height: 320vh;
+  }
+}
