@@ -56,27 +56,22 @@ export default function Home() {
           <FadeInSection>
             <ProductCard
               variant="alibi"
-              status="In Entwicklung"
-              accent="indigo"
-              title={
-                <>
-                  ALIBI — <em>Das Verhör</em>
-                </>
-              }
-              ariaLabel="ALIBI — Das Verhör — verhoer.werle.app"
+              status="Bald im App Store"
+              accent="thread"
+              title="Das Verhör"
+              ariaLabel="Das Verhör — bald im App Store"
               description="Ein Fall pro Tag, weltweit derselbe. Drei Verdächtige, vierzehn Fragen Budget — die Anklage braucht den Täter und den einen Widerspruch, der ihn überführt."
-              href="https://verhoer.werle.app"
-              ctaLabel="verhoer.werle.app"
+              ctaLabel="Bald: verhoer.werle.app"
               media={{
                 main: {
                   src: "/images/alibi-scene.jpg",
-                  alt: "ALIBI Fall-Illustration — Tuschezeichnung mit blauer Aquarellwäsche auf cremefarbenem Papier",
+                  alt: "Das Verhör — Fall-Illustration, Tuschezeichnung mit blauer Aquarellwäsche auf cremefarbenem Papier",
                   width: 896,
                   height: 1200,
                 },
                 secondary: {
                   src: "/images/alibi-portrait.webp",
-                  alt: "Verdächtigen-Porträt im ALIBI-Illustrationsstil",
+                  alt: "Verdächtigen-Porträt im Illustrationsstil von Das Verhör",
                   width: 860,
                   height: 1080,
                 },
@@ -84,7 +79,7 @@ export default function Home() {
               notify={{
                 product: "alibi",
                 label: "Bescheid sagen, wenn's da ist",
-                ariaLabel: "Benachrichtigung, wenn ALIBI verfügbar ist",
+                ariaLabel: "Benachrichtigung, wenn Das Verhör verfügbar ist",
               }}
             />
           </FadeInSection>

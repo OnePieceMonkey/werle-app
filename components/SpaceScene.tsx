@@ -786,6 +786,16 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
   /* ---------------- Scroll- & Maus-Zustand (Refs statt State, damit
      jeder rAF-Tick ohne React-Re-Render lesen/schreiben kann) --------- */
   const scrollTRef = useRef(0);
+  /* Eigener, deutlich schnellerer Folgewert NUR für den Warp (Blitz,
+     Streifen, Whoosh): Der Kamera-Wert glättet mit 0.07 und hängt bei
+     schnellem Scrollen bis ~1 s hinter der echten Scroll-Position — der
+     Blitz kam dadurch sichtbar nach dem Scroll-Moment (Live-Feedback
+     23.08.). Ein direkter Sprung auf window.scrollY wäre aber riskant:
+     ein schneller Flick kann die schmale Warp-Zone zwischen zwei Frames
+     komplett überspringen (warpProgress bliebe 0, Blitz und Whoosh
+     fielen aus). 0.3 ist schnell genug, um als "jetzt" zu wirken, und
+     bleibt kontinuierlich genug, dass die Zone nie übersprungen wird. */
+  const warpScrollTRef = useRef(0);
   const targetScrollTRef = useRef(0);
   const mouseXRef = useRef(0);
   const mouseYRef = useRef(0);
@@ -878,12 +888,15 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
 
     if (reducedMotion) {
       scrollTRef.current = targetScrollTRef.current;
+      warpScrollTRef.current = targetScrollTRef.current;
     } else {
       scrollTRef.current += (targetScrollTRef.current - scrollTRef.current) * 0.07;
+      warpScrollTRef.current += (targetScrollTRef.current - warpScrollTRef.current) * 0.3;
       mouseXRef.current += (targetMouseXRef.current - mouseXRef.current) * 0.05;
       mouseYRef.current += (targetMouseYRef.current - mouseYRef.current) * 0.05;
     }
     const scrollT = scrollTRef.current;
+    const warpT = warpScrollTRef.current;
 
     if (reducedMotion) {
       const stationT = layout.missionT[closestMissionIndex(scrollT, layout.missionT)];
@@ -901,8 +914,9 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
       prevCamXRef.current = camX;
     }
 
-    /* ---- Warp ---- */
-    const warpP = warpProgress(scrollT, layout.warpStartT, layout.warpPeakT, layout.warpEndT);
+    /* ---- Warp — läuft auf warpT (schneller Folgewert), nicht auf dem
+       trägen Kamera-scrollT, damit der Blitz zum Scroll-Moment passt ---- */
+    const warpP = warpProgress(warpT, layout.warpStartT, layout.warpPeakT, layout.warpEndT);
     if (!reducedMotion) {
       if (warpGroupRef.current) warpGroupRef.current.scale.z = 0.02 + warpP * 0.98;
       if (warpMatRef.current) warpMatRef.current.opacity = warpP * 0.85;
@@ -916,7 +930,7 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
         warpSoundFiredRef.current = true;
         onWarpTrigger?.();
       }
-    } else if (scrollT < layout.warpStartT - 0.02) {
+    } else if (warpT < layout.warpStartT - 0.02) {
       warpSoundFiredRef.current = false;
     }
 

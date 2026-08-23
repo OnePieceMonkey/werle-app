@@ -70,16 +70,10 @@ export default function HomeEn() {
               locale="en"
               variant="alibi"
               status={p.alibi.status}
-              accent="indigo"
-              title={
-                <>
-                  {p.alibi.titlePrefix}
-                  <em>{p.alibi.titleEmphasis}</em>
-                </>
-              }
+              accent="thread"
+              title={p.alibi.titlePrefix}
               ariaLabel={p.alibi.ariaLabel}
               description={p.alibi.description}
-              href="https://verhoer.werle.app"
               ctaLabel={p.alibi.ctaLabel}
               media={{
                 main: {

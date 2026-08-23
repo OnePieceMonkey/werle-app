@@ -74,6 +74,19 @@ a.productCard:hover {
   color: #2a1710;
 }
 
+/* „Das Verhör" — Stempel statt Pille, Token von verhoer.werle.app:
+   Faden-Rot (Dark-Variante, lesbar auf dem dunklen Glas), Mono, 2px-Ecken. */
+.tagThread {
+  background: transparent;
+  border: 2px solid var(--verhoer-thread);
+  color: var(--verhoer-thread);
+  border-radius: 2px;
+  font-family: var(--font-mono), "SF Mono", monospace;
+  letter-spacing: 0.16em;
+  transform: rotate(-2deg);
+  padding: 4px 10px;
+}
+
 .cardBody h3 {
   margin: 0 0 10px;
   font-size: 22px;
@@ -120,8 +133,8 @@ a.productCard:hover .cta {
   border-color: var(--teal);
 }
 a.cardAlibi:hover .cta {
-  color: var(--indigo);
-  border-color: var(--indigo);
+  color: var(--verhoer-thread);
+  border-color: var(--verhoer-thread);
 }
 a.productCard:hover .arrow {
   transform: translate(2px, -2px);
@@ -225,10 +238,40 @@ a.productCard:hover .arrow {
   pointer-events: auto;
   display: block;
   width: min(90vw, 620px);
+  /* Papier-Token 1:1 aus DesignTokens.swift der App / verhoer.werle.app.
+     Liegen auf dem Wrapper, damit auch die Vormerk-Notiz (Geschwister der
+     Karte) sie erbt. --verhoer-thread ist die Dark-Variante (#B03A2C),
+     weil alles auf dunklem Glas liegt. */
+  --verhoer-paper: #f2ede3;
+  --verhoer-edge: #d9d0bf;
+  --verhoer-ink: #17130f;
+  --verhoer-ink-muted: #6b6257;
+  --verhoer-thread: #b03a2c;
 }
 
 .cardAlibi {
   align-items: center;
+}
+
+/* Titel in der App-Display-Schrift (Redaction), gesperrt wie die Wortmarke. */
+.alibiTitle {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 24px !important;
+}
+
+.threadSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.threadSvg path {
+  stroke: var(--verhoer-thread);
+  stroke-width: 2;
 }
 
 .boardMedia {
@@ -244,8 +287,9 @@ a.productCard:hover .arrow {
   top: 6px;
   width: 132px;
   padding: 6px 6px 16px;
-  background: var(--cream);
-  border-radius: 3px;
+  background: var(--verhoer-paper);
+  border: 1px solid var(--verhoer-edge);
+  border-radius: 2px;
   transform: rotate(-3deg);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
 }
@@ -265,8 +309,9 @@ a.productCard:hover .arrow {
   bottom: -4px;
   width: 74px;
   padding: 4px 4px 10px;
-  background: var(--cream);
-  border-radius: 3px;
+  background: var(--verhoer-paper);
+  border: 1px solid var(--verhoer-edge);
+  border-radius: 2px;
   transform: rotate(5deg);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
@@ -282,12 +327,12 @@ a.productCard:hover .arrow {
 
 .pinDot {
   position: absolute;
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #cdd6e6, var(--indigo) 70%);
+  background: radial-gradient(circle at 35% 30%, var(--verhoer-ink-muted), var(--verhoer-ink) 70%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  z-index: 3;
+  z-index: 5;
 }
 
 .pd1 {
@@ -314,8 +359,9 @@ a.productCard:hover .arrow {
   margin: 16px 0 0;
   padding: 12px 14px 14px;
   max-width: 270px;
-  border-radius: 3px;
-  background: var(--cream);
+  border-radius: 2px;
+  background: var(--verhoer-paper);
+  border: 1px solid var(--verhoer-edge);
   transform: rotate(-1.4deg);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
@@ -326,19 +372,20 @@ a.productCard:hover .arrow {
   left: 50%;
   top: -5px;
   transform: translateX(-50%);
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #cdd6e6, var(--indigo) 70%);
+  background: radial-gradient(circle at 35% 30%, var(--verhoer-ink-muted), var(--verhoer-ink) 70%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .notifyAlibi .notifyLabel {
   display: block;
   font-family: var(--font-mono), "SF Mono", monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
-  color: #5c5548;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verhoer-ink-muted);
   margin: 0 0 8px;
 }
 
@@ -351,8 +398,8 @@ a.productCard:hover .arrow {
   flex: 1 1 auto;
   min-width: 0;
   padding: 7px 9px;
-  border-radius: 4px;
-  border: 1px solid rgba(35, 31, 25, 0.22);
+  border-radius: 2px;
+  border: 1px solid var(--verhoer-edge);
   background: rgba(255, 255, 255, 0.55);
   font-family: var(--font-sans), sans-serif;
   font-size: 12.5px;
@@ -365,20 +412,22 @@ a.productCard:hover .arrow {
   color: #8d8877;
 }
 .notifyAlibi input:focus {
-  border-color: var(--indigo);
+  border-color: var(--verhoer-thread);
 }
 
 .notifyAlibi button {
   flex: 0 0 auto;
   padding: 7px 14px;
-  border-radius: 4px;
+  border-radius: 2px;
   border: none;
   cursor: pointer;
-  background: var(--indigo);
-  color: #0d1626;
+  background: var(--verhoer-ink);
+  color: var(--verhoer-paper);
   font-weight: 600;
-  font-size: 12px;
-  font-family: var(--font-sans), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-mono), "SF Mono", monospace;
   transition: transform 0.18s ease;
 }
 

@@ -121,10 +121,10 @@ export default function DatenschutzPage() {
 
         <section className={styles.section}>
           <h2 className={`${styles.sectionTitle} mono`}>
-            E-Mail-Vormerkung für ALIBI und coParents
+            E-Mail-Vormerkung für Das Verhör und coParents
           </h2>
           <p>
-            Wenn Sie sich für ALIBI oder coParents vormerken lassen,
+            Wenn Sie sich für „Das Verhör" oder coParents vormerken lassen,
             übermitteln wir Ihre E-Mail-Adresse und das gewählte Produkt
             über denselben Weg (Resend) an{" "}
             <strong>werle.business@gmail.com</strong>, um Sie bei

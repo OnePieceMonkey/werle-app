@@ -2,11 +2,20 @@
 
 import { useState, type FormEvent, type ReactNode } from "react";
 import Image from "next/image";
+import localFont from "next/font/local";
 import { content, type Locale } from "@/lib/content";
 import styles from "./ProductCard.module.css";
 
+/* Display-Schrift der „Das Verhör"-App (OFL, aus dem App-Repo) — die Karte
+   übernimmt den Look der Produktseite verhoer.werle.app 1:1. */
+const redaction = localFont({
+  src: "../app/fonts/Redaction-Bold.otf",
+  weight: "700",
+  display: "swap",
+});
+
 export type ProductCardVariant = "pulsegate" | "alibi" | "coparents";
-export type ProductCardAccent = "teal" | "indigo" | "coral";
+export type ProductCardAccent = "teal" | "indigo" | "coral" | "thread";
 
 interface ProductCardImage {
   src: string;
@@ -53,6 +62,8 @@ const ACCENT_TAG_CLASS: Record<ProductCardAccent, string> = {
   teal: styles.tagTeal,
   indigo: styles.tagIndigo,
   coral: styles.tagCoral,
+  /* „Das Verhör": Stempel statt Pille — roter Rahmen, Mono, leicht gedreht. */
+  thread: styles.tagThread,
 };
 
 /**
@@ -158,6 +169,16 @@ export default function ProductCard({
   if (variant === "alibi") {
     mediaBlock = (
       <div className={styles.boardMedia}>
+        {/* Roter Faden zwischen den beiden Nadeln — das Erkennungszeichen
+            der App und ihrer Produktseite. Koordinaten passen zu .pd1/.pd2
+            im festen 172×172-Board (siehe ProductCard.module.css). */}
+        <svg
+          className={styles.threadSvg}
+          viewBox="0 0 172 172"
+          aria-hidden="true"
+        >
+          <path d="M 64 7 Q 104 78 143 103" fill="none" />
+        </svg>
         <span className={`${styles.pinDot} ${styles.pd1}`} aria-hidden="true" />
         <span className={`${styles.pinDot} ${styles.pd2}`} aria-hidden="true" />
         <div className={styles.pinMain}>
@@ -238,7 +259,15 @@ export default function ProductCard({
   const body = (
     <div className={styles.cardBody}>
       <span className={tagClass}>{status}</span>
-      <h3>{title}</h3>
+      <h3
+        className={
+          variant === "alibi"
+            ? `${redaction.className} ${styles.alibiTitle}`
+            : undefined
+        }
+      >
+        {title}
+      </h3>
       <p className={styles.hook}>{description}</p>
       {href ? (
         <span className={styles.cta}>
@@ -264,18 +293,28 @@ export default function ProductCard({
     // Spezifikation nicht in ein <a> verschachtelt werden (ungültiges
     // HTML, in der Praxis unzuverlässig klickbar) — siehe Demo-Kommentar
     // im Original-HTML. Karte und Notiz bleiben optisch als Einheit.
+    // Ohne href (Domain erst nach dem Launch verbunden) wird die Karte
+    // ein <div> — gleiche Optik, kein toter Link.
+    const cardClass = `${styles.productCard} ${styles.cardAlibi}`;
     return (
       <div className={styles.cardWrap}>
-        <a
-          className={`${styles.productCard} ${styles.cardAlibi}`}
-          href={href}
-          target="_blank"
-          rel="noopener"
-          aria-label={ariaLabel}
-        >
-          {mediaBlock}
-          {body}
-        </a>
+        {href ? (
+          <a
+            className={cardClass}
+            href={href}
+            target="_blank"
+            rel="noopener"
+            aria-label={ariaLabel}
+          >
+            {mediaBlock}
+            {body}
+          </a>
+        ) : (
+          <div className={cardClass} aria-label={ariaLabel}>
+            {mediaBlock}
+            {body}
+          </div>
+        )}
         {notify && <NotifyForm variant={variant} notify={notify} locale={locale} />}
       </div>
     );
