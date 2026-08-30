@@ -227,18 +227,16 @@ const de: Content = {
       },
     },
     alibi: {
-      status: "Bald im App Store",
+      status: "Live im App Store",
       titlePrefix: "Das Verhör",
-      ariaLabel: "Das Verhör — bald im App Store",
+      ariaLabel: "Das Verhör — verhoer.werle.app",
       description:
         "Ein Fall pro Tag, weltweit derselbe. Drei Verdächtige, vierzehn Fragen Budget — die Anklage braucht den Täter und den einen Widerspruch, der ihn überführt.",
-      ctaLabel: "Bald: verhoer.werle.app",
+      ctaLabel: "verhoer.werle.app",
       media: {
         main: "Das Verhör — Fall-Illustration, Tuschezeichnung mit blauer Aquarellwäsche auf cremefarbenem Papier",
         secondary: "Verdächtigen-Porträt im Illustrationsstil von Das Verhör",
       },
-      notifyLabel: "Bescheid sagen, wenn's da ist",
-      notifyAriaLabel: "Benachrichtigung, wenn Das Verhör verfügbar ist",
     },
     coparents: {
       status: "In Entwicklung",
@@ -387,18 +385,16 @@ const en: Content = {
       },
     },
     alibi: {
-      status: "Coming to the App Store",
+      status: "Live on the App Store",
       titlePrefix: "Das Verhör",
-      ariaLabel: "Das Verhör — coming to the App Store",
+      ariaLabel: "Das Verhör — verhoer.werle.app",
       description:
         "One case a day, the same one worldwide. Three suspects, a budget of fourteen questions — the prosecution needs the culprit and the one contradiction that convicts them. The game is in German.",
-      ctaLabel: "Soon: verhoer.werle.app",
+      ctaLabel: "verhoer.werle.app",
       media: {
         main: "Das Verhör case illustration — ink drawing with a blue watercolor wash on cream paper",
         secondary: "Suspect portrait in the illustration style of Das Verhör",
       },
-      notifyLabel: "Let me know when it's ready",
-      notifyAriaLabel: "Get notified when Das Verhör is available",
     },
     coparents: {
       status: "In development",

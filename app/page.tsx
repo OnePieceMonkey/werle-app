@@ -56,12 +56,13 @@ export default function Home() {
           <FadeInSection>
             <ProductCard
               variant="alibi"
-              status="Bald im App Store"
+              status="Live im App Store"
               accent="thread"
               title="Das Verhör"
-              ariaLabel="Das Verhör — bald im App Store"
+              ariaLabel="Das Verhör — verhoer.werle.app"
               description="Ein Fall pro Tag, weltweit derselbe. Drei Verdächtige, vierzehn Fragen Budget — die Anklage braucht den Täter und den einen Widerspruch, der ihn überführt."
-              ctaLabel="Bald: verhoer.werle.app"
+              href="https://verhoer.werle.app"
+              ctaLabel="verhoer.werle.app"
               media={{
                 main: {
                   src: "/images/alibi-scene.jpg",
@@ -75,11 +76,6 @@ export default function Home() {
                   width: 860,
                   height: 1080,
                 },
-              }}
-              notify={{
-                product: "alibi",
-                label: "Bescheid sagen, wenn's da ist",
-                ariaLabel: "Benachrichtigung, wenn Das Verhör verfügbar ist",
               }}
             />
           </FadeInSection>

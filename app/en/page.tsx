@@ -74,6 +74,7 @@ export default function HomeEn() {
               title={p.alibi.titlePrefix}
               ariaLabel={p.alibi.ariaLabel}
               description={p.alibi.description}
+              href="https://verhoer.werle.app"
               ctaLabel={p.alibi.ctaLabel}
               media={{
                 main: {
@@ -88,11 +89,6 @@ export default function HomeEn() {
                   width: 860,
                   height: 1080,
                 },
-              }}
-              notify={{
-                product: "alibi",
-                label: p.alibi.notifyLabel!,
-                ariaLabel: p.alibi.notifyAriaLabel!,
               }}
             />
           </FadeInSection>
