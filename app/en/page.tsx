@@ -2,7 +2,6 @@ import Experience from "@/components/Experience";
 import MissionNav from "@/components/MissionNav";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
-import LabrechnerSection from "@/components/LabrechnerSection";
 import BookSection from "@/components/BookSection";
 import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
@@ -134,7 +133,6 @@ export default function HomeEn() {
           </FadeInSection>
         </section>
 
-        <LabrechnerSection locale="en" />
         <BookSection locale="en" />
         {/* Reine Scroll-Distanz, kein Inhalt — siehe Kommentar in
             app/page.tsx (identisch übernommen, gleicher Warp-Puffer). */}

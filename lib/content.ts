@@ -10,7 +10,7 @@
    auf null zu halten — siehe Task-Auftrag "ohne Änderung an
    app/page.tsx"). Für alle Komponenten, die app/page.tsx NICHT direkt
    mit Text füttert (Hero, MissionNav, BootupIntro, RotateHint,
-   LabrechnerSection, BookSection, ArrivalSection, ProductCard-interne
+   BookSection, ArrivalSection, ProductCard-interne
    Strings), ist `content[locale]` dagegen die tatsächliche Quelle in
    beiden Sprachen — dort per Default-Parameter `locale: Locale = "de""
    automatisch aktiv, ohne dass app/page.tsx sich ändern muss.
@@ -72,7 +72,6 @@ export interface Content {
     pulsegate: string;
     alibi: string;
     coparents: string;
-    labrechner: string;
     buch: string;
     kontakt: string;
   };
@@ -97,28 +96,6 @@ export interface Content {
     pulsegate: ProductCopy;
     alibi: ProductCopy;
     coparents: ProductCopy;
-  };
-  labrechner: {
-    ariaLabel: string;
-    kicker: string;
-    title: string;
-    sub: string;
-    bodyPre: string;
-    bodyMid: string;
-    bodyPost: string;
-    stats: {
-      locValue: string;
-      locLabel: string;
-      testsValue: string;
-      testsLabel: string;
-      findingsValue: string;
-      findingsLabelLine1: string;
-      findingsLabelLine2: string;
-    };
-    outlookPre: string;
-    outlookEmphasis: string;
-    outlookPost: string;
-    ctaLabel: string;
   };
   book: {
     ariaLabel: string;
@@ -187,7 +164,6 @@ const de: Content = {
     pulsegate: "Zu: Pulse Gate",
     alibi: "Zu: Das Verhör",
     coparents: "Zu: coParents",
-    labrechner: "Zu: Labrechner",
     buch: "Zu: Buch",
     kontakt: "Zu: Kontakt / Ankunft",
   },
@@ -253,30 +229,6 @@ const de: Content = {
       notifyLabel: "Bescheid sagen, wenn's da ist",
       notifyAriaLabel: "Benachrichtigung, wenn coParents verfügbar ist",
     },
-  },
-  labrechner: {
-    ariaLabel: "Labrechner — DentalBilling Engine",
-    kicker: "Eigenständiges Venture · Werle Technologies",
-    title: "Labrechner",
-    sub: "DentalBilling Engine — die Infrastruktur-Ebene darunter",
-    bodyPre: "Die deutschen Abrechnungsregelwerke für Zahntechnik — ",
-    bodyMid: " und ",
-    bodyPost:
-      " — vollständig in Code abgebildet, GoBD-konform und nachvollziehbar bis zur einzelnen Regel. Labrechner ist die Kundenmarke, DentalBilling Engine die B2B-Infrastruktur-Ebene darunter: ein eigenständiges Venture unter Werle Technologies, das unabhängig läuft.",
-    stats: {
-      locValue: "68.000+",
-      locLabel: "Lines of Code",
-      testsValue: "510+",
-      testsLabel: "Automatisierte Tests",
-      findingsValue: "0",
-      findingsLabelLine1: "Offene High/Critical Findings",
-      findingsLabelLine2: "Pentest, Stand 03/2026",
-    },
-    outlookPre: "Das Muster dahinter — ",
-    outlookEmphasis:
-      "komplexe regulierte Fachlogik in auditierbare Software übersetzen",
-    outlookPost: " — trägt über die Zahnmedizin hinaus.",
-    ctaLabel: "check.labrechner.de",
   },
   book: {
     ariaLabel: "Bechterew unter Kontrolle — Buchcover und Rückseite",
@@ -345,7 +297,6 @@ const en: Content = {
     pulsegate: "Go to: Pulse Gate",
     alibi: "Go to: Das Verhör",
     coparents: "Go to: coParents",
-    labrechner: "Go to: Labrechner",
     buch: "Go to: Book",
     kontakt: "Go to: Contact / Arrival",
   },
@@ -411,30 +362,6 @@ const en: Content = {
       notifyLabel: "Let me know when it's ready",
       notifyAriaLabel: "Get notified when coParents is available",
     },
-  },
-  labrechner: {
-    ariaLabel: "Labrechner — DentalBilling Engine",
-    kicker: "Independent venture · Werle Technologies",
-    title: "Labrechner",
-    sub: "DentalBilling Engine — the infrastructure layer underneath",
-    bodyPre: "Germany's billing rule sets for dental technology — ",
-    bodyMid: " and ",
-    bodyPost:
-      " — fully modeled in code, GoBD-compliant (audit-proof under German digital bookkeeping rules), and traceable down to the individual rule. Labrechner is the customer-facing brand; DentalBilling Engine is the B2B infrastructure layer underneath it: an independent venture under Werle Technologies, run on its own.",
-    stats: {
-      locValue: "68,000+",
-      locLabel: "Lines of Code",
-      testsValue: "510+",
-      testsLabel: "Automated Tests",
-      findingsValue: "0",
-      findingsLabelLine1: "Open High/Critical Findings",
-      findingsLabelLine2: "Penetration test, as of 03/2026",
-    },
-    outlookPre: "The underlying pattern — ",
-    outlookEmphasis:
-      "translating complex, regulated domain logic into auditable software",
-    outlookPost: " — extends well beyond dentistry.",
-    ctaLabel: "check.labrechner.de",
   },
   book: {
     ariaLabel: "Bechterew unter Kontrolle — book cover and back cover",

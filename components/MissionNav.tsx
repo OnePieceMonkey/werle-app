@@ -14,7 +14,6 @@ const SECTION_IDS = [
   "pulsegate",
   "alibi",
   "coparents",
-  "labrechner",
   "buch",
   "kontakt",
 ] as const;

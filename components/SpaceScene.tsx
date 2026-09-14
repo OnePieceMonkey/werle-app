@@ -55,7 +55,6 @@ const SECTION_IDS = [
   "pulsegate",
   "alibi",
   "coparents",
-  "labrechner",
   "buch",
   "kontakt",
 ] as const;
@@ -68,11 +67,10 @@ type StationFractions = Record<SectionId, number>;
    Messung aus irgendeinem Grund einen Tick später greift. */
 const FALLBACK_STATIONS: StationFractions = {
   hero: 0,
-  pulsegate: 0.12,
-  alibi: 0.24,
-  coparents: 0.36,
-  labrechner: 0.48,
-  buch: 0.62,
+  pulsegate: 0.14,
+  alibi: 0.28,
+  coparents: 0.42,
+  buch: 0.65,
   kontakt: 0.85,
 };
 
@@ -130,7 +128,6 @@ interface Layout {
     pulsegateZ: number;
     alibiZ: number;
     coparentsZ: number;
-    labrechnerZ: number;
     buchZ: number;
     planetZ: number;
     satelliteZ: number;
@@ -172,7 +169,7 @@ function computeLayout(f: StationFractions): Layout {
      nach Live-Test: "Flash nicht synchron mit dem Ring". Der verbleibende
      Rest der Distanz bis kontaktT bleibt bewusst reiner Ankunfts-Puffer. */
   const stationViewportT = f.buch + gap * 0.45;
-  const missionT = [f.hero, f.pulsegate, f.alibi, f.coparents, f.labrechner, f.buch, f.kontakt];
+  const missionT = [f.hero, f.pulsegate, f.alibi, f.coparents, f.buch, f.kontakt];
   const planetZ = z(planetSystemT);
 
   return {
@@ -185,7 +182,6 @@ function computeLayout(f: StationFractions): Layout {
       pulsegateZ: z(f.pulsegate),
       alibiZ: z(f.alibi),
       coparentsZ: z(f.coparents),
-      labrechnerZ: z(f.labrechner),
       buchZ: z(f.buch),
       planetZ,
       /* Original-Delta zwischen Satellit(-27) und Planet(-44) = 17 Einheiten
@@ -455,38 +451,6 @@ function buildBookCoverTexture(): THREE.CanvasTexture {
   return tex;
 }
 
-function buildMonolithFaceTexture(): THREE.CanvasTexture {
-  const c = document.createElement("canvas");
-  c.width = 128;
-  c.height = 256;
-  const ctx = c.getContext("2d")!;
-  ctx.fillStyle = "#0a1119";
-  ctx.fillRect(0, 0, 128, 256);
-  ctx.strokeStyle = "rgba(127,217,196,0.32)";
-  ctx.lineWidth = 1;
-  for (let gx = 0; gx <= 128; gx += 16) {
-    ctx.beginPath();
-    ctx.moveTo(gx, 0);
-    ctx.lineTo(gx, 256);
-    ctx.stroke();
-  }
-  for (let gy = 0; gy <= 256; gy += 16) {
-    ctx.beginPath();
-    ctx.moveTo(0, gy);
-    ctx.lineTo(128, gy);
-    ctx.stroke();
-  }
-  ctx.fillStyle = "rgba(143,233,253,0.85)";
-  for (let i = 0; i < 24; i++) {
-    if (Math.random() < 0.5) {
-      const lx = 8 + Math.floor(Math.random() * 7) * 16;
-      const ly = 8 + Math.floor(Math.random() * 15) * 16;
-      ctx.fillRect(lx - 2, ly - 2, 4, 4);
-    }
-  }
-  return new THREE.CanvasTexture(c);
-}
-
 /* Reine Zufallsdaten-Erzeuger, bewusst als eigenständige Top-Level-Funktionen
    (nicht inline in useMemo) — das lässt sich das React-Compiler-Lint-Regelwerk
    (react-hooks/purity) hier ausdrücklich gefallen: es prüft nur den direkt in
@@ -664,7 +628,6 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
   const planetTexture = useMemo(() => buildPlanetTexture(), []);
   const ringTexture = useMemo(() => buildRingTexture(), []);
   const bookCoverTexture = useMemo(() => buildBookCoverTexture(), []);
-  const monolithFaceTexture = useMemo(() => buildMonolithFaceTexture(), []);
   const panelTexture = useMemo(() => buildSatellitePanelTexture(), []);
 
   const ringGeometry = useMemo(() => {
@@ -677,12 +640,6 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
     () => ({ glowColor: { value: new THREE.Color(COLORS.mono) } }),
     [],
   );
-
-  const monolithMaterials = useMemo(() => {
-    const side = new THREE.MeshBasicMaterial({ color: 0x0a1119 });
-    const face = new THREE.MeshBasicMaterial({ map: monolithFaceTexture });
-    return [side, side, side, side, face, side];
-  }, [monolithFaceTexture]);
 
   const bookMaterials = useMemo(() => {
     const edge = new THREE.MeshBasicMaterial({ color: COLORS.creamEdge });
@@ -724,7 +681,6 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
   const pulsegateRef = useRef<THREE.Group>(null!);
   const alibiRef = useRef<THREE.Group>(null!);
   const coparentsRef = useRef<THREE.Group>(null!);
-  const labrechnerRef = useRef<THREE.Group>(null!);
   const bookRef = useRef<THREE.Group>(null!);
   const planetRef = useRef<THREE.Group>(null!);
   const satelliteRef = useRef<THREE.Group>(null!);
@@ -765,7 +721,6 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
       { ref: pulsegateRef, baseY: 1.5, baseRotY: 0, phase: 0.4, bob: 0.16, bobSpeed: 0.6, rot: 0.05 },
       { ref: alibiRef, baseY: 1.35, baseRotY: 0, phase: 1.8, bob: 0.16, bobSpeed: 0.6, rot: 0.05 },
       { ref: coparentsRef, baseY: 1.4, baseRotY: 0, phase: 3.0, bob: 0.16, bobSpeed: 0.6, rot: 0.05 },
-      { ref: labrechnerRef, baseY: 1.2, baseRotY: 0, phase: 3.6, bob: 0.05, bobSpeed: 0.22, rot: 0.012 },
       { ref: bookRef, baseY: 0.15, baseRotY: 0.14, phase: 4.2, bob: 0.05, bobSpeed: 0.35, rot: 0.015 },
       { ref: planetRef, baseY: 5.6, baseRotY: 0, phase: 2.6, bob: 0.05, bobSpeed: 0.18, rot: 0.01 },
       {
@@ -1134,14 +1089,6 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
       {/* ---------------- coParents ---------------- */}
       <group ref={coparentsRef} position={[-3.9, 1.4, positions.coparentsZ]}>
         <Glow color={COLORS.coral} scale={4.7} opacity={0.45} texture={glowTexture} />
-      </group>
-
-      {/* ---------------- Labrechner-Monolith ---------------- */}
-      <group ref={labrechnerRef} position={[0, 1.2, positions.labrechnerZ]}>
-        <mesh material={monolithMaterials}>
-          <boxGeometry args={[0.9, 2.6, 0.14]} />
-        </mesh>
-        <Glow color={COLORS.mono} scale={3.4} opacity={0.16} position={[0, 0, 0.3]} texture={glowTexture} />
       </group>
 
       {/* ---------------- Bechterew (Buch) ---------------- */}
