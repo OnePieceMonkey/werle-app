@@ -5,7 +5,18 @@ function getResendClient(): Resend {
   return new Resend(process.env.RESEND_API_KEY);
 }
 
-const SENDER = "Werle Technologies <kontakt@mail.labrechner.de>";
+// Absender bewusst auf mail.werle.app, seit 15.09.2026. Vorher lief der
+// Versand ueber mail.labrechner.de — eine Domain, die zu einem abgegebenen
+// Projekt gehoert. Waere sie ausgelaufen oder mit uebergegangen, haette
+// Resend den Versand abgelehnt und dieses Formular waere still kaputt
+// gewesen. Die Subdomain ist in Resend verifiziert (Region eu-west-1).
+//
+// werle.app traegt DMARC p=reject mit adkim=s und aspf=s. Streng genommen
+// alignt nur DKIM (d=mail.werle.app), nicht SPF (Return-Path liegt auf
+// send.mail.werle.app). DMARC verlangt nur eines von beiden — Testversand am
+// 15.09.2026 wurde von Gmail zugestellt. Wer den Absender aendert, prueft das
+// erneut, statt es anzunehmen.
+const SENDER = "Werle Technologies <kontakt@mail.werle.app>";
 const RECIPIENT = "werle.business@gmail.com";
 
 const VALID_PRODUCTS = ["alibi", "coparents"] as const;

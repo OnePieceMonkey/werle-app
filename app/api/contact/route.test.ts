@@ -34,7 +34,7 @@ describe("POST /api/contact", () => {
     expect(sendMock).toHaveBeenCalledTimes(1);
     expect(sendMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        from: "Werle Technologies <kontakt@mail.labrechner.de>",
+        from: "Werle Technologies <kontakt@mail.werle.app>",
         to: "werle.business@gmail.com",
         replyTo: "test@example.com",
         subject: "Kontaktanfrage von Test",
