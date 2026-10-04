@@ -129,7 +129,7 @@ export default function Image() {
               flexWrap: "wrap",
             }}
           >
-            Zwei Spiele, eine App und ein Buch —{" "}
+            Drei Spiele, eine App und ein Buch —{" "}
           </div>
           <div
             style={{
