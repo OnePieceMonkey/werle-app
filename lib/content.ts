@@ -123,6 +123,7 @@ export interface Content {
     backCoverCaption: string;
     lightboxClose: string;
     buyLabel: string;
+    moreLabel: string;
   };
   arrival: {
     kicker: string;
@@ -278,6 +279,7 @@ const de: Content = {
     backCoverCaption: "Rückseite — anklicken zum Vergrößern",
     lightboxClose: "Schließen",
     buyLabel: "Erhältlich bei",
+    moreLabel: "Mehr zum Buch: Aufbau, Rezepte, Autoren",
   },
   arrival: {
     kicker: "Ankunft · Kontrollpult",
@@ -434,6 +436,7 @@ const en: Content = {
     backCoverCaption: "Back cover — click to enlarge",
     lightboxClose: "Close",
     buyLabel: "Available at",
+    moreLabel: "More about the book (in German)",
   },
   arrival: {
     kicker: "Arrival · Control Panel",

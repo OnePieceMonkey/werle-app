@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/content";
-import { APP_STORE_URLS } from "@/lib/links";
+import { APP_STORE_URLS, BOOK_SITE } from "@/lib/links";
 import { SITE_URL } from "@/lib/seo";
 
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -32,6 +32,7 @@ export function homeJsonLd(locale: Locale) {
     author: { "@type": "Person", name: "Patrick Werle" },
     image: `${SITE_URL}/images/buch-cover.jpg`,
     inLanguage: "de",
+    url: BOOK_SITE,
   };
   const app = (name: string, url: string, subdomain: string) => ({
     "@context": "https://schema.org",

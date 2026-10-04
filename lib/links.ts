@@ -17,6 +17,9 @@ export const BOOK_SHOP_LABELS: Record<BookShop, { de: string; en: string }> = {
   tolino: { de: "Tolino (Thalia)", en: "Tolino (Thalia)" },
 };
 
+/* Eigene Buchseite (Subdomain, GitHub Pages) — verlinkt aus der Buch-Sektion. */
+export const BOOK_SITE = "https://bechterew-buch.werle.app";
+
 /* App-Store-Seiten, übernommen aus den Subdomain-Repos (pulsegate.werle.app,
    verhoer.werle.app) und per Abruf als die jeweiligen Apps bestätigt. */
 export const APP_STORE_URLS = {

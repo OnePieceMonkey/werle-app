@@ -7,6 +7,7 @@ import { content, type Locale } from "@/lib/content";
 import {
   BOOK_LINKS,
   BOOK_SHOP_LABELS,
+  BOOK_SITE,
   type BookShop,
 } from "@/lib/links";
 import styles from "./BookSection.module.css";
@@ -90,6 +91,11 @@ export default function BookSection({ locale = "de" }: BookSectionProps) {
               </figure>
             ))}
           </div>
+          <p className={styles.more}>
+            <a className={styles.buyLink} href={BOOK_SITE} target="_blank" rel="noopener">
+              {t.moreLabel} <span aria-hidden="true">↗</span>
+            </a>
+          </p>
           {shops.length > 0 && (
             <p className={styles.buy}>
               <span className={`${styles.buyLabel} mono`}>{t.buyLabel}</span>
