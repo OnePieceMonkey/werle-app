@@ -1,11 +1,11 @@
 import type { Locale } from "@/lib/content";
+import { APP_STORE_URLS } from "@/lib/links";
 import { SITE_URL } from "@/lib/seo";
 
 const ORG_ID = `${SITE_URL}/#organization`;
 
 // Nur belegte Felder. Keine Bewertungen, keine ISBN/Preise (stehen nirgends
-// im Repo). App-Schemas (MobileApplication) folgen, sobald die App-Store-URLs
-// vorliegen.
+// im Repo). coParents bekommt kein Schema, solange es keinen Store-Eintrag gibt.
 export function homeJsonLd(locale: Locale) {
   const org = {
     "@context": "https://schema.org",
@@ -33,5 +33,21 @@ export function homeJsonLd(locale: Locale) {
     image: `${SITE_URL}/images/buch-cover.jpg`,
     inLanguage: "de",
   };
-  return [org, website, book];
+  const app = (name: string, url: string, subdomain: string) => ({
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    name,
+    url: subdomain,
+    installUrl: url,
+    applicationCategory: "GameApplication",
+    operatingSystem: "iOS",
+    author: { "@id": ORG_ID },
+  });
+  return [
+    org,
+    website,
+    book,
+    app("Pulse Gate: Echo Shift", APP_STORE_URLS.pulsegate, "https://pulsegate.werle.app"),
+    app("Das Verhör", APP_STORE_URLS.alibi, "https://verhoer.werle.app"),
+  ];
 }
