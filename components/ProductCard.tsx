@@ -52,6 +52,9 @@ export interface ProductCardProps {
   ariaLabel?: string;
   description: string;
   href?: string;
+  /** Nur coParents: Link im CTA, ohne die ganze Karte zum <a> zu machen
+   *  (die Karte enthält das Vormerk-Formular). */
+  ctaHref?: string;
   ctaLabel: string;
   media: ProductCardMedia;
   notify?: ProductCardNotify;
@@ -163,6 +166,7 @@ export default function ProductCard({
   ariaLabel,
   description,
   href,
+  ctaHref,
   ctaLabel,
   media,
   notify,
@@ -293,6 +297,18 @@ export default function ProductCard({
             ↗
           </span>
         </span>
+      ) : ctaHref ? (
+        <a
+          className={`${styles.cta} ${styles.ctaLink}`}
+          href={ctaHref}
+          target="_blank"
+          rel="noopener"
+        >
+          {ctaLabel}{" "}
+          <span className={styles.arrow} aria-hidden="true">
+            ↗
+          </span>
+        </a>
       ) : (
         <span className={`${styles.cta} ${styles.ctaMuted}`}>{ctaLabel}</span>
       )}

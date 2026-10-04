@@ -132,6 +132,11 @@ a.productCard:hover {
   transition: transform 0.2s ease;
 }
 
+a.ctaLink:hover {
+  color: var(--coral);
+  border-color: var(--coral);
+}
+
 a.productCard:hover .cta {
   color: var(--teal);
   border-color: var(--teal);

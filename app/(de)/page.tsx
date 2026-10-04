@@ -8,6 +8,7 @@ import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
 import JsonLd from "@/components/JsonLd";
 import { homeJsonLd } from "@/lib/jsonld";
+import { COPARENTS_SITE } from "@/lib/links";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -121,9 +122,10 @@ export default function Home() {
               status="In Entwicklung"
               accent="coral"
               title="coParents"
-              ariaLabel="coParents — in Entwicklung, noch kein Store-Eintrag"
+              ariaLabel="coParents — in Entwicklung — co.parents.software"
               description="Wechselkalender mit farbcodierten Tagen, Ausgaben-Splitting, Übergabe-Koordination und Chat — für Eltern, die gemeinsam ein Kind großziehen, auch getrennt."
-              ctaLabel="Noch kein Store-Eintrag"
+              ctaHref={COPARENTS_SITE}
+              ctaLabel="co.parents.software"
               media={{
                 main: {
                   src: "/images/coparents-kalender.png",

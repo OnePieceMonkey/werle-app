@@ -9,6 +9,7 @@ import FadeInSection from "@/components/FadeInSection";
 import { content } from "@/lib/content";
 import JsonLd from "@/components/JsonLd";
 import { homeJsonLd } from "@/lib/jsonld";
+import { COPARENTS_SITE } from "@/lib/links";
 import styles from "../../(de)/page.module.css";
 
 // English parallel page to app/page.tsx — identical section order, IDs
@@ -138,6 +139,7 @@ export default function HomeEn() {
               title={p.coparents.titlePrefix}
               ariaLabel={p.coparents.ariaLabel}
               description={p.coparents.description}
+              ctaHref={COPARENTS_SITE}
               ctaLabel={p.coparents.ctaLabel}
               media={{
                 main: {

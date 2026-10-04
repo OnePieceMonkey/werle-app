@@ -101,7 +101,7 @@ export default function BookSection({ locale = "de" }: BookSectionProps) {
                   target="_blank"
                   rel="noopener"
                 >
-                  {BOOK_SHOP_LABELS[shop]}{" "}
+                  {BOOK_SHOP_LABELS[shop][locale]}{" "}
                   <span aria-hidden="true">↗</span>
                 </a>
               ))}

@@ -1,18 +1,20 @@
-/* Kauf-Links für „Bechterew unter Kontrolle". Leerer String = Shop-Link
-   noch nicht bekannt → der Button wird nicht gerendert (nie ein toter Link).
-   URLs hier eintragen, sobald sie vorliegen. */
-export const BOOK_LINKS = {
-  kindle: "",
-  appleBooks: "",
-  tolino: "",
-} as const;
+/* Kauf-Links für „Bechterew unter Kontrolle". Leerer String = Link
+   unbekannt → der Button wird nicht gerendert (nie ein toter Link).
+   Reihenfolge der Schlüssel = Reihenfolge der Buttons. */
+export type BookShop = "kindle" | "paperback" | "appleBooks" | "tolino";
 
-export type BookShop = keyof typeof BOOK_LINKS;
+export const BOOK_LINKS: Record<BookShop, string> = {
+  kindle: "https://www.amazon.de/dp/B0HD7BH5NP",
+  paperback: "https://www.amazon.de/dp/B0HD9JV1H8",
+  appleBooks: "https://books.apple.com/de/book/bechterew-unter-kontrolle/id6798196600",
+  tolino: "https://www.thalia.de/shop/home/artikeldetails/A1081269619",
+};
 
-export const BOOK_SHOP_LABELS: Record<BookShop, string> = {
-  kindle: "Kindle",
-  appleBooks: "Apple Books",
-  tolino: "Tolino",
+export const BOOK_SHOP_LABELS: Record<BookShop, { de: string; en: string }> = {
+  kindle: { de: "Kindle", en: "Kindle" },
+  paperback: { de: "Taschenbuch", en: "Paperback" },
+  appleBooks: { de: "Apple Books", en: "Apple Books" },
+  tolino: { de: "Tolino (Thalia)", en: "Tolino (Thalia)" },
 };
 
 /* App-Store-Seiten, übernommen aus den Subdomain-Repos (pulsegate.werle.app,
@@ -32,3 +34,6 @@ export const PRODUCT_SITES = {
   alibi: "https://verhoer.werle.app",
   jellycut: "https://jellycut.werle.app",
 } as const;
+
+// coParents: Website ist live, die App noch nicht im Store.
+export const COPARENTS_SITE = "https://co.parents.software/";

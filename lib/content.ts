@@ -245,10 +245,10 @@ const de: Content = {
     coparents: {
       status: "In Entwicklung",
       titlePrefix: "coParents",
-      ariaLabel: "coParents — in Entwicklung, noch kein Store-Eintrag",
+      ariaLabel: "coParents — in Entwicklung — co.parents.software",
       description:
         "Wechselkalender mit farbcodierten Tagen, Ausgaben-Splitting, Übergabe-Koordination und Chat — für Eltern, die gemeinsam ein Kind großziehen, auch getrennt.",
-      ctaLabel: "Noch kein Store-Eintrag",
+      ctaLabel: "co.parents.software",
       media: {
         main: "coParents — Wechselkalender mit farbcodierten Tagen und Übergabe-Countdown",
         secondary: "coParents — Übersichts-Screen",
@@ -400,10 +400,10 @@ const en: Content = {
     coparents: {
       status: "In development",
       titlePrefix: "coParents",
-      ariaLabel: "coParents — in development, no store listing yet",
+      ariaLabel: "coParents — in development — co.parents.software",
       description:
         "Custody calendar with color-coded days, expense splitting, handover coordination and chat — for parents raising a child together, even apart.",
-      ctaLabel: "No store listing yet",
+      ctaLabel: "co.parents.software",
       media: {
         main: "coParents — custody calendar with color-coded days and handover countdown",
         secondary: "coParents — overview screen",
