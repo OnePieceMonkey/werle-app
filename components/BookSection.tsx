@@ -4,6 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import FadeInSection from "@/components/FadeInSection";
 import { content, type Locale } from "@/lib/content";
+import {
+  BOOK_LINKS,
+  BOOK_SHOP_LABELS,
+  type BookShop,
+} from "@/lib/links";
 import styles from "./BookSection.module.css";
 
 interface Cover {
@@ -45,6 +50,9 @@ export default function BookSection({ locale = "de" }: BookSectionProps) {
     [t],
   );
   const [lightbox, setLightbox] = useState<Cover | null>(null);
+  const shops = (Object.keys(BOOK_LINKS) as BookShop[]).filter(
+    (shop) => BOOK_LINKS[shop] !== "",
+  );
 
   useEffect(() => {
     if (!lightbox) return;
@@ -82,6 +90,23 @@ export default function BookSection({ locale = "de" }: BookSectionProps) {
               </figure>
             ))}
           </div>
+          {shops.length > 0 && (
+            <p className={styles.buy}>
+              <span className={`${styles.buyLabel} mono`}>{t.buyLabel}</span>
+              {shops.map((shop) => (
+                <a
+                  key={shop}
+                  className={styles.buyLink}
+                  href={BOOK_LINKS[shop]}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {BOOK_SHOP_LABELS[shop]}{" "}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </p>
+          )}
         </div>
       </FadeInSection>
 

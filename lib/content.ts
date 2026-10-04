@@ -108,6 +108,7 @@ export interface Content {
     backCoverAlt: string;
     backCoverCaption: string;
     lightboxClose: string;
+    buyLabel: string;
   };
   arrival: {
     kicker: string;
@@ -241,6 +242,7 @@ const de: Content = {
     backCoverAlt: "Buchrückseite mit Beschreibung, Zitat und Autoren-Biografie",
     backCoverCaption: "Rückseite — anklicken zum Vergrößern",
     lightboxClose: "Schließen",
+    buyLabel: "Erhältlich bei",
   },
   arrival: {
     kicker: "Ankunft · Kontrollpult",
@@ -375,6 +377,7 @@ const en: Content = {
     backCoverAlt: "Back cover with description, quote, and author bio",
     backCoverCaption: "Back cover — click to enlarge",
     lightboxClose: "Close",
+    buyLabel: "Available at",
   },
   arrival: {
     kicker: "Arrival · Control Panel",
