@@ -5,11 +5,14 @@ import ProductCard from "@/components/ProductCard";
 import BookSection from "@/components/BookSection";
 import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
+import JsonLd from "@/components/JsonLd";
+import { homeJsonLd } from "@/lib/jsonld";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeJsonLd("de")} />
       {/* 3D-Szene + Erlebnis-Chrome (Boot-up, Sound, Cursor-Trail,
           Rotate-Hint), siehe components/Experience.tsx */}
       <Experience />

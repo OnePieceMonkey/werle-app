@@ -6,6 +6,8 @@ import BookSection from "@/components/BookSection";
 import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
 import { content } from "@/lib/content";
+import JsonLd from "@/components/JsonLd";
+import { homeJsonLd } from "@/lib/jsonld";
 import styles from "../../(de)/page.module.css";
 
 // English parallel page to app/page.tsx — identical section order, IDs
@@ -20,6 +22,7 @@ const p = content.en.products;
 export default function HomeEn() {
   return (
     <>
+      <JsonLd data={homeJsonLd("en")} />
       {/* 3D-Szene + Erlebnis-Chrome (Boot-up, Sound, Cursor-Trail,
           Rotate-Hint), siehe components/Experience.tsx */}
       <Experience locale="en" />
