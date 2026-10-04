@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { legalMetadata } from "@/lib/seo";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Datenschutz — Werle Technologies",
-  description:
-    "Datenschutzerklärung zu werle.app: welche Daten das Kontaktformular, die Produkt-Vormerkung und das Hosting verarbeiten.",
-};
+export const metadata: Metadata = legalMetadata(
+  "/datenschutz",
+  "Datenschutz — Werle Technologies",
+  "Datenschutzerklärung zu werle.app: welche Daten das Kontaktformular, die Produkt-Vormerkung und das Hosting verarbeiten.",
+);
 
 export default function DatenschutzPage() {
   return (

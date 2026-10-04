@@ -6,7 +6,7 @@ import BookSection from "@/components/BookSection";
 import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
 import { content } from "@/lib/content";
-import styles from "../page.module.css";
+import styles from "../../(de)/page.module.css";
 
 // English parallel page to app/page.tsx — identical section order, IDs
 // and structure (the 3D scene in components/SpaceScene.tsx measures

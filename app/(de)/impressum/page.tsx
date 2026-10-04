@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { legalMetadata } from "@/lib/seo";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Impressum — Werle Technologies",
-  description:
-    "Anbieterkennzeichnung gemäß § 5 DDG für werle.app: Kontakt, Umsatzsteuer-ID und rechtliche Hinweise.",
-};
+export const metadata: Metadata = legalMetadata(
+  "/impressum",
+  "Impressum — Werle Technologies",
+  "Anbieterkennzeichnung gemäß § 5 DDG für werle.app: Kontakt, Umsatzsteuer-ID und rechtliche Hinweise.",
+);
 
 export default function ImpressumPage() {
   return (

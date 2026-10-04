@@ -140,9 +140,9 @@ export interface Content {
 
 const de: Content = {
   meta: {
-    title: "Werle Technologies",
+    title: "Werle Technologies — Apps, Spiele und ein Buch aus Minden",
     description:
-      "Zwei Spiele, eine App und ein Buch — zum Anfassen, nicht nur zum Ansehen.",
+      "Pulse Gate: Echo Shift und Das Verhör im App Store, coParents in Entwicklung, dazu das Buch „Bechterew unter Kontrolle“. Von Patrick Werle, Minden.",
   },
   languageSwitch: {
     label: "EN",
@@ -274,9 +274,9 @@ const de: Content = {
 
 const en: Content = {
   meta: {
-    title: "Werle Technologies",
+    title: "Werle Technologies — Apps, games and a book from Minden",
     description:
-      "Two games, an app and a book — made to actually use, not just look at.",
+      "Pulse Gate: Echo Shift and Das Verhör on the App Store, coParents in development, plus the book “Bechterew unter Kontrolle”. By Patrick Werle, Minden.",
   },
   languageSwitch: {
     label: "DE",
