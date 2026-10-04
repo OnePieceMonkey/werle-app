@@ -1,0 +1,101 @@
+/* Nur Smartphone-Breite; die Komponente rendert ohnehin nur auf dem iPhone. */
+.banner {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .banner {
+    --accent: var(--teal);
+    --accent-ink: #08211d;
+    position: fixed;
+    z-index: 40;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + var(--hint-offset, 0px) + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px 10px 6px;
+    border-radius: 16px;
+    background: linear-gradient(
+      160deg,
+      rgba(24, 31, 52, 0.94),
+      rgba(18, 24, 42, 0.92)
+    );
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    animation: bannerIn 0.28s ease-out;
+  }
+
+  .alibi {
+    --accent: var(--indigo);
+    --accent-ink: #0d1626;
+  }
+
+  .jellycut {
+    --accent: var(--jelly);
+    --accent-ink: #10240a;
+  }
+
+  .close {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .text {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .name {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sub {
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .action {
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+}
+
+@keyframes bannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

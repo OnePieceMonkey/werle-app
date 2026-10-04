@@ -1,5 +1,6 @@
 import Experience from "@/components/Experience";
 import MissionNav from "@/components/MissionNav";
+import AppStoreBanner from "@/components/AppStoreBanner";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import BookSection from "@/components/BookSection";
@@ -27,6 +28,7 @@ export default function HomeEn() {
           Rotate-Hint), siehe components/Experience.tsx */}
       <Experience locale="en" />
       <MissionNav locale="en" />
+      <AppStoreBanner locale="en" />
 
       <main id="top" className={styles.main}>
         <Hero locale="en" />
