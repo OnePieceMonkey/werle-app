@@ -71,6 +71,7 @@ export interface Content {
     hero: string;
     pulsegate: string;
     alibi: string;
+    jellycut: string;
     coparents: string;
     buch: string;
     kontakt: string;
@@ -95,7 +96,20 @@ export interface Content {
   products: {
     pulsegate: ProductCopy;
     alibi: ProductCopy;
+    jellycut: ProductCopy;
     coparents: ProductCopy;
+  };
+  appBanner: {
+    ariaLabel: string;
+    /** Button, wenn die App schon im Store ist. */
+    open: string;
+    /** Zeile unter dem Namen, wenn die App noch nicht im Store ist. */
+    soon: string;
+    /** Button, wenn die App noch nicht im Store ist (führt zur Produktseite). */
+    see: string;
+    close: string;
+    /** Zeile unter dem Namen, wenn die App im Store ist. */
+    store: string;
   };
   book: {
     ariaLabel: string;
@@ -164,6 +178,7 @@ const de: Content = {
     hero: "Zu: Start",
     pulsegate: "Zu: Pulse Gate",
     alibi: "Zu: Das Verhör",
+    jellycut: "Zu: JellyCut",
     coparents: "Zu: coParents",
     buch: "Zu: Buch",
     kontakt: "Zu: Kontakt / Ankunft",
@@ -215,6 +230,18 @@ const de: Content = {
         secondary: "Verdächtigen-Porträt im Illustrationsstil von Das Verhör",
       },
     },
+    jellycut: {
+      status: "Bald im App Store",
+      titlePrefix: "JellyCut",
+      ariaLabel: "JellyCut — bald im App Store — jellycut.werle.app",
+      description:
+        "Sechs Früchte aus Wackelpudding, ein Stahlmesser. Greifen, ziehen, schneiden — jedes Stück wackelt für sich weiter. Drei Minuten gratis, dann ein kleiner Einmalkauf. Keine Werbung.",
+      ctaLabel: "jellycut.werle.app",
+      media: {
+        main: "JellyCut — eine Melonenscheibe aus Wackelpudding auf einem hellen Teller",
+        secondary: "JellyCut — die Melone in Stücke geschnitten",
+      },
+    },
     coparents: {
       status: "In Entwicklung",
       titlePrefix: "coParents",
@@ -230,6 +257,14 @@ const de: Content = {
       notifyLabel: "Bescheid sagen, wenn's da ist",
       notifyAriaLabel: "Benachrichtigung, wenn coParents verfügbar ist",
     },
+  },
+  appBanner: {
+    ariaLabel: "App Store",
+    open: "Laden",
+    soon: "Bald im App Store",
+    see: "Ansehen",
+    close: "Schließen",
+    store: "Im App Store",
   },
   book: {
     ariaLabel: "Bechterew unter Kontrolle — Buchcover und Rückseite",
@@ -298,6 +333,7 @@ const en: Content = {
     hero: "Go to: Start",
     pulsegate: "Go to: Pulse Gate",
     alibi: "Go to: Das Verhör",
+    jellycut: "Go to: JellyCut",
     coparents: "Go to: coParents",
     buch: "Go to: Book",
     kontakt: "Go to: Contact / Arrival",
@@ -349,6 +385,18 @@ const en: Content = {
         secondary: "Suspect portrait in the illustration style of Das Verhör",
       },
     },
+    jellycut: {
+      status: "Coming soon to the App Store",
+      titlePrefix: "JellyCut",
+      ariaLabel: "JellyCut — coming soon to the App Store — jellycut.werle.app",
+      description:
+        "Six jelly fruits, one steel knife. Grab, stretch, slice — every piece keeps wobbling on its own. Three minutes free, then one small purchase. No ads.",
+      ctaLabel: "jellycut.werle.app",
+      media: {
+        main: "JellyCut — a wedge of jelly melon on a light plate",
+        secondary: "JellyCut — the melon sliced into pieces",
+      },
+    },
     coparents: {
       status: "In development",
       titlePrefix: "coParents",
@@ -364,6 +412,14 @@ const en: Content = {
       notifyLabel: "Let me know when it's ready",
       notifyAriaLabel: "Get notified when coParents is available",
     },
+  },
+  appBanner: {
+    ariaLabel: "App Store",
+    open: "Get",
+    soon: "Coming soon to the App Store",
+    see: "View",
+    close: "Close",
+    store: "On the App Store",
   },
   book: {
     ariaLabel: "Bechterew unter Kontrolle — book cover and back cover",

@@ -83,7 +83,36 @@ export default function Home() {
           </FadeInSection>
         </section>
 
-        <section id="coparents" className={styles.stageLeft}>
+        <section id="jellycut" className={styles.stageLeft}>
+          <FadeInSection>
+            <ProductCard
+              variant="jellycut"
+              status="Bald im App Store"
+              accent="jelly"
+              title="JellyCut"
+              ariaLabel="JellyCut — bald im App Store — jellycut.werle.app"
+              description="Sechs Früchte aus Wackelpudding, ein Stahlmesser. Greifen, ziehen, schneiden — jedes Stück wackelt für sich weiter. Drei Minuten gratis, dann ein kleiner Einmalkauf. Keine Werbung."
+              href="https://jellycut.werle.app"
+              ctaLabel="jellycut.werle.app"
+              media={{
+                main: {
+                  src: "/images/jellycut-melon.jpg",
+                  alt: "JellyCut — eine Melonenscheibe aus Wackelpudding auf einem hellen Teller",
+                  width: 460,
+                  height: 997,
+                },
+                secondary: {
+                  src: "/images/jellycut-schnitt.jpg",
+                  alt: "JellyCut — die Melone in Stücke geschnitten",
+                  width: 460,
+                  height: 997,
+                },
+              }}
+            />
+          </FadeInSection>
+        </section>
+
+        <section id="coparents" className={styles.stageRight}>
           <FadeInSection>
             <ProductCard
               variant="coparents"

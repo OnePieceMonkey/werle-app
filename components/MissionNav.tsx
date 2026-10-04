@@ -13,6 +13,7 @@ const SECTION_IDS = [
   "hero",
   "pulsegate",
   "alibi",
+  "jellycut",
   "coparents",
   "buch",
   "kontakt",

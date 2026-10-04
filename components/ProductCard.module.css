@@ -73,6 +73,10 @@ a.productCard:hover {
   background: var(--coral);
   color: #2a1710;
 }
+.tagJelly {
+  background: var(--jelly);
+  color: #10240a;
+}
 
 /* „Das Verhör" — Stempel statt Pille, Token von verhoer.werle.app:
    Faden-Rot (Dark-Variante, lesbar auf dem dunklen Glas), Mono, 2px-Ecken. */

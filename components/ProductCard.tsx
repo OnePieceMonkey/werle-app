@@ -14,8 +14,12 @@ const redaction = localFont({
   display: "swap",
 });
 
-export type ProductCardVariant = "pulsegate" | "alibi" | "coparents";
-export type ProductCardAccent = "teal" | "indigo" | "coral" | "thread";
+export type ProductCardVariant =
+  | "pulsegate"
+  | "alibi"
+  | "jellycut"
+  | "coparents";
+export type ProductCardAccent = "teal" | "indigo" | "coral" | "thread" | "jelly";
 
 interface ProductCardImage {
   src: string;
@@ -62,6 +66,7 @@ const ACCENT_TAG_CLASS: Record<ProductCardAccent, string> = {
   teal: styles.tagTeal,
   indigo: styles.tagIndigo,
   coral: styles.tagCoral,
+  jelly: styles.tagJelly,
   /* „Das Verhör": Stempel statt Pille — roter Rahmen, Mono, leicht gedreht. */
   thread: styles.tagThread,
 };

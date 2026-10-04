@@ -96,7 +96,37 @@ export default function HomeEn() {
           </FadeInSection>
         </section>
 
-        <section id="coparents" className={styles.stageLeft}>
+        <section id="jellycut" className={styles.stageLeft}>
+          <FadeInSection>
+            <ProductCard
+              locale="en"
+              variant="jellycut"
+              status={p.jellycut.status}
+              accent="jelly"
+              title={p.jellycut.titlePrefix}
+              ariaLabel={p.jellycut.ariaLabel}
+              description={p.jellycut.description}
+              href="https://jellycut.werle.app"
+              ctaLabel={p.jellycut.ctaLabel}
+              media={{
+                main: {
+                  src: "/images/jellycut-melon.jpg",
+                  alt: p.jellycut.media.main,
+                  width: 460,
+                  height: 997,
+                },
+                secondary: {
+                  src: "/images/jellycut-schnitt.jpg",
+                  alt: p.jellycut.media.secondary!,
+                  width: 460,
+                  height: 997,
+                },
+              }}
+            />
+          </FadeInSection>
+        </section>
+
+        <section id="coparents" className={styles.stageRight}>
           <FadeInSection>
             <ProductCard
               locale="en"

@@ -25,6 +25,7 @@ const COLORS = {
   teal: 0x3fe0cf,
   indigo: 0x6f86bd,
   coral: 0xe2916b,
+  jelly: 0x9bd47a,
   amber: 0xe8b16a,
   sage: 0x93a878,
   mono: 0x7fd9c4,
@@ -54,6 +55,7 @@ const SECTION_IDS = [
   "hero",
   "pulsegate",
   "alibi",
+  "jellycut",
   "coparents",
   "buch",
   "kontakt",
@@ -67,11 +69,12 @@ type StationFractions = Record<SectionId, number>;
    Messung aus irgendeinem Grund einen Tick später greift. */
 const FALLBACK_STATIONS: StationFractions = {
   hero: 0,
-  pulsegate: 0.14,
-  alibi: 0.28,
-  coparents: 0.42,
-  buch: 0.65,
-  kontakt: 0.85,
+  pulsegate: 0.12,
+  alibi: 0.24,
+  jellycut: 0.36,
+  coparents: 0.48,
+  buch: 0.68,
+  kontakt: 0.87,
 };
 
 function getMaxScroll(): number {
@@ -127,6 +130,7 @@ interface Layout {
   positions: {
     pulsegateZ: number;
     alibiZ: number;
+    jellycutZ: number;
     coparentsZ: number;
     buchZ: number;
     planetZ: number;
@@ -169,7 +173,7 @@ function computeLayout(f: StationFractions): Layout {
      nach Live-Test: "Flash nicht synchron mit dem Ring". Der verbleibende
      Rest der Distanz bis kontaktT bleibt bewusst reiner Ankunfts-Puffer. */
   const stationViewportT = f.buch + gap * 0.45;
-  const missionT = [f.hero, f.pulsegate, f.alibi, f.coparents, f.buch, f.kontakt];
+  const missionT = [f.hero, f.pulsegate, f.alibi, f.jellycut, f.coparents, f.buch, f.kontakt];
   const planetZ = z(planetSystemT);
 
   return {
@@ -181,6 +185,7 @@ function computeLayout(f: StationFractions): Layout {
     positions: {
       pulsegateZ: z(f.pulsegate),
       alibiZ: z(f.alibi),
+      jellycutZ: z(f.jellycut),
       coparentsZ: z(f.coparents),
       buchZ: z(f.buch),
       planetZ,
@@ -680,6 +685,7 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
   const heroGlowRef = useRef<THREE.Group>(null!);
   const pulsegateRef = useRef<THREE.Group>(null!);
   const alibiRef = useRef<THREE.Group>(null!);
+  const jellycutRef = useRef<THREE.Group>(null!);
   const coparentsRef = useRef<THREE.Group>(null!);
   const bookRef = useRef<THREE.Group>(null!);
   const planetRef = useRef<THREE.Group>(null!);
@@ -720,6 +726,7 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
       { ref: heroGlowRef, baseY: 4.8, baseRotY: 0, phase: 0.15, bob: 0.07, bobSpeed: 0.35, rot: 0.015 },
       { ref: pulsegateRef, baseY: 1.5, baseRotY: 0, phase: 0.4, bob: 0.16, bobSpeed: 0.6, rot: 0.05 },
       { ref: alibiRef, baseY: 1.35, baseRotY: 0, phase: 1.8, bob: 0.16, bobSpeed: 0.6, rot: 0.05 },
+      { ref: jellycutRef, baseY: 1.4, baseRotY: 0, phase: 2.4, bob: 0.16, bobSpeed: 0.6, rot: 0.05 },
       { ref: coparentsRef, baseY: 1.4, baseRotY: 0, phase: 3.0, bob: 0.16, bobSpeed: 0.6, rot: 0.05 },
       { ref: bookRef, baseY: 0.15, baseRotY: 0.14, phase: 4.2, bob: 0.05, bobSpeed: 0.35, rot: 0.015 },
       { ref: planetRef, baseY: 5.6, baseRotY: 0, phase: 2.6, bob: 0.05, bobSpeed: 0.18, rot: 0.01 },
@@ -1086,8 +1093,13 @@ function SceneContent({ layout, onReady, onWarpTrigger, onEasterEggClick }: Scen
         <Glow color={COLORS.indigo} scale={4.7} opacity={0.45} texture={glowTexture} />
       </group>
 
+      {/* ---------------- JellyCut ---------------- */}
+      <group ref={jellycutRef} position={[-3.8, 1.4, positions.jellycutZ]}>
+        <Glow color={COLORS.jelly} scale={4.7} opacity={0.4} texture={glowTexture} />
+      </group>
+
       {/* ---------------- coParents ---------------- */}
-      <group ref={coparentsRef} position={[-3.9, 1.4, positions.coparentsZ]}>
+      <group ref={coparentsRef} position={[3.9, 1.4, positions.coparentsZ]}>
         <Glow color={COLORS.coral} scale={4.7} opacity={0.45} texture={glowTexture} />
       </group>
 
