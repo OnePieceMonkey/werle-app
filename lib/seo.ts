@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { content, type Locale } from "@/lib/content";
 
-export const SITE_URL = "https://werle.app";
+// Vercel leitet werle.app per 308 auf www.werle.app um — Canonical, Sitemap und
+// JSON-LD müssen auf die Adresse zeigen, die tatsächlich antwortet.
+export const SITE_URL = "https://www.werle.app";
 
 const HOME_PATH: Record<Locale, string> = { de: "/", en: "/en" };
 
