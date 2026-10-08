@@ -25,11 +25,7 @@ export const BOOK_SITE = "https://bechterew-buch.werle.app";
 export const APP_STORE_URLS = {
   pulsegate: "https://apps.apple.com/app/id6788528869",
   alibi: "https://apps.apple.com/de/app/id6797754222",
-  // JellyCut: leer, bis die App im Store ist. Dann hier die URL eintragen
-  // (country-neutral: https://apps.apple.com/app/id<APPLE_ID>) — Banner und
-  // JSON-LD ziehen sie automatisch. Bis dahin führt der Banner auf die
-  // Produktseite jellycut.werle.app.
-  jellycut: "",
+  jellycut: "https://apps.apple.com/app/id6817272978",
 } as const;
 
 export const PRODUCT_SITES = {

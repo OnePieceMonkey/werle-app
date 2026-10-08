@@ -50,5 +50,6 @@ export function homeJsonLd(locale: Locale) {
     book,
     app("Pulse Gate: Echo Shift", APP_STORE_URLS.pulsegate, "https://pulsegate.werle.app"),
     app("Das Verhör", APP_STORE_URLS.alibi, "https://verhoer.werle.app"),
+    app("JellyCut", APP_STORE_URLS.jellycut, "https://jellycut.werle.app"),
   ];
 }

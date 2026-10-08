@@ -157,7 +157,7 @@ const de: Content = {
   meta: {
     title: "Werle Technologies — Apps, Spiele und ein Buch aus Minden",
     description:
-      "Pulse Gate: Echo Shift und Das Verhör im App Store, JellyCut bald. Dazu coParents in Entwicklung und das Buch „Bechterew unter Kontrolle“. Patrick Werle.",
+      "Pulse Gate: Echo Shift, Das Verhör und JellyCut im App Store. Dazu coParents in Entwicklung und das Buch „Bechterew unter Kontrolle“. Patrick Werle.",
   },
   languageSwitch: {
     label: "EN",
@@ -232,9 +232,9 @@ const de: Content = {
       },
     },
     jellycut: {
-      status: "Bald im App Store",
+      status: "Live im App Store",
       titlePrefix: "JellyCut",
-      ariaLabel: "JellyCut — bald im App Store — jellycut.werle.app",
+      ariaLabel: "JellyCut — jellycut.werle.app",
       description:
         "Sechs Früchte aus Wackelpudding, ein Stahlmesser. Greifen, ziehen, schneiden — jedes Stück wackelt für sich weiter. Drei Minuten gratis, dann ein kleiner Einmalkauf. Keine Werbung.",
       ctaLabel: "jellycut.werle.app",
@@ -313,7 +313,7 @@ const en: Content = {
   meta: {
     title: "Werle Technologies — Apps, games and a book from Minden",
     description:
-      "Pulse Gate: Echo Shift and Das Verhör on the App Store, JellyCut soon. Plus coParents in development and the book “Bechterew unter Kontrolle”. By Patrick Werle.",
+      "Pulse Gate: Echo Shift, Das Verhör and JellyCut on the App Store. Plus coParents in development and the book “Bechterew unter Kontrolle”. By Patrick Werle.",
   },
   languageSwitch: {
     label: "DE",
@@ -388,9 +388,9 @@ const en: Content = {
       },
     },
     jellycut: {
-      status: "Coming soon to the App Store",
+      status: "Live on the App Store",
       titlePrefix: "JellyCut",
-      ariaLabel: "JellyCut — coming soon to the App Store — jellycut.werle.app",
+      ariaLabel: "JellyCut — jellycut.werle.app",
       description:
         "Six jelly fruits, one steel knife. Grab, stretch, slice — every piece keeps wobbling on its own. Three minutes free, then one small purchase. No ads.",
       ctaLabel: "jellycut.werle.app",
