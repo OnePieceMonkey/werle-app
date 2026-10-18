@@ -43,6 +43,16 @@ interface ProductCopy {
   notifyAriaLabel?: string;
 }
 
+export interface HackathonCopy {
+  /** Stabile Kennung, wird nie übersetzt (React-Key, Bild-Zuordnung). */
+  id: string;
+  status: string;
+  title: string;
+  description: string;
+  imageAlt: string;
+  links: readonly { label: string; href: string }[];
+}
+
 export interface Content {
   meta: {
     title: string;
@@ -73,6 +83,7 @@ export interface Content {
     alibi: string;
     jellycut: string;
     coparents: string;
+    hackathons: string;
     buch: string;
     kontakt: string;
   };
@@ -110,6 +121,13 @@ export interface Content {
     close: string;
     /** Zeile unter dem Namen, wenn die App im Store ist. */
     store: string;
+  };
+  hackathons: {
+    ariaLabel: string;
+    titlePre: string;
+    titleEmphasis: string;
+    tagline: string;
+    projects: readonly HackathonCopy[];
   };
   book: {
     ariaLabel: string;
@@ -181,6 +199,7 @@ const de: Content = {
     alibi: "Zu: Das Verhör",
     jellycut: "Zu: JellyCut",
     coparents: "Zu: coParents",
+    hackathons: "Zu: Hackathon-Projekte",
     buch: "Zu: Buch",
     kontakt: "Zu: Kontakt / Ankunft",
   },
@@ -267,6 +286,23 @@ const de: Content = {
     close: "Schließen",
     store: "Im App Store",
   },
+  hackathons: {
+    ariaLabel: "Hackathon-Projekte",
+    titlePre: "Gebaut gegen die ",
+    titleEmphasis: "Uhr",
+    tagline: "Hackathon-Projekte: ein echtes Problem, eine feste Frist, Code und Demo öffentlich.",
+    projects: [
+      {
+        id: "recourse",
+        status: "Eingereicht · PayPal AI Hackathon",
+        title: "Recourse",
+        description:
+          "Käuferschutz für KI-Agenten. Der Agent zahlt über PayPal und prüft jede Lieferung, bevor das Sprachmodell sie zu sehen bekommt. Liefert ein Anbieter nur einen Teaser, tauscht er den Inhalt aus oder versteckt er Anweisungen an den Agenten, kommt das Geld als echte PayPal-Erstattung zurück. Das Modell urteilt, der Code entscheidet.",
+        imageAlt: "Recourse-Konsole: ein gekaufter Blogpost mit versteckten Anweisungen an den Agenten, markiert als in Quarantäne und erstattet",
+        links: [{ label: "Video", href: "https://www.youtube.com/watch?v=OES6Zh4mUBM" }, { label: "Code", href: "https://github.com/OnePieceMonkey/recourse" }, { label: "Live-Demo", href: "https://recourse-268830318991.europe-west1.run.app" }],
+      },
+    ],
+  },
   book: {
     ariaLabel: "Bechterew unter Kontrolle — Buchcover und Rückseite",
     kicker: "Buch",
@@ -337,6 +373,7 @@ const en: Content = {
     alibi: "Go to: Das Verhör",
     jellycut: "Go to: JellyCut",
     coparents: "Go to: coParents",
+    hackathons: "Go to: Hackathon projects",
     buch: "Go to: Book",
     kontakt: "Go to: Contact / Arrival",
   },
@@ -422,6 +459,23 @@ const en: Content = {
     see: "View",
     close: "Close",
     store: "On the App Store",
+  },
+  hackathons: {
+    ariaLabel: "Hackathon projects",
+    titlePre: "Built against the ",
+    titleEmphasis: "clock",
+    tagline: "Hackathon projects: one real problem, a fixed deadline, code and demo in the open.",
+    projects: [
+      {
+        id: "recourse",
+        status: "Submitted · PayPal AI Hackathon",
+        title: "Recourse",
+        description:
+          "Buyer protection for AI agents. The agent pays via PayPal and checks every delivery before the language model sees it. If a seller ships a teaser, swaps the content or hides instructions aimed at the agent, the money comes back as a real PayPal refund. The model judges, code decides.",
+        imageAlt: "Recourse console: a purchased blog post with hidden instructions aimed at the agent, flagged as quarantined and refunded",
+        links: [{ label: "Video", href: "https://www.youtube.com/watch?v=OES6Zh4mUBM" }, { label: "Code", href: "https://github.com/OnePieceMonkey/recourse" }, { label: "Live demo", href: "https://recourse-268830318991.europe-west1.run.app" }],
+      },
+    ],
   },
   book: {
     ariaLabel: "Bechterew unter Kontrolle — book cover and back cover",

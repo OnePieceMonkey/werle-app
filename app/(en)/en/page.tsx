@@ -4,6 +4,7 @@ import AppStoreBanner from "@/components/AppStoreBanner";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import BookSection from "@/components/BookSection";
+import HackathonSection from "@/components/HackathonSection";
 import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
 import { content } from "@/lib/content";
@@ -169,6 +170,8 @@ export default function HomeEn() {
             />
           </FadeInSection>
         </section>
+
+        <HackathonSection locale="en" />
 
         <BookSection locale="en" />
         {/* Reine Scroll-Distanz, kein Inhalt — siehe Kommentar in

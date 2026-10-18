@@ -57,6 +57,7 @@ const SECTION_IDS = [
   "alibi",
   "jellycut",
   "coparents",
+  "hackathons",
   "buch",
   "kontakt",
 ] as const;
@@ -73,6 +74,7 @@ const FALLBACK_STATIONS: StationFractions = {
   alibi: 0.24,
   jellycut: 0.36,
   coparents: 0.48,
+  hackathons: 0.58,
   buch: 0.68,
   kontakt: 0.87,
 };
@@ -173,7 +175,7 @@ function computeLayout(f: StationFractions): Layout {
      nach Live-Test: "Flash nicht synchron mit dem Ring". Der verbleibende
      Rest der Distanz bis kontaktT bleibt bewusst reiner Ankunfts-Puffer. */
   const stationViewportT = f.buch + gap * 0.45;
-  const missionT = [f.hero, f.pulsegate, f.alibi, f.jellycut, f.coparents, f.buch, f.kontakt];
+  const missionT = [f.hero, f.pulsegate, f.alibi, f.jellycut, f.coparents, f.hackathons, f.buch, f.kontakt];
   const planetZ = z(planetSystemT);
 
   return {

@@ -15,6 +15,7 @@ const SECTION_IDS = [
   "alibi",
   "jellycut",
   "coparents",
+  "hackathons",
   "buch",
   "kontakt",
 ] as const;
