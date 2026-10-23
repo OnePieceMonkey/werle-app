@@ -8,6 +8,7 @@ import styles from "./HackathonSection.module.css";
    plus ein Bild hier. */
 const IMAGES: Record<string, { src: string; width: number; height: number }> = {
   recourse: { src: "/images/recourse-console.webp", width: 1200, height: 750 },
+  vermerk: { src: "/images/vermerk-nachweis.webp", width: 1200, height: 750 },
 };
 
 interface HackathonSectionProps {

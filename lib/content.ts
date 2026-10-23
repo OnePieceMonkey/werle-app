@@ -199,7 +199,7 @@ const de: Content = {
     alibi: "Zu: Das Verhör",
     jellycut: "Zu: JellyCut",
     coparents: "Zu: coParents",
-    hackathons: "Zu: Hackathon-Projekte",
+    hackathons: "Zu: Referenz- und Hackathon-Projekte",
     buch: "Zu: Buch",
     kontakt: "Zu: Kontakt / Ankunft",
   },
@@ -287,10 +287,10 @@ const de: Content = {
     store: "Im App Store",
   },
   hackathons: {
-    ariaLabel: "Hackathon-Projekte",
-    titlePre: "Gebaut gegen die ",
-    titleEmphasis: "Uhr",
-    tagline: "Hackathon-Projekte: ein echtes Problem, eine feste Frist, Code und Demo öffentlich.",
+    ariaLabel: "Referenz- und Hackathon-Projekte",
+    titlePre: "Regeln in ",
+    titleEmphasis: "Code",
+    tagline: "Referenz- und Hackathon-Projekte mit einem Muster: feste Regeln entscheiden, jeder Schritt lässt sich prüfen.",
     projects: [
       {
         id: "recourse",
@@ -300,6 +300,15 @@ const de: Content = {
           "Käuferschutz für KI-Agenten. Der Agent zahlt über PayPal und prüft jede Lieferung, bevor das Sprachmodell sie zu sehen bekommt. Liefert ein Anbieter nur einen Teaser, tauscht er den Inhalt aus oder versteckt er Anweisungen an den Agenten, kommt das Geld als echte PayPal-Erstattung zurück. Das Modell urteilt, der Code entscheidet.",
         imageAlt: "Recourse-Konsole: ein gekaufter Blogpost mit versteckten Anweisungen an den Agenten, markiert als in Quarantäne und erstattet",
         links: [{ label: "Video", href: "https://www.youtube.com/watch?v=OES6Zh4mUBM" }, { label: "Code", href: "https://github.com/OnePieceMonkey/recourse" }, { label: "Live-Demo", href: "https://recourse-268830318991.europe-west1.run.app" }],
+      },
+      {
+        id: "vermerk",
+        status: "Referenzprojekt · 2026",
+        title: "Vermerk",
+        description:
+          "Nachweis für die KI-Kennzeichnung nach Art. 50 KI-VO. Feste Regeln entscheiden je Bild, ob und wie es gekennzeichnet werden muss. Vermerk setzt das EU-Icon und schreibt jede Entscheidung in eine Kette mit Zeitstempel, die jeder offline nachrechnen kann. 18 Regeln, 49 Prüffälle, über 370 Tests. Kein kommerzielles Angebot.",
+        imageAlt: "Vermerk: erste Seite eines Nachweis-Berichts zur KI-Kennzeichnung, daneben der Befehl, mit dem sich die Kette offline prüfen lässt",
+        links: [{ label: "Projektseite", href: "https://vermerk.werle.app/#projekt" }, { label: "So funktioniert es", href: "https://vermerk.werle.app/so-funktioniert-es" }, { label: "Beispiel-Nachweis", href: "https://vermerk.werle.app/beispiele/audit-beispiel.pdf" }],
       },
     ],
   },
@@ -373,7 +382,7 @@ const en: Content = {
     alibi: "Go to: Das Verhör",
     jellycut: "Go to: JellyCut",
     coparents: "Go to: coParents",
-    hackathons: "Go to: Hackathon projects",
+    hackathons: "Go to: Reference and hackathon projects",
     buch: "Go to: Book",
     kontakt: "Go to: Contact / Arrival",
   },
@@ -461,10 +470,10 @@ const en: Content = {
     store: "On the App Store",
   },
   hackathons: {
-    ariaLabel: "Hackathon projects",
-    titlePre: "Built against the ",
-    titleEmphasis: "clock",
-    tagline: "Hackathon projects: one real problem, a fixed deadline, code and demo in the open.",
+    ariaLabel: "Reference and hackathon projects",
+    titlePre: "Rules into ",
+    titleEmphasis: "code",
+    tagline: "Reference and hackathon projects with one pattern: fixed rules decide, every step can be checked.",
     projects: [
       {
         id: "recourse",
@@ -474,6 +483,15 @@ const en: Content = {
           "Buyer protection for AI agents. The agent pays via PayPal and checks every delivery before the language model sees it. If a seller ships a teaser, swaps the content or hides instructions aimed at the agent, the money comes back as a real PayPal refund. The model judges, code decides.",
         imageAlt: "Recourse console: a purchased blog post with hidden instructions aimed at the agent, flagged as quarantined and refunded",
         links: [{ label: "Video", href: "https://www.youtube.com/watch?v=OES6Zh4mUBM" }, { label: "Code", href: "https://github.com/OnePieceMonkey/recourse" }, { label: "Live demo", href: "https://recourse-268830318991.europe-west1.run.app" }],
+      },
+      {
+        id: "vermerk",
+        status: "Reference project · 2026",
+        title: "Vermerk",
+        description:
+          "Proof for AI labelling under Art. 50 of the EU AI Act. Fixed rules decide per image whether and how it must be labelled. Vermerk applies the EU icon and writes every decision into a time-stamped chain that anyone can recompute offline. 18 rules, 49 test cases, more than 370 tests. Not a commercial offer.",
+        imageAlt: "Vermerk: first page of an AI-labelling proof report, next to the command that checks the chain offline",
+        links: [{ label: "Project page (German)", href: "https://vermerk.werle.app/#projekt" }, { label: "How it works", href: "https://vermerk.werle.app/so-funktioniert-es" }, { label: "Sample report", href: "https://vermerk.werle.app/beispiele/audit-beispiel.pdf" }],
       },
     ],
   },
