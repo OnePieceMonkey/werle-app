@@ -302,6 +302,15 @@ const de: Content = {
         links: [{ label: "Video", href: "https://www.youtube.com/watch?v=OES6Zh4mUBM" }, { label: "Code", href: "https://github.com/OnePieceMonkey/recourse" }, { label: "Live-Demo", href: "https://recourse-268830318991.europe-west1.run.app" }],
       },
       {
+        id: "verdict",
+        status: "Eingereicht · Nebius × NVIDIA AI Hackathon",
+        title: "Verdict",
+        description:
+          "Aus einer PDF-Rechnung wird eine gültige XRechnung. Nemotron liest die Rechnung und belegt jedes Feld mit einem Zitat von der Seite. Beträge rechnet der Code, und der offizielle KoSIT-Validator entscheidet, ob die Rechnung rausgeht. Im verdeckten Test waren alle Summen in den 14 gültigen Rechnungen korrekt. Das Modell schreibt nie XML und rechnet nie.",
+        imageAlt: "Verdict: eine geprüfte Rechnung mit Stempel „Verified“ vom KoSIT-Validator, daneben der Laufzettel mit jedem Prüfschritt",
+        links: [{ label: "Video", href: "https://www.youtube.com/watch?v=70ZLlFSrppc" }, { label: "Code", href: "https://github.com/OnePieceMonkey/Verdict" }, { label: "Live-Demo", href: "https://verdict-678224659019.europe-west1.run.app" }],
+      },
+      {
         id: "vermerk",
         status: "Referenzprojekt · 2026",
         title: "Vermerk",
@@ -483,6 +492,15 @@ const en: Content = {
           "Buyer protection for AI agents. The agent pays via PayPal and checks every delivery before the language model sees it. If a seller ships a teaser, swaps the content or hides instructions aimed at the agent, the money comes back as a real PayPal refund. The model judges, code decides.",
         imageAlt: "Recourse console: a purchased blog post with hidden instructions aimed at the agent, flagged as quarantined and refunded",
         links: [{ label: "Video", href: "https://www.youtube.com/watch?v=OES6Zh4mUBM" }, { label: "Code", href: "https://github.com/OnePieceMonkey/recourse" }, { label: "Live demo", href: "https://recourse-268830318991.europe-west1.run.app" }],
+      },
+      {
+        id: "verdict",
+        status: "Submitted · Nebius × NVIDIA AI Hackathon",
+        title: "Verdict",
+        description:
+          "Turns a PDF invoice into a valid XRechnung. Nemotron reads the invoice and backs every field with a quote from the page. Code computes the amounts, and the official KoSIT validator decides whether the invoice goes out. In the held-out test, all totals were correct in the 14 valid invoices. The model never writes XML and never does arithmetic.",
+        imageAlt: "Verdict: a checked invoice stamped “Verified” by the KoSIT validator, next to the routing slip with every check step",
+        links: [{ label: "Video", href: "https://www.youtube.com/watch?v=70ZLlFSrppc" }, { label: "Code", href: "https://github.com/OnePieceMonkey/Verdict" }, { label: "Live demo", href: "https://verdict-678224659019.europe-west1.run.app" }],
       },
       {
         id: "vermerk",
