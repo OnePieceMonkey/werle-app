@@ -5,6 +5,8 @@ import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import BookSection from "@/components/BookSection";
 import HackathonSection from "@/components/HackathonSection";
+import AboutSection from "@/components/AboutSection";
+import WorkSection from "@/components/WorkSection";
 import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
 import JsonLd from "@/components/JsonLd";
@@ -156,6 +158,8 @@ export default function Home() {
           </FadeInSection>
         </section>
         <HackathonSection />
+        <AboutSection />
+        <WorkSection />
         <BookSection />
         {/* Reine Scroll-Distanz, kein Inhalt: gibt dem Warp-Effekt (siehe
             SpaceScene.tsx, zwischen "buch" und "kontakt" positioniert) Raum,

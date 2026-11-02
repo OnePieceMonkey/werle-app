@@ -53,6 +53,20 @@ export interface HackathonCopy {
   links: readonly { label: string; href: string }[];
 }
 
+export interface WorkTierCopy {
+  id: string;
+  tag: string;
+  title: string;
+  audience: string;
+  /** Konditionen in einer Zeile (Preis, Umfang, Verfügbarkeit). */
+  terms: string;
+  points: readonly string[];
+  proof: string;
+  cta: string;
+  /** Hervorgehobene Stufe. */
+  isMain?: boolean;
+}
+
 export interface Content {
   meta: {
     title: string;
@@ -84,6 +98,8 @@ export interface Content {
     jellycut: string;
     coparents: string;
     hackathons: string;
+    "ueber-mich": string;
+    arbeiten: string;
     buch: string;
     kontakt: string;
   };
@@ -128,6 +144,28 @@ export interface Content {
     titleEmphasis: string;
     tagline: string;
     projects: readonly HackathonCopy[];
+  };
+  about: {
+    ariaLabel: string;
+    kicker: string;
+    titlePre: string;
+    titleEmphasis: string;
+    titlePost: string;
+    lead: string;
+    portraitAlt: string;
+    /** Hinweis unter dem ziehbaren Porträt, verschwindet nach dem ersten Griff. */
+    hint: string;
+    facts: readonly { label: string; text: string }[];
+    chips: readonly string[];
+  };
+  work: {
+    ariaLabel: string;
+    kicker: string;
+    titlePre: string;
+    titleEmphasis: string;
+    lead: string;
+    proofLabel: string;
+    tiers: readonly WorkTierCopy[];
   };
   book: {
     ariaLabel: string;
@@ -200,6 +238,8 @@ const de: Content = {
     jellycut: "Zu: JellyCut",
     coparents: "Zu: coParents",
     hackathons: "Zu: Referenz- und Hackathon-Projekte",
+    "ueber-mich": "Zu: Über mich",
+    arbeiten: "Zu: Mit mir arbeiten",
     buch: "Zu: Buch",
     kontakt: "Zu: Kontakt / Ankunft",
   },
@@ -321,6 +361,63 @@ const de: Content = {
       },
     ],
   },
+  about: {
+    ariaLabel: "Über mich",
+    kicker: "Über mich",
+    titlePre: "Ich übersetze zwischen ",
+    titleEmphasis: "Fach",
+    titlePost: " und Software.",
+    lead: "Über 15 Jahre Zahntechnik mit digitalen Abläufen: CAD/CAM, Intraoralscan, 3D-Druck. Seit ein paar Jahren baue ich die Software dazu. Mein Muster: ein Regelwerk, das Menschen fehleranfällig von Hand anwenden, wird zu Code, den man prüfen kann.",
+    portraitAlt: "Porträt von Patrick Werle",
+    hint: "↖ zieh mal am Gesicht",
+    facts: [
+      { label: "Labrechner:", text: "BEL II und BEB '97 vollständig in Code, GoBD-konform, Pentest bestanden. 2026 übergeben." },
+      { label: "Eigene Apps im App Store:", text: "Das Verhör, JellyCut, Pulse Gate. Dazu ein Sachbuch im Selbstverlag." },
+      { label: "KI mit Leitplanke:", text: "Die KI schlägt vor, ein Regelwerk entscheidet. So gebaut in Verdict und Recourse." },
+    ],
+    chips: ["68k Zeilen Code", "510+ Tests", "Pentest bestanden", "Remote · Raum Minden"],
+  },
+  work: {
+    ariaLabel: "Mit mir arbeiten",
+    kicker: "Mit mir arbeiten",
+    titlePre: "Drei Wege, ",
+    titleEmphasis: "such dir einen aus",
+    lead: "Ich verkaufe keine Werkzeuge, ich verkaufe Urteil: was sich zu bauen lohnt, wann die KI falsch liegt und wie man es sicher ausliefert.",
+    proofLabel: "Beleg:",
+    tiers: [
+      {
+        id: "projekt",
+        tag: "Projekt",
+        title: "Regelwerk → Software",
+        audience: "Für Firmen mit einer Gebührenordnung, Norm oder Prüfliste",
+        terms: "Festpreis nach Erstgespräch",
+        points: ["Regelwerk in prüfbaren Code übersetzen", "Tests gegen echte Fälle, nicht gegen Annahmen", "Übergabe mit Doku, dein Team kann weiterbauen"],
+        proof: "Labrechner, BEL II + BEB '97 in Code",
+        cta: "Projekt anfragen",
+      },
+      {
+        id: "teilzeit",
+        tag: "Teilzeit",
+        title: "Übersetzer im Team",
+        audience: "Für Dental-, Medtech- und KI-Firmen",
+        terms: "1–2 Tage pro Woche · Tagessatz auf Anfrage",
+        points: ["Zwischen Fachabteilung und Entwicklung vermitteln", "KI-Ergebnisse prüfen, bevor sie zum Kunden gehen", "Monatlich kündbar"],
+        proof: "Verdict und Recourse, KI mit Regelwerk-Prüfung",
+        cta: "Gespräch vereinbaren",
+        isMain: true,
+      },
+      {
+        id: "festanstellung",
+        tag: "Festanstellung",
+        title: "Key Account / Trainer",
+        audience: "Für Hersteller im Dentalmarkt",
+        terms: "Remote · zeitnah verfügbar",
+        points: ["15+ Jahre Laborpraxis, digitale Workflows", "Spricht Labor und spricht Software", "Remote, Reisen nach Absprache"],
+        proof: "Lebenslauf als PDF",
+        cta: "Lebenslauf anfordern",
+      },
+    ],
+  },
   book: {
     ariaLabel: "Bechterew unter Kontrolle — Buchcover und Rückseite",
     kicker: "Buch",
@@ -392,6 +489,8 @@ const en: Content = {
     jellycut: "Go to: JellyCut",
     coparents: "Go to: coParents",
     hackathons: "Go to: Reference and hackathon projects",
+    "ueber-mich": "Go to: About me",
+    arbeiten: "Go to: Work with me",
     buch: "Go to: Book",
     kontakt: "Go to: Contact / Arrival",
   },
@@ -510,6 +609,63 @@ const en: Content = {
           "Proof for AI labelling under Art. 50 of the EU AI Act. Fixed rules decide per image whether and how it must be labelled. Vermerk applies the EU icon and writes every decision into a time-stamped chain that anyone can recompute offline. 18 rules, 49 test cases, more than 370 tests. Not a commercial offer.",
         imageAlt: "Vermerk: first page of an AI-labelling proof report, next to the command that checks the chain offline",
         links: [{ label: "Project page (German)", href: "https://vermerk.werle.app/#projekt" }, { label: "How it works", href: "https://vermerk.werle.app/so-funktioniert-es" }, { label: "Sample report", href: "https://vermerk.werle.app/beispiele/audit-beispiel.pdf" }],
+      },
+    ],
+  },
+  about: {
+    ariaLabel: "About me",
+    kicker: "About me",
+    titlePre: "I translate between ",
+    titleEmphasis: "domain",
+    titlePost: " and software.",
+    lead: "More than 15 years of dental technology with digital workflows: CAD/CAM, intraoral scanning, 3D printing. For a few years now I have been building the software for it. My pattern: a rulebook that people apply by hand, with errors, becomes code you can check.",
+    portraitAlt: "Portrait of Patrick Werle",
+    hint: "↖ go on, pull the face",
+    facts: [
+      { label: "Labrechner:", text: "Germany's dental fee schedules BEL II and BEB '97 fully in code, GoBD-compliant, passed a pentest. Handed over in 2026." },
+      { label: "Own apps on the App Store:", text: "Das Verhör, JellyCut, Pulse Gate. Plus a self-published non-fiction book." },
+      { label: "AI with guardrails:", text: "The AI proposes, a rulebook decides. Built that way in Verdict and Recourse." },
+    ],
+    chips: ["68k lines of code", "510+ tests", "Pentest passed", "Remote · near Minden, Germany"],
+  },
+  work: {
+    ariaLabel: "Work with me",
+    kicker: "Work with me",
+    titlePre: "Three ways, ",
+    titleEmphasis: "pick one",
+    lead: "I don't sell tools, I sell judgment: what is worth building, when the AI is wrong and how to ship it safely.",
+    proofLabel: "Proof:",
+    tiers: [
+      {
+        id: "projekt",
+        tag: "Project",
+        title: "Rulebook → software",
+        audience: "For companies with a fee schedule, standard or checklist",
+        terms: "Fixed price after a first call",
+        points: ["Turn the rulebook into code you can check", "Tests against real cases, not assumptions", "Handover with docs, your team can build on it"],
+        proof: "Labrechner, BEL II + BEB '97 in code",
+        cta: "Ask about a project",
+      },
+      {
+        id: "teilzeit",
+        tag: "Part-time",
+        title: "Translator in your team",
+        audience: "For dental, medtech and AI companies",
+        terms: "1–2 days a week · day rate on request",
+        points: ["Bridge the domain team and engineering", "Check AI output before it reaches customers", "Cancel monthly"],
+        proof: "Verdict and Recourse, AI checked by a rulebook",
+        cta: "Book a call",
+        isMain: true,
+      },
+      {
+        id: "festanstellung",
+        tag: "Employment",
+        title: "Key account / trainer",
+        audience: "For manufacturers in the dental market",
+        terms: "Remote · available soon",
+        points: ["15+ years of lab practice, digital workflows", "Speaks lab and speaks software", "Remote, travel by arrangement"],
+        proof: "CV as PDF",
+        cta: "Request my CV",
       },
     ],
   },

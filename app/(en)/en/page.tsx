@@ -5,6 +5,8 @@ import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import BookSection from "@/components/BookSection";
 import HackathonSection from "@/components/HackathonSection";
+import AboutSection from "@/components/AboutSection";
+import WorkSection from "@/components/WorkSection";
 import ArrivalSection from "@/components/ArrivalSection";
 import FadeInSection from "@/components/FadeInSection";
 import { content } from "@/lib/content";
@@ -172,6 +174,8 @@ export default function HomeEn() {
         </section>
 
         <HackathonSection locale="en" />
+        <AboutSection locale="en" />
+        <WorkSection locale="en" />
 
         <BookSection locale="en" />
         {/* Reine Scroll-Distanz, kein Inhalt — siehe Kommentar in

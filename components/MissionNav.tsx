@@ -16,6 +16,8 @@ const SECTION_IDS = [
   "jellycut",
   "coparents",
   "hackathons",
+  "ueber-mich",
+  "arbeiten",
   "buch",
   "kontakt",
 ] as const;

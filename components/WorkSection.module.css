@@ -1,0 +1,182 @@
+.stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh 6vw 8vh;
+  pointer-events: none;
+}
+
+.panel {
+  width: min(94vw, 1080px);
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mono);
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  color: var(--cream);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.title em {
+  color: var(--teal);
+}
+
+.lead {
+  margin: 0 auto;
+  max-width: 54ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #b7c1d1;
+}
+
+.tiers {
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: 22px;
+  text-align: left;
+}
+
+/* Deckend wie die Projektkarten: hinter der Sektion schweben 3D-Objekte. */
+.tier {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  padding: 26px 24px 24px;
+  background: linear-gradient(160deg, #181f34, #12182a);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1px rgba(143, 164, 214, 0.14);
+}
+
+.main {
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1.5px var(--teal);
+}
+
+.tag {
+  align-self: flex-start;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.tagProjekt {
+  background: var(--amber);
+  color: #2a1c08;
+}
+
+.tagTeilzeit {
+  background: var(--teal);
+  color: #08231f;
+}
+
+.tagFest {
+  background: var(--indigo);
+  color: #111a33;
+}
+
+.tier h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.audience {
+  margin: 0 0 16px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.terms {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--cream);
+}
+
+.points {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+  flex: 1;
+}
+
+.points li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c9d1de;
+}
+
+.points li::before {
+  content: "✓";
+  color: var(--jelly);
+}
+
+.proof {
+  margin: 0 0 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(143, 164, 214, 0.14);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.proof b {
+  color: var(--cyan);
+  font-weight: 500;
+}
+
+.cta {
+  display: inline-flex;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  background: rgba(63, 224, 207, 0.1);
+  color: var(--teal);
+  box-shadow: inset 0 0 0 1px rgba(63, 224, 207, 0.35);
+}
+
+.main .cta {
+  background: var(--teal);
+  color: #08231f;
+  box-shadow: none;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
