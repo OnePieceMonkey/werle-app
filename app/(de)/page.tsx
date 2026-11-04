@@ -39,7 +39,7 @@ export default function Home() {
                 </>
               }
               ariaLabel="Pulse Gate: Echo Shift — pulsegate.werle.app"
-              description="Ein Antippen legt den Anchor-Winkel fest, der Puls expandiert kreisförmig — die Kollision entscheidet sich am Winkel gegen die Gates. Antizipatives Timing statt direktem Treffen, über 200 Level."
+              description="Ein Antippen legt den Anchor-Winkel fest, der Puls expandiert kreisförmig — die Kollision entscheidet sich am Winkel gegen die Gates. Antizipatives Timing statt direktem Treffen, 200 Level."
               href="https://pulsegate.werle.app"
               ctaLabel="pulsegate.werle.app"
               media={{
@@ -93,10 +93,10 @@ export default function Home() {
           <FadeInSection>
             <ProductCard
               variant="jellycut"
-              status="Bald im App Store"
+              status="Live im App Store"
               accent="jelly"
               title="JellyCut"
-              ariaLabel="JellyCut — bald im App Store — jellycut.werle.app"
+              ariaLabel="JellyCut — jellycut.werle.app"
               description="Sechs Früchte aus Wackelpudding, ein Stahlmesser. Greifen, ziehen, schneiden — jedes Stück wackelt für sich weiter. Drei Minuten gratis, dann ein kleiner Einmalkauf. Keine Werbung."
               href="https://jellycut.werle.app"
               ctaLabel="jellycut.werle.app"

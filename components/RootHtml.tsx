@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { fontClassNames } from "@/lib/fonts";
 import type { Locale } from "@/lib/content";
 import "../app/globals.css";
@@ -15,7 +16,12 @@ export default function RootHtml({
 }) {
   return (
     <html lang={lang} className={fontClassNames}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Vercel Web Analytics: cookieless page views incl. UTM fields.
+            Described in app/(de)/datenschutz. No Speed Insights. */}
+        <Analytics />
+      </body>
     </html>
   );
 }

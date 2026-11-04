@@ -271,7 +271,7 @@ const de: Content = {
       titleEmphasis: "Echo Shift",
       ariaLabel: "Pulse Gate: Echo Shift — pulsegate.werle.app",
       description:
-        "Ein Antippen legt den Anchor-Winkel fest, der Puls expandiert kreisförmig — die Kollision entscheidet sich am Winkel gegen die Gates. Antizipatives Timing statt direktem Treffen, über 200 Level.",
+        "Ein Antippen legt den Anchor-Winkel fest, der Puls expandiert kreisförmig — die Kollision entscheidet sich am Winkel gegen die Gates. Antizipatives Timing statt direktem Treffen, 200 Level.",
       ctaLabel: "pulsegate.werle.app",
       media: {
         main: "Pulse Gate: Echo Shift — Hauptmenü, dunkles Theme mit Cyan-Akzent",
@@ -522,7 +522,7 @@ const en: Content = {
       titleEmphasis: "Echo Shift",
       ariaLabel: "Pulse Gate: Echo Shift — pulsegate.werle.app",
       description:
-        "A tap sets the anchor angle, the pulse expands in a ring — the collision against the gates comes down to that angle. Anticipatory timing instead of a direct hit, across 200+ levels.",
+        "A tap sets the anchor angle, the pulse expands in a ring — the collision against the gates comes down to that angle. Anticipatory timing instead of a direct hit, across 200 levels.",
       ctaLabel: "pulsegate.werle.app",
       media: {
         main: "Pulse Gate: Echo Shift — main menu, dark theme with cyan accent",

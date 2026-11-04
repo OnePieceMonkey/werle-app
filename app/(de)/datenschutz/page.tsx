@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = legalMetadata(
   "/datenschutz",
   "Datenschutz — Werle Technologies",
-  "Datenschutzerklärung zu werle.app: welche Daten das Kontaktformular, die Produkt-Vormerkung und das Hosting verarbeiten.",
+  "Datenschutzerklärung zu werle.app: welche Daten Hosting, Reichweitenmessung, Kontaktformular und Produkt-Vormerkung verarbeiten.",
 );
 
 export default function DatenschutzPage() {
@@ -15,14 +15,15 @@ export default function DatenschutzPage() {
       <div className={styles.container}>
         <p className={`${styles.kicker} mono`}>Rechtliches</p>
         <h1 className={styles.title}>Datenschutzerklärung</h1>
-        <p className={styles.stand}>Stand: 12. August 2026</p>
+        <p className={styles.stand}>Stand: 4. November 2026</p>
 
         <div className={styles.summary}>
           <p>
             <strong>Kurzfassung:</strong> werle.app erhebt keine
-            personenbezogenen Daten allein durchs Ansehen der Seite, setzt
-            keine Cookies und bindet kein Tracking oder Analyse-Werkzeug
-            ein. Persönliche Daten entstehen nur, wenn Sie sie aktiv
+            personenbezogenen Daten allein durchs Ansehen der Seite und setzt
+            keine Cookies. Für eine anonyme Reichweitenmessung nutzen wir
+            Vercel Web Analytics, ohne Cookies und ohne Profile über
+            Websites hinweg. Persönliche Daten entstehen nur, wenn Sie sie aktiv
             eingeben — über das Kontaktformular oder die
             E-Mail-Vormerkung. Beide werden ausschließlich zur Bearbeitung
             Ihrer Anfrage verwendet und an keinen Dritten zu Werbezwecken
@@ -174,15 +175,44 @@ export default function DatenschutzPage() {
 
         <section className={styles.section}>
           <h2 className={`${styles.sectionTitle} mono`}>
-            Kein Tracking, keine Analyse-Werkzeuge
+            Reichweitenmessung mit Vercel Web Analytics
           </h2>
           <p>
-            Diese Website bindet aktuell keine Analyse- oder
-            Werbe-Tools ein — kein Google Analytics, kein Pixel, kein
-            Fingerprinting. Vercel Analytics ist im Projekt bewusst noch
-            nicht aktiviert. Sollte sich das künftig ändern, passen wir
-            diese Erklärung vorher an. Weil keine solchen Technologien im
-            Einsatz sind, ist derzeit kein Cookie-Banner erforderlich.
+            Um zu sehen, welche Seiten gelesen werden und über welche
+            Links Besucher kommen, nutzen wir Vercel Web Analytics.
+            Anbieter ist Vercel Inc., 440 N Barranca Avenue #4133, Covina,
+            CA 91723, USA, derselbe Anbieter wie beim Hosting.
+          </p>
+          <p>
+            Pro Seitenaufruf werden laut Vercel erfasst: Zeitpunkt,
+            aufgerufene Adresse, verweisende Seite (Referrer), gefilterte
+            Adress-Parameter (zum Beispiel <code>utm_source</code>), Land
+            und Ort aus der IP-Adresse abgeleitet, Betriebssystem, Browser
+            und Gerätetyp, jeweils mit Version. Vercel setzt dafür keine
+            Cookies. Ein Besucher wird über einen Hashwert aus der
+            Anfrage wiedererkannt, der nach 24 Stunden verworfen wird.
+            Die Daten werden nicht mit einer Person oder IP-Adresse
+            verknüpft und nicht über andere Websites hinweg
+            zusammengeführt. Wir sehen nur zusammengefasste Zahlen.
+          </p>
+          <p>
+            Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, unser
+            berechtigtes Interesse, die Reichweite dieser Website und
+            einzelner Links zu verstehen. Die Verarbeitung kann in den USA
+            stattfinden. Vercel gibt an, am EU-US Data Privacy Framework
+            teilzunehmen, und nutzt zusätzlich Standardvertragsklauseln
+            (Art. 46 DSGVO). Details:{" "}
+            <a
+              href="https://vercel.com/docs/analytics/privacy-policy"
+              target="_blank"
+              rel="noopener"
+            >
+              vercel.com/docs/analytics/privacy-policy
+            </a>
+          </p>
+          <p>
+            Andere Analyse- oder Werbe-Werkzeuge setzen wir nicht ein,
+            also kein Google Analytics, kein Pixel und kein Fingerprinting.
           </p>
         </section>
 
@@ -204,6 +234,11 @@ export default function DatenschutzPage() {
                   <td>Vercel (USA)</td>
                   <td>IP-Adresse, Server-Logs</td>
                   <td>bei jedem Seitenaufruf</td>
+                </tr>
+                <tr>
+                  <td>Vercel Web Analytics (USA)</td>
+                  <td>Seite, Referrer, UTM-Parameter, Land/Ort, Gerät, Browser</td>
+                  <td>bei jedem Seitenaufruf, ohne Cookies</td>
                 </tr>
                 <tr>
                   <td>Resend (USA)</td>
